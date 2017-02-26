@@ -1,0 +1,10 @@
+<p>Sortuj wg.</p>
+<ul>
+  <% Container.sort_options.each do |title, id| %>
+    <% if (!params[:containers_sort].nil? && params[:containers_sort].to_i == id) || (params[:containers_sort].nil? && @container.sort == id) %>
+      <li><%= title %></li>
+    <% else %>
+      <li><%= link_to title, "?containers_sort=#{id}" %></li>
+    <% end %>
+  <% end %>
+</ul>

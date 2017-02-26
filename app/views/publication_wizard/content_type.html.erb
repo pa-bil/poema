@@ -1,0 +1,79 @@
+<% title "Kreator publikacji" %>
+<% navi_path("Kreator publikacji", "Wybór rodzaju treści") %>
+<div id="divPublicationWizard">
+  <div class="page_header">
+    <h1>Kreator publikacji</h1>
+    <hr />
+  </div>
+  <p>
+    Kreator publikacji ma za zadanie ułatwić Ci umieszczenie własnych publikacji w serwisie. Publikacje, na podstawie
+    rodzaju treści, zostaną umieszczone w odpowiednim, indywidualnym folderze.<br />
+    <br />
+    Publikacje, których nie jesteś autorem, umieszczać należy w odpowiednich działach. Klasyfikacja publikacji ułatwia odwiedzającym
+    serwis szybkie i łatwe odnalezienie potrzebnych informacji.<br />
+  </p>
+  <br />
+  <div class="dotted_line"></div>
+  <div class="title">
+    <h2>Wybierz typ publikowanej treści:</h2>
+  </div>
+  <div class="dotted_line"></div>
+  <div class="content_buttons">
+    <%= form_tag publication_wizard_url do %>
+      <%= hidden_field_tag :content_type, Poema::ContentType::OWNED_POEM %>
+      <div class="item">
+        <div class="info">
+          Wiersz
+        </div>
+        <div class="icon">
+          <%= image_submit_tag "i/128/content_type_poem.png" %>
+        </div>
+      </div>
+    <% end %>
+    <%= form_tag publication_wizard_url do %>
+      <%= hidden_field_tag :content_type, Poema::ContentType::OWNED_PROSE %>
+      <div class="item">
+        <div class="info">
+          Proza
+        </div>
+        <div class="icon">
+          <%= image_submit_tag "i/128/content_type_prose.png" %>
+        </div>
+      </div>
+    <% end %>
+    <%= form_tag publication_wizard_url do %>
+      <%= hidden_field_tag :content_type, Poema::ContentType::OWNED_PHOTO %>
+      <div class="item">
+        <div class="info">
+          Zdjęcie
+        </div>
+        <div class="icon">
+          <%= image_submit_tag "i/128/content_type_photo.png" %>
+        </div>
+      </div>
+    <% end %>
+    <%= form_tag publication_wizard_url do %>
+      <%= hidden_field_tag :content_type, Poema::ContentType::OWNED_ART %>
+      <div class="item">
+        <div class="info">
+          Art
+        </div>
+        <div class="icon">
+          <%= image_submit_tag "i/128/content_type_art.png" %>
+        </div>
+      </div>
+    <% end %>
+    <%= form_tag publication_wizard_url do %>
+      <%= hidden_field_tag :content_type, Poema::ContentType::CALENDAR %>
+      <div class="item">
+        <div class="info">
+          Wydarzenie
+        </div>
+        <div class="icon">
+          <%= image_submit_tag "i/128/content_type_calendar.png" %>
+        </div>
+      </div>
+    <% end %>
+    <br clear="all" />
+  </div>
+</div>

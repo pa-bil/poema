@@ -1,0 +1,11 @@
+<%= form_for(@forum_post, :url => forum_forum_thread_forum_posts_path(@forum, @forum_thread) + (@forum_post_replied ? "?forum_post_id=#{@forum_post_replied.id}" : '')) do |f| %>
+  <%= render "layouts/form_errors", :errors => @forum_post.errors if @forum_post.errors.any? %>
+  <div class="field">
+    <%= f.label :content, "Treść odpowiedzi" %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <input type='button' value='Anuluj' />
+    <%= f.submit "Odpowiedz" %>
+  </div>
+<% end %>

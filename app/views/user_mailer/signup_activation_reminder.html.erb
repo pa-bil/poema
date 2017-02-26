@@ -1,0 +1,17 @@
+<h1>Cześć <%= @user.name %></h1>
+<p>Przypominamy, że <%= mfword('założyłeś', 'założyłaś', @user) %> u nas konto i jeszcze go nie <%= mfword('aktywowałeś', 'aktywowałaś', @user) %>.</p>
+<p>Warto aktywować u nas konto. Dzięki temu otrzymasz możliwość publikacji własnej twórczości, możliwość zabierania głosu w dyskusjach.</p>
+<br />
+<p>Przypominamy dane konta które <%= mfword('utworzyłeś', 'utworzyłaś', @user) %>:</p>
+<pre>
+<% if @omniauth_provider %>
+  Logowanie za pomocą usługi <%= @omniauth_provider %> jako <%= @user.name %>.
+<% else %>
+  Login: <%= @auth.login %>
+  Hasło: ******** (ukryte)
+<% end %>
+</pre>
+<p><strong>Link aktywacyjny:</strong> <%= new_signup_activation_path(@activation.code, :only_path => false) %></p>
+<br />
+<p>Aby  można  było korzystać z utworzonego konta  otwórz  umieszczony
+powyżej adres lub <%= link_to("kliknij w ten link", new_signup_activation_path(@activation.code, :only_path => false)) %>.</p>

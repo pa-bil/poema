@@ -1,0 +1,1 @@
+<%= link_to "Wersja #{v.id}", term_path(v) %>, wprowadzona <%= date_format v.introduced, :date %>, <% if v.expired.nil? %>aktualna.<% else %>nieaktualna, wygasła <%= date_format v.expired, :date %>.<% end %>

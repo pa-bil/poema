@@ -1,0 +1,26 @@
+<% if @audits.count > 0 %>
+  <%= will_paginate @audits, :param_name => :audits_page %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Użytkownik</th>
+      <th>Data</th>
+      <th>IP</th>
+      <th>Zdarzenie</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @audits.each do |audit| %>
+      <tr>
+        <td><%= link_to audit.user.name, admin_user_path(audit.user) %></td>
+        <td><%= date_format audit.created_at %></td>
+        <td><%= link_to audit.ip, "https://apps.db.ripe.net/search/query.html?searchtext=#{audit.ip}" %></td>
+        <td><%= audit_human_description audit %> <%= audit.description %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @audits, :param_name => :audits_page %>
+<% else %>
+  <h3>Nic nie znaleziono</h3>
+<% end %>

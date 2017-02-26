@@ -1,0 +1,14 @@
+<% title "Moderacja treści" %>
+<% if @moderateable.instance_of?(Comment) %><% navi_path(link_to("Publikacje", containers_path), @moderateable_context, "Moderacja treści") %><% else %><% navi_path(@moderateable, "Moderacja treści") %><% end %>
+<div id="divPublications">
+  <div class="page_header">
+    <h1>Cofnięcie moderacji</h1>
+    <hr />
+  </div>
+  <%= render 'layouts/confirmation_form',
+        :object  => @moderateable,
+        :url     => moderations_path(@moderateable, @moderateable_context),
+        :method  => :delete,
+        :message => "Czy na pewno chcesz cofnąć moderację?"
+  %>
+</div>

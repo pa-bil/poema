@@ -1,0 +1,26 @@
+<% if @forums.count > 0 %>
+  <ul>
+  <% @forums.each do |f| %>
+    <li>
+      <div class="item">
+        <div class="dotted_line"></div>
+        <p class="title"><%= link_to(f.title, f) %> <%= is_new(f) %></p>
+        <div class="dotted_line"></div>
+        <p class="description">
+          <%= f.description %>
+        </p>
+        <p class="info">
+          <strong>Ilość wiadomości:</strong> <%= f.counter_post %><br />
+          <strong>Ostatnio aktywny temat:</strong> 
+          <% if f.last_forum_thread.nil? %>
+            brak wiadomości na tym forum
+          <% else %>
+            <%= link_to(f.last_forum_thread.title, forum_forum_thread_path(f, f.last_forum_thread)) %>, autorem jest
+            <%= link_to_user f.last_forum_thread.owner.name, f.last_forum_thread.owner %>
+          <% end %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

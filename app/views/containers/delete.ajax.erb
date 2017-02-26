@@ -1,0 +1,6 @@
+<%= render 'layouts/confirmation_form',
+  :object  => @container,
+  :method  => :delete,
+  :message => "Czy na pewno chcesz usunąć kontener '#{@container.title}'. Usunięcie kontenera jest nieodwracalne i usuwa jednocześnie wszystkie elementy, które się w nim znajdują.",
+  :hint    => "Możesz także usunąć ten kontener z listy, bez usuwania go z bazy danych. W edycji kontenera zaznacz opcję 'Ukryj'"
+%>

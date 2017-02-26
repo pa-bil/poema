@@ -1,0 +1,18 @@
+<% title "Nowe konto" %>
+<% o = (@current_step == 'auth' ? @auth : @user) %>
+<%= navi_path("Rejestracja", "Krok #{@step_number} z #{@step_count}: " + I18n.t("controller.signup.steps.#{@current_step}"))  %>
+<div id="divSignup">
+  <div class="page_header">
+    <h1>Rejestracja, krok <%= @step_number %> z <%= @step_count %>: <%= I18n.t("controller.signup.steps.#{@current_step}") %></h1>
+    <hr />
+  </div>
+  <%= form_for o, :url => new_signup_path do |f| %>
+    <%= render "layouts/form_errors", :errors => o.errors if o.errors.any? %>
+    <%= render "#{@current_step}_step", :f => f, :profile => false %>
+    <div class="actions">
+      <%= f.submit "Wróć", :name => "back_button" unless @first_step %>
+      <%= f.submit "Dalej", :id => "forward_button" %>
+    </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for(@moderation, :url => moderations_path(@moderateable, @moderateable_context)) do |f| %>
+  <div id="new_moderation_errors">
+    <%= render "layouts/form_errors", :errors => @moderation.errors if @moderation.errors.any? %>
+  </div>
+  <div class="field">
+    <%= f.label :reason, "Powód moderacji (widoczny dla właściciela moderowanej treści)" %><br />
+    <%= f.text_area :reason %>
+  </div>
+  <% if @moderateable.instance_of?(User) %>
+  <div class="field">
+    <%= f.label :finish, "Data wygaśnięcia bana" %><br /><p class="s">Określ datę wygaśnięcia moderacji, jeśli nic
+    nie określisz moderacja jest permanentna.</p>
+    <div class="datepicker">
+      <%= f.date_select :expiry_date, :include_blank => true %>
+    </div>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "Zablokuj" %>
+  </div>
+<% end %>

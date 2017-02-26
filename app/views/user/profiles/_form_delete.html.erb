@@ -1,0 +1,24 @@
+<%= form_for(@profile_remove, :url => user_profile_path, :method => :delete) do |f| %>
+  <%= render "layouts/form_errors", :errors => @profile_remove.errors if @profile_remove.errors.any? %>
+  <div class="field">
+    <%= f.check_box :confirmation %> <%= f.label :confirmation, "Rozumiem, że usunięcie profilu jest nieodwracalne, i uniemożliwi mi dostęp do mojego Konta." %>
+  </div>
+  <div class="field">
+    <%= f.check_box :remove_pubs_owned, (params[:user_self_remove_form] ? {} : {:checked => true}) %> <%= f.label :remove_pubs_owned, "Wraz z usunięciem Konta chcę usunąć wszystkie umieszczone w serwisie publikacje, do których posiadam prawa autorskie." %>
+  </div>
+  <div class="field">
+    <%= f.check_box :confirmation_pubs %> <%= f.label :confirmation_pubs, "Rozumiem, że usunięcie profilu nie usunie Publikacji, które #{mfword("dodałem", "dodałam", @user)}, ale do których praw majątkowych nie posiadam." %>
+  </div>
+  <div class="field">
+    <%= f.check_box :confirmation_opinions %> <%= f.label :confirmation_opinions, "Rozumiem, że usunięcie profilu nie usunie treści moich Opinii." %>
+    <p class="form_hint">Dbamy o Twoją prywatność. W momencie usunięcia Konta anonimizujemy Twoje dane osobowe. Publikacje i Opinie, których jesteś autorem przestaną być podpisane publicznie Twoimi danymi.</p>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Hasło do Twojego konta" %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <input type='button' value='Anuluj' />
+    <%= f.submit "Usuń" %>
+  </div>
+<% end %>

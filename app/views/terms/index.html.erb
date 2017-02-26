@@ -1,0 +1,24 @@
+<% title "Regulamin Serwisu" %>
+<div id="divTerms">
+  <div class="page_header">
+    <h1>Regulamin Serwisu</h1>
+    <hr />
+  </div>
+
+  <p class="content" align="justify">
+    <%= render ("version_" +  @current_version.id.to_s) %>
+  </p>
+
+  <hr />
+  <p class="info">
+  Autor: ???,<br />
+  <%= terms_version_format @current_version  %>
+  </p>
+
+  <hr />
+  <p>Wszystkie wersje:<br />
+  <% @terms.order(:introduced).each do |version| %>
+  <%= terms_version_format version %>,<br />
+  <% end %>
+  </p>
+</div>

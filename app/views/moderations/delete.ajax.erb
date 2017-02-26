@@ -1,0 +1,6 @@
+<%= render 'layouts/confirmation_form',
+  :object  => @moderateable,
+  :url     => moderations_path(@moderateable, @moderateable_context),
+  :method  => :delete,
+  :message => "Czy na pewno chcesz cofnąć moderację?"
+  %>

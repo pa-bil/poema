@@ -1,0 +1,110 @@
+<% title "Twój profil" %>
+<% navi_path("Twój profil") %>
+<% has_own_bg_for_main_content %>
+<div id="divProfile">
+  <%= render "layouts/form_errors", :errors => [@user.errors, @uploaded_file.errors] if (@user.errors.any? || @uploaded_file.errors.any?) %>
+  <%= render "layouts/form_errors", :errors => @auth.errors  if @auth.errors.any? %>
+  <div id="divProfileTabsLoading">
+    <div class='loading_box'>Ładuję zawartość, proszę czekać...</div>
+  </div>
+  <div id="divProfileTabs" class="hidden">
+    <ul>
+      <li><a href="#tabs-2">Foldery</a></li>
+      <li><a href="#tabs-3">Publikacje</a></li>
+      <li><a href="#tabs-4">Informacje</a></li>
+      <li><a href="#tabs-5">Ustawienia</a></li>
+      <li><a href="#tabs-6">Hasło</a></li>
+      <li><a href="#tabs-7">Czarna lista</a></li>
+    </ul>
+    <div id="tabs-2">
+      <% if @containers.empty?%>
+        <h3>Ups, nie masz jeszcze żadnego kontenera, użyj <%= link_to "Wizarda publikacji", publication_wizard_path %> aby utworzyć coś nowego.</h3>
+      <% else %>
+        <%= render :partial => 'pub_legend' %>
+        <p class="bold">Lista kontenerów</p>
+        <ul>
+        <% @containers.each do |c| %>
+          <li><kbd><%= container_status_icon c %></kbd> <%= link_to c.title, c %><% unless c.container.nil? %> w kontenerze <%= link_to c.container.title, c.container %><% end %></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div id="tabs-3">
+      <% if @publications.empty? %>
+        <h3>Ups, nie masz jeszcze żadnej publikacji, użyj <%= link_to "Wizarda publikacji", publication_wizard_path %> aby utworzyć coś nowego.</h3>
+      <% else %>
+        <%= render :partial => 'pub_legend' %>
+        <p class="bold">Lista publikacji</p>
+        <ul>
+        <% @publications.each do |p| %>
+          <li><kbd><%= publication_status_icon p %></kbd> <%= link_to p.title, p %> w kontenerze <%= link_to p.container.title, p.container %></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <%= form_for @user, :url => user_profile_url do |f| %>
+    <div id="tabs-4">
+      <%= render "/signup/personal_step", :f => f, :profile => true %>
+      <%= render "/signup/contact_step", :f => f %>
+      <%= render "/signup/localisation_step", :f => f %>
+      <br clear="all" />
+      <div class="form_buttons">
+        <%= f.submit "Zapisz" %>
+      </div>
+      <br clear="all" />
+    </div>
+    <div id="tabs-5">
+      <%= render "/signup/settings_step", :f => f %>
+      <br clear="all" />
+      <div class="form_buttons">
+        <%= f.submit "Zapisz" %>
+      </div>
+      <br clear="all" />
+    </div>
+    <% end %>
+    <div id="tabs-6">
+      <%= form_for @auth, :url => user_profile_url do |f| %>
+        <%= render "/signup/auth_step", :f => f %>
+        <div class="form_buttons">
+          <%= f.submit "Zapisz" %>
+        </div>
+      <% end %>
+      <br clear="all" />
+      <fieldset>
+        <legend>Posiadane uprawnienia</legend>
+        <ol>
+        <% @user.roles.each do |role| %>
+          <% if role.generic_role? %>
+          <li><%= role.name %>: <%= role.description %></li>
+          <% end %>
+        <% end %>
+        </ol>
+      </fieldset>
+      <fieldset>
+        <legend>Usuń profil</legend>
+        <p>Usunięcie profilu jest akcją nieodwracalną. Usuwając profil tracisz dostęp do Twojego konta, a Twoje dane zostaną zanonimizowane.</p>
+      </fieldset>
+      <div class="form_buttons">
+        <%= button_to "Usuń profil", {:action => "delete"}, {:method => 'get'} %>
+      </div>
+      <br clear="all" />
+    </div>
+    <div id="tabs-7">
+      <p class="bold">Czarna lista</p>
+      <% if @blacklists.count > 0 %>
+      <p>Lista użytkowników, których blokujesz. Nie mogą oni komentować Twoich publikacji, ani odpowiadać na posty na forum. Kliknij w ikonkę
+      <%= image_tag("i/16/delete.png") %> aby usunąć wybranego użytkownika z czarnej listy.</p>
+      <ul>
+      <% @blacklists.each do |bl| %>
+        <li><%= link_to bl.blacklisted.name, bl.blacklisted %> <% if bl.reason? %>(<%= bl.reason %>)<% end %> <%= link_to image_tag("i/16/delete.png"), delete_user_user_blacklists_path(bl.blacklisted) %></li>
+      <% end %>
+      </ul>
+      <% else %>
+        <p>Twoja czarna lista użytkowników jest pusta. Aby dodać użytkownika to czarnej listy, użyj ikonki <%= image_tag('i/16/stop.png') %>,
+          która pojawia się, w momencie najechania kursorem myszy na awatar komentującego użytkownika, lub użytkownika, piszącego na forum.
+          Użytkownicy znajdujący się na czarnej liście nie mogą komentować Twoich publikacji, odpowiadać na posty na forum, nie widzą także
+          Twoich danych kontaktowych.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

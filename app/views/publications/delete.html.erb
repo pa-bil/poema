@@ -1,0 +1,14 @@
+<% title "Usunięcie publikacji" %>
+<% navi_path(@publication, "Usunięcie publikacji") %>
+<div id="divPublications">
+  <div class="page_header">
+    <h1>Usunięcie publikacji</h1>
+    <hr />
+  </div>
+  <%= render 'layouts/confirmation_form',
+        :object  => @publication,
+        :method  => :delete,
+        :message => "Czy na pewno chcesz usunąć publikację '#{@publication.title}'. Usunięcie publikacji jest nieodwracalne.",
+        :hint    => "Możesz także usunąć Twoją publikację z listy, bez usuwania jej z bazy danych, w edycji publiacji zaznacz opcję 'Ukryj'"
+  %>
+</div>

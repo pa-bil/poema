@@ -1,0 +1,17 @@
+<pre>
+Konto <%= mfword("użytkownika", "użytkowniczki", @user) %> <%= @user.name %> zostało zablokowane przez
+moderatora <%= @moderator.name %> (<%= @moderator.auth.login %>). Powód moderacji:
+
+<%= @moderation.reason %>
+
+<% if @moderation.expiry_date.nil? %>
+Blokada konta obowiązuje bezterminowo.
+<% else %>
+Blokada konta obowiązuje do <%= date_format(@moderation.expiry_date)%> i po upływie tego czasu zostanie automatycznie cofnięta.
+<% end %>
+
+Zablokowane konto znajduje się na stronie http://<%= PoemaConfig.site_hostname + url_for(@user) %>
+
+Ilość unikatowych treści zablokowanych dla tego użytkownika: <%= @moderations_count %>
+Ilość banów: <%= @user.ban_count %>
+</pre>

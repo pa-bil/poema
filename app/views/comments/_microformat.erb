@@ -1,0 +1,10 @@
+<% if defined?(@comments_stat) %>
+  <div itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+    <meta itemprop="itemreviewed" content="<%= @comments_stat.commentable.title %>" />
+    <meta itemprop="count" content="<%= @comments_stat.count %>"/>
+    <div itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating">
+      <meta itemprop="average" content="<%= @comments_stat.percent %>" />
+      <meta itemprop="best" content="100" />
+    </div>
+  </div>
+<% end %>    

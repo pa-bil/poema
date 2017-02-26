@@ -1,0 +1,17 @@
+<% title "Administracja plikami" %>
+<% navi_path(@uploadable, "Administracja plikami") %>
+<div id="divUploadedFiles">
+  <div class="page_header">
+    <h1>Administracja plikami</h1>
+    <hr />
+  </div>
+  <p>Aby usunąć załączony plik, kliknij go. Aby usunąć awatar, po prostu usuń odpowiedni plik. Aby ustawić nowy awatar, dodaj plik i nie zapomnij
+  o zaznaczeniu odpowiedniej opcji.</p>
+  <%= render :partial => 'list_admin' %>
+  <br />
+  <div class="admin_links">
+    <ul>
+      <li><%= link_to 'Dodaj nowy plik', new_uploaded_file_path(@uploadable) %></li>
+    </ul>
+  </div>
+</div>

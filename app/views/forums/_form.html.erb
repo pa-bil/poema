@@ -1,0 +1,27 @@
+<%= form_for(@forum) do |f| %>
+  <%= render "layouts/form_errors", :errors => @comment.errors if @comment.errors.any? %>
+
+  <div class="field">
+    <%= f.label :visible %><br />
+    <%= f.check_box :visible %>
+  </div>
+  <div class="field">
+    <%= f.label :moderated %><br />
+    <%= f.check_box :moderated %>
+  </div>
+  <div class="field">
+    <%= f.label :allow_html %><br />
+    <%= f.check_box :allow_html %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

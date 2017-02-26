@@ -1,0 +1,59 @@
+@import "extends";
+@include extends;
+
+#divSearch
+{
+  .form
+  {
+    float: left;
+    width: 40%;
+
+    #q
+    {
+      width: 100%;
+    }
+  }
+
+  .search_info
+  {
+    float: left;
+    width: 55%;
+
+    margin-right: 5px;
+
+    #search_more
+    {
+      cursor: pointer;
+    }
+
+    ul
+    {
+      margin-left: 30px;
+    }
+  }
+
+
+  .users_list
+  {
+    .header
+    {
+      background: #EAAC6B;
+      border-color: #EAAC6B;
+      height: 20px;
+      @extend .rounded_border;
+
+      h2
+      {
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+      }
+    }
+
+    .row
+    {
+      float: left;
+      margin: 3px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path "Narzędzia administracyjne" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne</h1>
+    <hr />
+  </div>
+  <div>
+    <ul class="icons">
+      <li><%= link_to image_tag("i/128/users.png"), admin_users_path %> Użytkownicy</li>
+      <li><%= link_to image_tag("i/128/log.png"), admin_audits_path %>Dziennik</li>
+      <li><%= link_to image_tag("i/128/charts.png"), admin_charts_path %>Wykresy</li>
+      <li><%= link_to image_tag("i/128/star.png"), admin_special_actions_path %>Akcje specjalne</li>
+    </ul>
+  </div>
+</div>

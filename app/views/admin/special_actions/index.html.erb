@@ -1,0 +1,45 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), "Akcje specjalne" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne, Akcje specjalne</h1>
+    <hr />
+  </div>
+  <div class="content">
+    <div class="list">
+      <% if @special_actions.count > 0 %>
+        <%= will_paginate @special_actions %>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Tytuł</th>
+            <th>Organizator</th>
+            <th>Aktywna</th>
+            <th>Początek</th>
+            <th>Koniec</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @special_actions.each do |a| %>
+            <tr>
+              <td><%= link_to a.title, a %> <%= image_tag a.icon_url %><br /><p class="small"><%= a.description %></p></td>
+              <td><%= a.promoter_title %><br /><p class="small"><%= a.promoter_description %></p></td>
+              <td><%= a.can_show? ? 'tak' : 'nie' %></td>
+              <td><%= a.start_date? ? date_format(a.start_date) : 'Nie określono' %></td>
+              <td><%= a.finish_date? ? date_format(a.finish_date) : 'Nie określono' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%= will_paginate @special_actions %>
+      <% else %>
+        <h3>Nic nie znaleziono</h3>
+      <% end %>
+    </div>
+  </div>
+  <div class="admin_links">
+    <ul>
+      <li><%= image_tag 'i/16/add.png' %> <%= link_to 'Dodaj nową akcję specjalną', new_admin_special_action_path %></li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+@import "extends";
+@include extends;
+
+#divSignup
+{
+  // Podczas signupu ukrywamy fieldsety i legendę, to będzie potrzebne na formularzu podczas edycji konta
+  #new_user, #new_auth
+  {
+    fieldset
+    {
+      border: 0px;
+      @extend .no_padding;
+    }
+
+    legend
+    {
+      display: none;
+    }
+  }
+
+  iframe.terms
+  {
+    border: 0;
+    width: 100%;
+    height: 250px;
+  }
+
+  #user_localisation
+  {
+    width: 400px;
+  }
+
+  #localisation_map_canvas
+  {
+    width:404px;
+    height:300px;
+    display: block;
+    background: #ffffff;
+  }
+
+  .content
+  {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .social-signup
+  {
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #EAAC6B;
+
+    @extend .rounded_border;
+
+    img
+    {
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<h1>Witamy w serwisie, <%= @user.name %></h1>
+<p>Właśnie <%= mfword('aktywowałeś', 'aktywowałaś', @user) %> swoje konto.</p>
+
+<p>Jak już wspominaliśmy, konto umożliwia aktywne uczestnictwo w serwisie, poznawanie nowych ludzi, publikowanie własnych
+prac. Zachęcamy do częstego zaglądania do nas.</p>
+
+<h4>Pomocne linki:</h4>
+<p><%= url_add_hostname static_page_contact_path %></p>

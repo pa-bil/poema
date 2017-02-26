@@ -1,0 +1,85 @@
+<% title @user.name %>
+<% description @user.description %>
+<% navi_path("Użytkownicy", @user) %>
+<div id="divUsers" itemscope itemtype="http://data-vocabulary.org/Person">
+  <meta itemprop="image" content="<%=user_image_url(@user) %>" />
+  <meta itemprop="role" content="Autor" />
+  <div class="page_header">
+    <h1><%= @user.name %></h1>
+    <hr />
+  </div>
+  <%= card @user %>
+  <div class="info clearfix">
+    <p>
+      <strong>Nazywam się:</strong> <span itemprop="name"><%= @user.name %></span>
+      <% if @user.localisation_geocoder? %><%= privacy_allow_show_details(session_user, @user) do %>, moje miasto to <span itemprop="address"><%= @user.localisation_geocoder %></span> <% end %><% end %>
+    </p>
+    <%= privacy_allow_show_details(session_user, @user) do %>
+      <p><strong>Dane kontaktowe:</strong> możesz pisać do mnie na adres <strong><%= @user.email %></strong>.
+      <% if @user.im_gadugadu? %>Używam także gadu-gadu, znajdziesz mnie pod numerem <%= @user.im_gadugadu %><% end %></p>
+    <% end %>
+    <% if @user.description? %>
+      <p><strong>Trochę o mnie:</strong> <span itemprop="description"><%= safe_html @user.description %></span></p>
+    <% end %>
+    <% if @user.intro? %>
+      <p><strong><%= mfword('Dołączyłem', 'Dołączyłam', @user) %> do serwisu ponieważ:</strong> <%= safe_html @user.intro %></p>
+    <% end %>
+  </div>
+  <%= privacy_allow_show_details(session_user, @user) do %>
+    <p><strong>Moje statystyki:</strong></p>
+    <ul>
+      <li>Ranking: <%= img_user_rank(@user) %> (<%= @user.rank.rank %>)</li>
+      <li>Data dołączenia do serwisu: <%= date_format @user.created_at, :only_date %> czyli około <%= time_ago_in_words @user.created_at %> temu</li>
+      <li>Ostatnia wizyta: około <%= time_ago_in_words @stat.current_visit %> temu</li>
+      <li>Ilość wizyt: <%= @user.auth.counter_login %></li>
+      <% if @stat.last_publication %>
+      <li>Ostatnia publikacja: <%= time_ago_in_words @stat.last_publication %> temu. <%= link_to ("Pokaż publikacje " + mfword("użytkownika", "użytkowniczki", @user)), index_publications_user_path %></li>
+      <li>Ilość publikacji: <%=  @stat.counter_publication %></li>
+      <li>Ilość folderów: <%= @stat.counter_container %></li>
+      <% end %>
+      <% if @stat.last_forum_post %>
+      <li>Ostatni post na forum: <%= time_ago_in_words @stat.last_forum_post %> temu</li>
+      <li>Ilość postów na forum: <%= @stat.counter_forum_post %></li>
+      <% end %>
+      <% if @stat.last_commented %>
+      <li>Ostatni komentarz: <%= time_ago_in_words @stat.last_commented %> temu</li>
+      <li><%= mfword('Wystawił', 'Wystawiła', @user) %> komentarzy, w tym:</li>
+      <li>neutralnych: <%= @stat.counter_commented_neutral %></li>
+      <li>pozytywnych: <%= @stat.counter_commented_positive %></li>
+      <li>negatywnych: <%= @stat.counter_commented_negative %></li>
+      <% end %>
+    </ul>
+    <% if @commented.count > 0 %>
+    <p><strong>Ostatnio <%= mfword("skomentowałem", "skomentowałam", @user) %></strong>:</p>
+    <div class="commented_list">
+      <% @commented.each do |comment| %>
+        <div class="row">
+        <%= link_to user_image_tag(comment.commentable.owner, 50), comment.commentable %>
+        </div>
+      <% end %>
+    </div>
+    <br clear="all" />
+    <% end %>
+  <% end %>
+  <div class="view-counter">
+    <kbd>Ilość odsłon: <%= @user.view_counter_value %></kbd>
+  </div>
+  <div class="admin_links">
+    <ul>
+    <%= show_to :root do %>
+      <li><%= image_tag "i/16/user.png" %><%= link_to 'Zarządzaj kontem użytkownika', admin_user_path(@user) %></li>
+    <% end %>
+    <%= show_to :moderator do %>
+      <!-- To pokazuje się wyłącznie dla moderatorów -->
+      <% if @user.banned? %>
+        <li><%= image_tag "i/16/heart.png" %><%= link_to 'Cofnij banicję', moderations_path(@user) + delete_path_element, {:class => 'moderation_link poema_popup', :title => 'Potwierdzenie'} %></li>
+      <% else %>
+        <li><%= image_tag "i/16/stop.png" %><%= link_to "Banuj konto użytkownika", new_moderation_path(@user), {:class => 'moderation_link'} %></li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <div class="list" id="divCommentsList">
+    <%= render :partial => 'comments/list', :locals => { :context => @user, :comment_allowed => @comment_allowed } %>
+  </div>
+</div>

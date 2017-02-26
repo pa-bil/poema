@@ -1,0 +1,47 @@
+<% title "Wydarzenia" %>
+<% description "Ciekawe i polecane wydarzenia związane z poezją, literaturą. Informacje o koncertach, wieczorkach poetyckich." %>
+<% navi_path "Wydarzenia" %>
+<div id="divCalendars">
+  <div class="calendar_index">
+    <div class="page_header">
+      <h1>Wydarzenia</h1>
+      <hr />
+    </div>
+    <div class="top">
+      <p class="description">Tu znajdziesz interesujące wydarzenia.</p>
+    </div>
+    <div class="list">
+      <%= will_paginate @calendars %>
+      <% if @calendars.count > 0 %>
+        <ul>
+        <% @calendars.each do |c| %>
+          <li>
+            <div class="item">
+              <div class="dotted_line"></div>
+              <div class="info">
+                <%= link_to c do image_tag(c.avatar.url :avatar) end if c.avatar? %>
+              </div>
+              <div class="content">
+                <p class="title"><%= link_to(c.title, c) %> <%= is_new(c) %></p>
+                <p class="content_head">
+                  <span class="bold">Data:</span> <%= date_format(c.start_date, :long) %><br />
+                  <span class="bold">Miejsce:</span> <%= c.localisation_geocoder || c.localisation %>, <%= c.venue %>
+                </p>
+                <p class="content_body">
+                  <%= truncate strip_tags(c.description), :length => 500 %>
+                </p>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+      <%= will_paginate @calendars %>
+    </div>
+    <div class="admin_links">
+      <ul>
+        <li><%= image_tag 'i/16/add.png' %> <%= link_to 'Nowe wydarzenie', new_calendar_path %></li>
+      </ul>
+    </div>
+  </div>
+</div>

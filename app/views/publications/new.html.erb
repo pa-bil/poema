@@ -1,0 +1,11 @@
+<% title "Nowa publikacja" %>
+<% navi_path(@container, "Nowa publikacja") %>
+<% js_option('PublicationSimpleForm', true) if params[:publication_wizard] %>
+
+<div id="divPublications">
+  <div class="page_header">
+    <h1>Nowa publikacja</h1>
+    <hr />
+  </div>
+  <%= render 'form_new' %>
+</div>

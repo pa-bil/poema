@@ -1,0 +1,17 @@
+<h1>Cześć <%= @user.name %></h1>
+<p>
+  W serwisie pojawił się nowy komentarz do
+  <% if @commentable.instance_of?(Publication) %>
+   publikacji Twojej publikacji <strong><%= @commentable.title %></strong>.
+  <% elsif @commentable.instance_of?(Container) %>
+   kontenera którego jesteś <%= mfword("właścicielem", "właścicielką", @user) %>.
+  <% elsif @commentable.instance_of?(User) %>
+   Twojego profilu.
+  <% else %>
+   elementu, którego jesteś <%= mfword("właścicielem", "właścicielką", @user) %>.
+  <% end %>
+  Autorem komentarza jest <strong><%= @commentator.anonymous? ? link_to(@commentator.name, "mailto:#{@commentator.email}") : link_to(@commentator.name, @commentator) %></strong>
+</p>
+
+<p>Komentarz możesz przeczytać  przechodząc na stronę: <%= url_add_hostname(url_for @commentable) %>
+  lub <%= link_to("klikając w ten link", url_add_hostname(url_for @commentable)) %></p>

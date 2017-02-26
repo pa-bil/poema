@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>Login i hasło</legend>
+  <div class="field">
+    <%= f.label :login, "Login" %><span class='red'>*</span><br />
+    <%= f.text_field :login, :disabled => (!@auth.nil? && !@auth.new_record?) %>
+    <p class="form_hint">Inaczej Twoja nazwa użytkownika. Możesz używać znaków specjalnych, polskich liter, nie używaj spacji.</p>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Hasło" %><span class='red'>*</span>
+    <p class="form_hint">
+    Zachęcamy do używania polskich znaków, znaków specjalnych, im bardziej skomplikowane hasło, tym lepiej.
+    Jeśli zapomnisz hasła, oferujemy Ci możliwość jego przypomnienia. Informację wyślemy na Twój adres email. Dla tego ważne jest,
+    aby był zawsze aktualny.</p>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password, "Powtórz hasło" %><span class='red'>*</span><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+</fieldset>

@@ -1,0 +1,60 @@
+<% title @container.title %>
+<% description @container.description %>
+<% navi_path(link_to("Publikacje", containers_path), @container) %>
+<div id="divContainers">
+  <div class="page_header">
+    <h1><%= @container.title %></h1>
+    <hr />
+  </div>
+  <div class="top">
+    <p class="description"><%= safe_html @container.description %></p>
+    <div class="wrapper"></div>
+  </div>
+  <div class="list clearfix">
+    <%= render 'list' %>
+    <% unless @containers.empty? %>
+      <div class="sorting-options clearfix">
+        <%= render :partial => 'sort' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="list clearfix">
+    <%= render 'publications/list' %>
+    <% unless @publications.empty? %>
+      <div class="sorting-options clearfix">
+        <p>Sortuj wg.</p>
+        <%= render :partial => 'publications/sort', :locals => {:default_sort => @container.sort} %>
+      </div>
+    <% end %>
+  </div>
+  <div class="list">
+    <%= render 'uploaded_files/list_thumb' %>
+  </div>
+  <div class="view-counter">
+    <kbd>Ilość odsłon: <%= @container.view_counter_value %></kbd>
+  </div>
+  <div class="social-buttons">
+    <div class="fb">
+      <%= facebook_like %>
+    </div>
+  </div>
+  <div class="admin_links">
+    <ul>
+      <li class="extra-spacing"><%= image_tag 'i/16/burn_folder.png' %> <%= link_to 'Ostatnie publikacje w tym kontenerze', index_publications_last_container_path(@container) %></li>
+    <% if allow_actions_publish? %>
+      <li><%= image_tag 'i/16/add.png' %> <%= link_to 'Dodaj publikację w tym miejscu', new_container_publication_path(@container) %></li>
+    <% end %>
+    <% if allow_actions_create? %>
+      <li><%= image_tag 'i/16/new_folder.png' %> <%= link_to 'Dodaj kontener w tym miejscu', new_container_container_path(@container) %></li>
+    <% end %>
+    <% if allow_actions? %>
+      <li><%= image_tag 'i/16/edit.png' %> <%= link_to 'Edycja kontenera', edit_container_path(@container) %></li>
+      <li><%= image_tag 'i/16/image.png' %> <%= link_to 'Dodaj lub usuń załączone pliki', container_uploaded_files_path(@container) %></li>
+      <li><%= image_tag 'i/16/delete.png' %> <%= link_to 'Usuń kontener', url_for(@container) + delete_path_element, :class => 'poema_popup' %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="list" id="divCommentsList">
+    <%= render :partial => 'comments/list', :locals => { :context => @container, :comment_allowed => @comment_allowed } %>
+  </div>
+</div>

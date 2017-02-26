@@ -1,0 +1,21 @@
+<% title "Administracja uprawnieniami" %>
+<div id="divRoles">
+  <div class="page_header">
+    <h1>Administracja uprawnieniami</h1>
+    <hr />
+  </div>
+  <p>Typ obiektu: <%= @context.class.name %><br />
+  Przypisane role:</p>
+  <ul>
+    <% @context.accepted_roles.each do |role| %>
+    <li>
+      <%= role.name %>:
+      <% role.users.each do |user| %>
+      <ul>
+        <li><%= link_to user.name, user %></li>
+      </ul>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

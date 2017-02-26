@@ -1,0 +1,4 @@
+<p>Treść <%= mfword("użytkownika", "użytkowniczki", @user) %> <% if @user.nil? %>anonimowego<% else %><%= @user.name %><% end %> została
+odblokowana przez moderatora <%= @moderator.name %> (<%= @moderator.auth.login %>).</p>
+
+<p>Odblokowana treść znajduje się na stronie <%= url_add_hostname url_for(@moderateable_context) %></p>

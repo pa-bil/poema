@@ -1,0 +1,47 @@
+<% unless @publications.empty? %>
+<div class="publications_list">
+  <div class="header">
+    <h2>Lista publikacji</h2>
+  </div>
+  <%= will_paginate(@publications, :param_name => :publications_page) if defined?(pagination) %>
+  <div class="content">
+    <table>
+    <tr>
+      <th colspan="2" class="title">Publikacja</th>
+      <th>Autor lub opiekun</th>
+      <th>Odsł.</th>
+      <th>Opinie</th>
+    </tr>
+    <% @publications.each do |p| %>
+    <tr>
+      <td>
+        <p class="title">
+          <%= link_to p.title, p %> <%= is_new(p) %>
+          <% if p.included_and_exist_special_action? %>
+            <% p.list_special_actions.each do |a| %>
+              <%= image_tag a.icon_url, {:title => "Publikacja zgłoszona do akcji #{a.title}, organizator akcji: #{a.promoter_title}", :class => 'poema_tooltip'} %>
+            <% end %>
+          <% end %>
+        </p>
+        <p class="date"><%= date_format p.published_at, :only_date %></p>
+        <p class="intro"><%= p.intro %></p>
+      </td>
+      <td class="thumb">
+        <% unless p.avatar.nil? %>
+          <div class="image-frame-thumb">
+            <%= link_to image_tag(p.avatar.url(:thumb)), p %>
+          </div>
+        <% end %>
+      </td>
+      <td>
+        <p class="owner"><%= publication_author_display p, true %></p>
+      </td>
+      <td><p class="counter"><%= p.view_counter_value %></p></td>
+      <td><p class="counter"><%= p.counter_comment %></p></td>
+    </tr>
+    <% end %>
+    </table>
+  </div>
+  <%= will_paginate(@publications, :param_name => :publications_page) if defined?(pagination) %>
+</div>
+<% end %>

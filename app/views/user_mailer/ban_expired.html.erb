@@ -1,0 +1,10 @@
+<h1><%= mfword('Szanowny użytkowniku', 'Szanowna użytkowniczko', @user) %> serwisu</h1>
+<p>Minął okres czasowej blokady Twojego konta w serwisie i zostało ono w tym momencie automatycznie odblokowane.</p>
+<h4>Poniżej przypominamy Ci powód blokady, podany przez moderatora:</h4>
+<pre>
+  <%= @moderation.reason %>
+</pre>
+<p>Kiedy bodziesz logował na portalu, miej proszę na uwadze powód czasowej blokady i unikaj zachowań skutkujących restrykcjami konta.</p>
+<h4>Pomocne linki:</h4>
+<p><%= url_add_hostname static_page_contact_path %><br />
+<%= url_add_hostname terms_path  %></p>

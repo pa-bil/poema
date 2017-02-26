@@ -1,0 +1,13 @@
+<% title "Wyniki wyszukiwania nowych publikacji" %>
+<% navi_path(link_to("Publikacje", containers_path), @container, "Wyniki wyszukiwania nowych publikacji") %>
+<div id="divContainers">
+  <div class="page_header">
+    <h1>Wyniki wyszukiwania nowych publikacji</h1>
+    <hr />
+  </div>
+  <%= render 'publications/list' %>
+
+  <% if @publications.empty? %>
+  <p>W kontenerze <%= @container.title %> znaleziono żadnych nowych publikacji od czasu Twojej ostatniej wizyty <%= time_ago_in_words session_user.stat.last_visit %> temu.</p>
+  <% end %>
+</div>

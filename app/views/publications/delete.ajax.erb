@@ -1,0 +1,6 @@
+<%= render 'layouts/confirmation_form',
+      :object  => @publication,
+      :method  => :delete,
+      :message => "Czy na pewno chcesz usunąć publikację '#{@publication.title}'. Usunięcie publikacji jest nieodwracalne.",
+      :hint    => "Możesz także usunąć Twoją publikację z listy, bez usuwania jej z bazy danych, w edycji publiacji zaznacz opcję 'Ukryj'"
+%>

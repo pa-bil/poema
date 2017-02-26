@@ -1,0 +1,9 @@
+<ul>
+  <% @feed.each do |element| %>
+    <li>
+      <%= frontpage_render_feed_element(element) %>
+      <br clear="all" />
+      <div class="dotted_line"></div>
+    </li>
+  <% end %>
+</ul>

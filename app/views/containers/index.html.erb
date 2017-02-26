@@ -1,0 +1,22 @@
+<% title "Lista kontenerów" %>
+<% navi_path("Publikacje") %>
+<div id="divContainers">
+  <div class="page_header">
+    <h1>Spis rzeczy</h1>
+    <hr />
+  </div>
+  <div class="list clearfix">
+    <%= render 'list' %>
+    <div class="sorting-options clearfix">
+      <p>Sortuj wg.</p>
+      <%= render :partial => 'sort' %>
+    </div>
+  </div>
+  <div class="admin_links">
+    <ul>
+      <% if allow_actions_create? %>
+      <li><%= link_to 'Dodaj nowy kontener w tym miejscu', new_container_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

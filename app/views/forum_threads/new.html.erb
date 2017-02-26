@@ -1,0 +1,9 @@
+<% title "Nowy temat na forum #{@forum.title}" %>
+<% navi_path(link_to('Forum', forums_path), @forum, "Nowy temat") %>
+<div id="divForums">
+  <div class="page_header">
+    <h1>Nowy temat na forum "<%= @forum.title %>"</h1>
+    <hr />
+  </div>
+  <%= render 'form' %>
+</div>

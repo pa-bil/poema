@@ -1,0 +1,7 @@
+.idea/
+config/database.yml
+config/application.yml
+log/*
+public/assets
+public/filestore/*
+tmp/*

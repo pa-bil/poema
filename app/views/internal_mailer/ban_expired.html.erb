@@ -1,0 +1,6 @@
+<pre>
+Blokada konta <%= mfword("użytkownika", "użytkowniczki", @user) %> <%= @user.name %> wygasła dnia <%= date_format(@moderation.expiry_date) %>.
+Konto zostało automatycznie odblokowane, poinformowano użytkownika o wygaśnięciu blokady.
+
+Konto użytkownika znajduje się na stronie http://<%= PoemaConfig.site_hostname + url_for(@user) %>
+</pre>

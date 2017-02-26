@@ -1,0 +1,9 @@
+<% title "Edycja tematu #{@forum_thread.title}" %>
+<% navi_path(link_to('Forum', forums_path), @forum, @forum_thread, "Edycja tematu") %>
+<div id="divForums">
+  <div class="page_header">
+    <h1>Edycja tematu <%= @forum_thread.title %></h1>
+    <hr />
+  </div>
+  <%= render 'form' %>
+</div>

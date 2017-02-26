@@ -1,0 +1,35 @@
+<% title @special_action.title %>
+<% description @special_action.description %>
+<% navi_path(link_to(@special_action.title, @special_action)) %>
+<div id="divSpecialActions">
+  <div class="page_header">
+    <h1 class="title">
+      <%= @special_action.title %>
+      <%= image_tag @special_action.icon_url %>
+    </h1>
+    <h4 class="title">Organizator akcji: <%= safe_html @special_action.promoter_title %></h4>
+    <hr />
+  </div>
+  <div class="top">
+    <p class="description"><%= safe_html @special_action.description %></p>
+    <% if @special_action.promoter_description?  %>
+      <p class="description">Więcej informacji o organizatorze:</p>
+      <cite><%= @special_action.promoter_description %></cite>
+    <% end %>
+  </div>
+  <div class="list clearfix">
+    <%= render 'publications/list', :pagination => true %>
+    <% unless @publications.empty? %>
+      <div class="sorting-options clearfix">
+        <%= render :partial => 'publications/sort', :locals => {:default_sort => @default_sort} %>
+      </div>
+    <% end %>
+  </div>
+  <div class="admin_links">
+    <ul>
+      <%= show_to :root do %>
+        <li><%= image_tag 'i/16/edit.png' %> <%= link_to "Edytuj akcję specjalną", edit_admin_special_action_path(@special_action) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

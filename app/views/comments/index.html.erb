@@ -1,0 +1,9 @@
+<div id="divComments">
+  <div class="page_header">
+    <h1>Komentarze do <%= @commentable.title %></h1>
+    <hr />
+  </div>
+  <div class="list">
+    <%= render :partial => 'list', :locals => { :context => @commentable, :comment_allowed => @comment_allowed } %>
+  </div>
+</div>

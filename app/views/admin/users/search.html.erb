@@ -1,0 +1,43 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), "Użytkownicy" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne, użytkownicy</h1>
+    <hr />
+  </div>
+  <div>
+    <fieldset class="clearfix">
+      <%= render :partial => 'search_form' %>
+    </fieldset>
+    <div class="list">
+      <% if @users.count > 0 %>
+        <%= will_paginate @users, :param_name => :users_page %>
+        <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Login</th>
+          <th>Nazwa</th>
+          <th>Email</th>
+          <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.auth.login %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to image_tag("i/128/user.png", :size => "32x32"), admin_user_path(user) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+        <%= will_paginate @users, :param_name => :users_page %>
+      <% else %>
+        <h3>Nic nie znaleziono</h3>
+      <% end %>
+    </div>
+  </div>
+</div>

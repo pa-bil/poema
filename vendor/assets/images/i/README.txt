@@ -1,0 +1,1 @@
+Ikony pobrane z http://www.iconfinder.com/search/?q=iconset:nuvola2

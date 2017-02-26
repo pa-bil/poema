@@ -1,0 +1,14 @@
+<div class="comment">
+  <div class="avatar">
+    <%= image_tag "i/128/content_type_poem.png", :height => avatar_main_size, :width => avatar_main_size %>
+  </div>
+  <div class="content">
+    <div class="info">
+      W folderze <%= link_to publication.container.title, publication.container %> pojawiła się
+      nowa publikacja <%= link_to publication.title, publication %>.
+    </div>
+    <div class="footer">
+      <span class="timeago" title="<%= publication.created_at.iso8601 %>"><%= date_format publication.created_at %></span>
+    </div>
+  </div>
+</div>

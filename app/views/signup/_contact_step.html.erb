@@ -1,0 +1,23 @@
+<fieldset>
+  <legend>Informacje kontaktowe</legend>
+  <div class="field">
+    <%= f.label :email, "Adres email" %><span class='red'>*</span><br />
+    <%= f.email_field :email %>
+    <p class="form_hint">
+      Zwróć uwagę na poprawne podanie adresu gdyż jest on ważny. Na podany tutaj adres
+      wysłany zostanie list z linkiem aktywacyjnym dla Twojego konta.
+    </p>
+  </div>
+  <div class="field">
+    <%= f.label :im_gadugadu, "Numer gadu-gadu" %><br />
+    <%= f.text_field :im_gadugadu %>
+  </div>
+  <div class="field">
+    <%= f.label :im_tlen, "Identyfikator Tlen" %><br />
+    <%= f.text_field :im_tlen %>
+  </div>
+  <div class="field">
+    <%= f.label :website, "Twoja strona www, adres bloga, wizytówki" %><br />
+    <%= f.url_field :website %>
+  </div>
+</fieldset>

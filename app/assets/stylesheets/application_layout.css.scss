@@ -1,0 +1,378 @@
+@import "extends";
+@include extends;
+
+/*
+ * Arkusz definiujący elementy szablonu strony (layout)
+ */
+
+body.portal
+{
+  .left-ban 
+  {
+    margin-bottom: 10px;
+  }
+
+  .floating-menu
+  {
+    position: fixed;
+    top: 0;
+  }
+
+  #main-top-bar-tools-counter
+  {
+    position: relative;
+    left: -9px;
+    top: 0px;
+
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-weight: bold;
+    @extend .grey-transparent-label;
+
+    display: none;
+  }
+
+  #popup-actions-menu
+  {
+    padding: 0px;
+
+    li
+    {
+      list-style-type: none;
+      line-height: 25px;
+      margin-left: 0;
+    }
+
+    img
+    {
+      margin-right: 3px;
+    }
+  }
+
+  #main-top-bar-float-container
+  {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    opacity: 0.80;
+    filter: alpha(opacity=80);
+
+    .main-top-bar
+    {
+      background-image: url(/assets/l/top-bar-bg.png);
+      background-repeat :repeat-x;
+    }
+
+    .main-top-bar-container
+    {
+      width: 980px;
+      height: 47px;
+      background-repeat: no-repeat;
+      margin: 0 auto
+    }
+
+    .main-top-menu
+    {
+      ul
+      {
+        list-style:none;
+        padding-top: 1px;
+      }
+      li
+      {
+        float: left;
+        display: block;
+        margin-right: 12px;
+
+        @extend .grey-transparent-label;
+      }
+      img
+      {
+        vertical-align: middle;
+        padding: 0;
+        margin: 0;
+      }
+
+      div.logo
+      {
+        float: left;
+        padding-top: 15px;
+        padding-left: 5px;
+      }
+
+      ul.tools
+      {
+        float: left;
+      }
+
+      #main-top-bar-tools-search
+      {
+        margin-top: -4px;
+        background: none;
+        border: none;
+
+        input
+        {
+          margin: 0;
+          color: #fff;
+          background-color: #4a3e25;
+          width: 160px;
+        }
+
+        #main-top-bar-tools-button-container
+        {
+          position: relative;
+          height: 0px;
+          left: 155px;
+          top: -30px;
+          cursor: pointer;
+        }
+      }
+
+      ul.links
+      {
+        float: left;
+        margin-left: -50px;
+      }
+
+      ul.login_info
+      {
+        float: right;
+
+        li.avatar
+        {
+          padding: 0;
+          border: 0;
+          margin-top: -15px;
+          margin-left: -10px;
+        }
+      }
+    }
+  }
+
+  .main-wrapper
+  {
+  	background-image:url(/assets/l/main-bg.jpg);
+
+  	background-repeat:repeat-x;
+  	position:relative;
+  	margin:0 auto;
+  	width:980px;
+  }
+
+  .main-header
+  {
+    background-image:url(/assets/l/header-bg.jpg);
+    background-repeat:no-repeat;
+
+  	height:365px;
+  	width:980px;
+
+    .flash-box
+    {
+      position: relative;
+      padding: 52px 5px 0px 5px;
+      height: 200px;
+    }
+    .button-box
+    {
+      .fb
+      {
+        padding-left: 80px;
+        float: left;
+      }
+    }
+  }
+
+  .main-content-wrapper
+  {
+  	background-color:#f2e5cc;
+  	height:auto;
+    
+    padding: 6px;
+
+  	-webkit-border-radius: 0px 0px 10px 10px;
+  	border-radius: 10px 10px 10px 10px;
+
+  	border: 2px solid #cdc3ac;
+
+  }
+
+  .main-menu-left
+  {
+  	width: 190px;
+  	background-color:#f9f3e5;
+  	display:block;
+  	float:left;
+  	padding: 0px 0px 5px 10px;
+  	border-radius: 10px;
+  	-webkit-border-radius: 10px;
+
+    h1
+    {
+      font-size: 15px;
+      padding: 4px;
+    }
+
+    ul
+    {
+      list-style:circle inside none;
+      @extend .no_padding;
+      color:#a93d5b;
+      font-weight:bold;
+      text-transform:capitalize;
+      font-size:14px
+    }
+
+    ul li a
+    {
+      color: #a93d5b;
+      cursor:pointer;
+    }
+
+    ul li a:hover
+    {
+      color:#58818f;
+    }
+  }
+
+  .main-content-container
+  {
+  	width:758px;
+  	float:left;
+  	margin-left: 6px;
+  }
+
+  .main-content-bg
+  {
+    -webkit-border-radius: 10px;
+  	border-radius: 10px;
+    background-color:#fdfcf7;
+  }
+
+  .main-content-padding
+  {
+    padding: 5px;
+  }
+
+  .main-breadcrumbs
+  {
+  	background-image: url(/assets/l/breadcrumbs-bg.png);
+
+  	width: 980px;
+  	height: 64px;
+
+    @extend .no_padding;
+  }
+
+  .breadcrumbs-container
+  {
+  	position: relative;
+  	top: 8px;
+  	width: 100%;
+
+    ul
+    {
+      @extend .no_padding;
+      display:inline;
+      list-style: none;
+    }
+    li
+    {
+      float: left;
+      font-size: 16px;
+      margin-left: 5px;
+    }
+    li a
+    {
+      color:#000;
+    }
+    li a:hover
+    {
+      color: #ffffff;
+    }
+
+    li:last-child
+    {
+      color: #ffffff;
+    }
+  }
+
+  .shade-left
+  {
+  	background-image:url(/assets/l/shade-left.png);
+  	width:62px;
+  	height:248px;
+  	background-repeat:no-repeat;
+  	position: absolute;
+  	left: -62px;
+  	top: 1px;
+  }
+
+  .shade-right
+  {
+  	background-image:url(/assets/l/shade-right.png);
+  	width:62px;
+  	height:248px;
+  	background-repeat:no-repeat;
+  	position: absolute;
+  	left: 1043px;
+  	top: 0px;
+  }
+
+  .footer-outer
+  {
+    background: url(/assets/l/footer-bg.jpg) repeat-x scroll 0 0 transparent;
+    height: auto;
+    width: 100%;
+
+    .footer-top
+    {
+      height: 139px;
+      margin: 0 auto;
+      width: 980px;
+      background-image:url(/assets/l/footer2.jpg);
+      background-repeat:no-repeat;
+    }
+
+    .footer-content-bg
+    {
+      background-image:url(/assets/l/footer-bg-main-tile.jpg);
+      height:auto;
+      width:100%;
+
+      .footer-content
+      {
+        width:938px;
+        margin:0 auto;
+        color:#e0ac63;
+        padding:10px;
+        font-size: 14px;
+
+        .footer-logo
+        {
+          width:274px;
+          height:96px;
+          background-repeat:no-repeat;
+          float: left;
+        }
+
+        .footer-ads
+        {
+          vertical-align: top;
+          float: right;
+          p
+          {
+            padding-top: 3px;
+          }
+          .ads-box
+          {
+            background: white;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+

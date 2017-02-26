@@ -1,0 +1,63 @@
+<% title (@publication.author? ? @publication.author : @publication.owner.name) + ": #{@publication.title}" %>
+<% description @publication.intro.to_s.length > 0 ? @publication.intro : @publication.content %>
+<% navi_path(link_to("Publikacje", containers_path), @publication) %>
+<div id="divPublications">
+  <div class="publication">
+    <div class="page_header">
+      <h4 class="author"><%= publication_author_display @publication %></h4>
+      <h1 class="title">
+        <%= @publication.title %>
+        <% @publication.list_special_actions(true).each do |a| %>
+          <%= image_tag a.icon_url, {:title => "Publikacja zgłoszona do akcji #{a.title}, organizator akcji: #{a.promoter_title}", :class => 'poema_tooltip'} %>
+        <% end %>
+      </h1>
+      <hr />
+    </div>
+    <% if @publication.avatar? && @is_image_content_type %>
+      <div class="content_image">
+        <%= image_tag "#{@publication.avatar.url :big}" %>  
+      </div>
+    <% end %>
+    <% unless @publication.content.nil? %>
+    <div class="content">
+      <% if strip_tags(@publication.content).length == @publication.content.length %>
+        <pre><%= word_wrap @publication.content %></pre>
+      <% else %>
+        <%= safe_html @publication.content %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <% if !@is_image_content_type || (@is_image_content_type && @uploaded_files.count > 1) %>
+    <div class="list" id="divImagesGallery">
+      <%= render 'uploaded_files/list_thumb' %>
+    </div>
+  <% end %>
+  <div class="view-counter">
+    <kbd>Ilość odsłon: <%= @publication.view_counter_value %></kbd>
+  </div>
+  <div class="social-buttons">
+    <div class="fb">
+      <%= facebook_like %>
+    </div>
+  </div>
+  <div class="admin_links">
+    <ul>
+    <% if allow_actions? %>
+      <li><%= image_tag 'i/16/edit.png' %> <%= link_to 'Edycja publikacji', edit_publication_path(@publication) %></li>
+      <li><%= image_tag 'i/16/image.png' %> <%= link_to 'Dodaj lub usuń załączone pliki', publication_uploaded_files_path(@publication) %></li>
+      <li><%= image_tag 'i/16/delete.png' %> <%= link_to 'Usuń publikację', url_for(@publication) + delete_path_element, :class => 'poema_popup' %></li>
+    <% end %>
+    <%= show_to :root, :special_action_operator do %>
+      <li><%= image_tag 'i/16/star.png' %> <%= link_to 'Dodaj publikację do akcji specjalnej', new_publication_special_actions_path(@publication) %></li>
+    <% end %>
+    <%= show_to :root do %>
+      <li><%= image_tag 'i/16/star.png' %> <%= link_to 'Usuń publikację z akcji specjalnej', delete_publication_special_actions_path(@publication) %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="list" id="divCommentsList">
+    <%= render :partial => 'comments/list', :locals => {:context => @publication, :comment_allowed => @comment_allowed} %>
+    <%= render :partial => 'comments/microformat' %>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<%= form_for @special_action, :url => (@special_action.new_record? ? admin_special_actions_path : admin_special_action_path(@special_action)) do |f| %>
+  <%= render "layouts/form_errors", :errors => @special_action.errors if @special_action.errors.any? %>
+  <div class="field">
+    <%= f.label :title, "Tytuł akcji specjalnej" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Opis akcji, widoczny dla użytkowników, może być pusty" %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :promoter_title, "Nazwa organizatora, eg. 'Redakcja Serwisu'" %><br />
+    <%= f.text_field :promoter_title %>
+  </div>
+  <div class="field">
+    <%= f.label :promoter_description, "Opis organizatora, może być pusty" %><br />
+    <%= f.text_area :promoter_description %>
+  </div>
+  <div class="field">
+    <%= f.label :icon_url, "Adres ikonki, którą będą oznaczone publikacje biorące udział w akcji. Ikonka musi się znajdować w domenie serwisu." %><br />
+    <%= f.text_field :icon_url %>
+  </div>
+  <div class="field">
+    <%= f.check_box :send_notification %>
+    <%= f.label :send_notification, "Wyświetlaj na głównej stronie powiadomienie o dodaniu do akcji nowej publikacji." %>
+    <p class="form_hint">Jeśli zaznaczysz tę opcję, dodanie nowej publikacji do tej akcji specjalnej spowoduje wyświetlenie na głównej stronie przyklejonego przez 24h powiadomienia.</p>
+  </div>
+  <div class="field">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Czy akcja powinna być widoczna dla użytkowników?" %>
+    <p class="form_hint">Widoczność akcji oznacza, że użytkownicy widzą link do akcji w menu oraz, że istnieje możliwość dołożenia publikacji do tej akcji. Wyłączenie widoczności nie usuwa publikacji z akcji, nie blokuje również dostępu do strony z listą publikacji dołączonych do akcji.</p>
+  </div>
+  
+  <!--
+  <div class="field">
+    <%= f.label :granted_special_action_submitter_id %><br />
+    <%= f.number_field :granted_special_action_submitter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br />
+    <%= f.time_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :finish_date %><br />
+    <%= f.date_select :finish_date %>
+  </div>
+  <div class="field">
+    <%= f.label :finish_time %><br />
+    <%= f.time_select :finish_time %>
+  </div>
+  -->
+  <div class="actions">
+    <%= f.submit "Zapisz" %>
+  </div>
+<% end %>

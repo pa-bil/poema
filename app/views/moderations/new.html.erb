@@ -1,0 +1,9 @@
+<% title "Moderacja treści" %>
+<% if @moderateable.instance_of?(Comment) %><% navi_path(link_to("Publikacje", containers_path), @moderateable_context, "Moderacja treści") %><% else %><% navi_path(@moderateable, "Moderacja treści") %><% end %>
+<div id="divModerations">
+  <div class="page_header">
+    <h1>Moderacja treści</h1>
+    <hr />
+  </div>
+  <%= render 'form' %>
+</div>

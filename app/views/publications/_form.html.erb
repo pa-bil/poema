@@ -1,0 +1,69 @@
+  <%= render "layouts/form_errors", :errors => [@publication.errors, @uploaded_file.errors] if (@publication.errors.any? || @uploaded_file.errors.any?) %>
+
+  <div class="field extended_form">
+    <%= f.label :content_copyright_id, "Jaki jest status praw autorskich publikacji?" %><br />
+    <%= f.select(:content_copyright_id, content_copyright_select_options, params[:publication_wizard] ? {:selected => 3} : {}) %>
+  </div>
+  <div class="field extended_form">
+    <%= f.label :author, "Autor, o ile jest inny niż Ty, jeśli tutaj go podasz pokaże się on na spisie publikacji" %><br />
+    <%= f.text_field :author %>
+  </div>
+  <div class="field extended_form">
+    <%= f.label :translator, "Tłumacz, o ile publikacja jest przekładem z oryginału" %><br />
+    <%= f.text_field :translator %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Folder" %><br />
+    <%= f.hidden_field :container_id %>
+    <div class="publication_containers_picker">
+      <%= text_field_tag :container_title, @container.title, :id => 'publication_containers_picker_title', :disabled => true %>
+      <%= button_tag "Zmień", :id => 'publication_container_picker_button', :href =>picker_containers_path(@publication.container)  %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Tytuł Twojej publikacji" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <% if @publication.avatar? %><%= label_tag :avatar, "Możesz zmienić avatar tej publikacji" %><% else %><%= label_tag :avatar, "Możesz ustawić awatar do tej publikacji." %><% end %>
+    <div id="avatar_upload_container">
+      <div class="message"></div>
+      <div class="file image-frame-avatar hidden">
+        <% if @publication.avatar? %><%= image_tag @publication.avatar.url :avatar %><% end %>
+      </div>
+      <p>
+        <%= button_tag("Wybierz plik", {:id => 'avatar_upload_publication_browse_button'}) %>
+        <kbd><%= show_user_quota(session_user) %></kbd>
+      </p>
+    </div>
+    <p class="form_hint"> Wybierz plik graficzny, nie przekraczający objętości 200kb. Więcej plików, również o większej objętości będziesz <%= mfword("mógł", "mogła", session_user) %> dodać później.</p>
+  </div>
+  <div class="field">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Publikacja nadaje sie do prezentacji" %><br />
+    <p class="form_hint">Możesz odznaczyć to pole, jeśli publikacja jest brudnopisem. Publikacja nie pokaże się na spisie publikacji,
+    przy czym nadal będziesz <%= mfword('miał', 'miała', session_user) %> do niej dostęp z listy w <%= link_to "Twoim profilu", user_profile_path %></p>
+
+  </div>
+  <div class="field">
+    <%= f.label :content, "Treść publikacji" %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field extended_form">
+    <%= f.label :intro, "Słowo wstępu, pokaże się na spisie publikacji w kontenerze" %><br />
+    <%= f.text_area :intro %>
+  </div>
+  <div class="field extended_form">
+    <%= f.label :allow_comments, "Pozwalaj na komentowanie kontenera" %><br />
+    <%= f.select :allow_comments, Comment.allow_comments_options %>
+  </div>
+  <div class="field extended_form">
+    <%= f.label :link, "Zamiast publikacji podlinkuj do innej strony" %><br />
+    <%= f.text_field :link %>
+  </div>
+  <div class="actions">
+    <input type='button' value='Wszystkie pola' id="publication_simple_button" class="hidden" />
+    <input type='button' value='Anuluj' />
+    <%= f.submit "Zatwierdź" %>
+  </div>
+  <br clear="all" />

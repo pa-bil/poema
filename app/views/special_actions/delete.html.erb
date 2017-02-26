@@ -1,0 +1,30 @@
+<% title "Akcje promocyjne" %>
+<% navi_path @publication, "Usuń publikację z akcji specjalnych" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1><%= @publication.title %></h1>
+    <hr />
+  </div>
+  <div class="content">
+    <%= form_for @special_action_publication, :url => publication_special_actions_path(@publication), :method => :delete do |form| %>
+      <%= render "layouts/form_errors", :errors => @special_action_publication.errors if @special_action_publication.errors.any? %>
+      <div class="field">
+        <%= label_tag :special_actions_publication_id, "Zaznacz akcje, z których usuwasz publikację" %><br />
+        <% @special_actions_publications.each do |ap| %>
+          <br />
+            <%= check_box_tag "special_actions_publication_id[]", ap.id, false, :id => "special_actions_publication_id_#{ap.id}" %>
+            <%= label_tag "special_actions_publication_id_#{ap.id}", ap.special_action.title %><br />
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= submit_tag "Dalej" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,613 @@
+pl:
+
+  # Translacje pobrano z
+  # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/pl.yml
+
+  date:
+    abbr_day_names:
+    - nie
+    - pon
+    - wto
+    - śro
+    - czw
+    - pią
+    - sob
+    abbr_month_names:
+    - 
+    - sty
+    - lut
+    - mar
+    - kwi
+    - maj
+    - cze
+    - lip
+    - sie
+    - wrz
+    - paź
+    - lis
+    - gru
+    day_names:
+    - niedziela
+    - poniedziałek
+    - wtorek
+    - środa
+    - czwartek
+    - piątek
+    - sobota
+    formats:
+      default: ! '%d-%m-%Y'
+      long: ! '%B %d, %Y'
+      short: ! '%d %b'
+    month_names:
+    - 
+    - styczeń
+    - luty
+    - marzec
+    - kwiecień
+    - maj
+    - czerwiec
+    - lipiec
+    - sierpień
+    - wrzesień
+    - październik
+    - listopad
+    - grudzień
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        few: około %{count} godziny
+        one: około godziny
+        other: około %{count} godzin
+        many: około %{count} godzin
+      about_x_months:
+        few: około %{count} miesiące
+        one: około miesiąca
+        other: około %{count} miesięcy
+        many: około %{count} miesięcy
+      about_x_years:
+        few: około %{count} lata
+        one: około rok
+        other: około %{count} lat
+        many: około %{count} lat
+      almost_x_years:
+        few: prawie %{count} lata
+        one: prawie rok
+        other: prawie %{count} lat
+        many: prawie %{count} lat
+      half_a_minute: pół minuty
+      less_than_x_minutes:
+        few: mniej niż %{count} minuty
+        one: mniej niż minutę
+        other: mniej niż %{count} minut
+        many: mniej niż %{count} minut
+      less_than_x_seconds:
+        few: mniej niż %{count} sekundy
+        one: mniej niż sekundę
+        other: mniej niż %{count} sekund
+        many: mniej niż %{count} sekund
+      over_x_years:
+        few: ponad %{count} lata
+        one: ponad rok
+        other: ponad %{count} lat
+        many: ponad %{count} lat
+      x_days:
+        few: ! '%{count} dni'
+        one: 1 dzień
+        other: ! '%{count} dni'
+        many: ! '%{count} dni'
+      x_minutes:
+        few: ! '%{count} minuty'
+        one: 1 minuta
+        other: ! '%{count} minut'
+        many: ! '%{count} minut'
+      x_months:
+        few: ! '%{count} miesiące'
+        one: 1 miesiąc
+        other: ! '%{count} miesięcy'
+        many: ! '%{count} miesięcy'
+      x_seconds:
+        few: ! '%{count} sekundy'
+        one: 1 sekunda
+        other: ! '%{count} sekund'
+        many: ! '%{count} sekund'
+    prompts:
+      day: Dzień
+      hour: Godzina
+      minute: Minuta
+      month: Miesiąc
+      second: Sekundy
+      year: Rok
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: musi zostać zaakceptowane
+      blank: nie może być puste
+      confirmation: nie zgadza się z potwierdzeniem
+      empty: nie może być puste
+      equal_to: musi być równe %{count}
+      even: musi być parzyste
+      exclusion: jest zarezerwowane
+      greater_than: musi być większe od %{count}
+      greater_than_or_equal_to: musi być większe lub równe %{count}
+      inclusion: nie znajduje się na liście dopuszczalnych wartości
+      invalid: jest nieprawidłowe
+      less_than: musi być mniejsze od %{count}
+      less_than_or_equal_to: musi być mniejsze lub równe %{count}
+      not_a_number: nie jest liczbą
+      not_an_integer: musi być liczbą całkowitą
+      odd: musi być nieparzyste
+      record_invalid: ! 'Negatywne sprawdzenie poprawności: %{errors}'
+      taken: zostało już zajęte
+      too_long: jest za długie (maksymalnie %{count} znaków)
+      too_short: jest za krótkie (przynajmniej %{count} znaków)
+      wrong_length: ma nieprawidłową długość (powinna wynosić %{count} znaków)
+    template:
+      body: ! 'Błędy dotyczą następujących pól:'
+      header:
+        one: ! '%{model} nie został zachowany z powodu jednego błędu'
+        few: ! '%{model} nie został zachowany z powodu %{count} błędów'
+        other: ! '%{model} nie został zachowany z powodu %{count} błędów'
+  helpers:
+    select:
+      prompt: Proszę wybrać
+    submit:
+      create: Utwórz %{model}
+      submit: Zapisz %{model}
+      update: Aktualizuj %{model}
+  number:
+    currency:
+      format:
+        delimiter: ! ' '
+        format: ! '%u %n'
+        precision: 2
+        separator: ! ','
+        significant: false
+        strip_insignificant_zeros: true
+        unit: PLN
+    format:
+      delimiter: ! ' '
+      precision: 3
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: Miliard
+          million: Milion
+          quadrillion: Biliard
+          thousand: Tysiąc
+          trillion: Bilion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: bajt
+            few: bajty
+            many: bajty
+            other: bajty
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ' oraz '
+      two_words_connector: ! ' i '
+      words_connector: ! ', '
+  time:
+    am: przed południem
+    formats:
+      default: ! '%a, %d %b %Y %H:%M:%S %z'
+      long: ! '%B %d, %Y %H:%M'
+      short: ! '%d %b %H:%M'
+      date: "%a, %d %b %Y"
+
+    pm: po południu
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+
+
+  # Blok customowych translacji
+
+  misc:
+
+    copyright:
+      translation_owner:      "Jestem właścicielem przekładu lub opracowania utworu"
+      notset:                 "Nie ustalono"
+      dontknow:               "Nie wiem"
+      owner:                  "Jestem właścicielem praw autorskich"
+      publicdomain:           "Utwór jest w publicznej domenie lub wygasły do niego prawa majątkowe"
+      permitted:              "Utwór jest chroniony prawami autorskimi, mam przyzwolenie na publikację"
+      notpermitted:           "Utwór jest chroniony prawami autorskimi, nie mam przyzwolenia na publikację"
+
+  controller:
+
+    generic:
+      exception:              "Wystąpił nieoczekiwany problem, poczekaj chwilę, i spróbuj ponowić operację. Jeśli problem nadal występuje, zgłoś problem administracji serwisu"
+
+      authentication:
+        required:             "Dostęp do wybranej części serwisu wymaga zalogowania. Podaj swój login i hasło. Po udanej autoryzacji wrócisz na poprzednią stronę"
+        yourebanned:          "Twoje konto zostało zbanowane, masz ograniczony dostęp do funkcjonalności serwisu, nie możesz umieszczać ani modyfikować treści. Nadal aktywnie możesz zarządzać Twoimi prawami a także danymi osobowymi poprzez usunięcie treści lub konta"
+
+      terms:
+        outdated:             "Wersja regulaminu którą zaakceptowałeś jest nieaktualna. Zostałeś przekierowany tutaj, aby móc zapoznać się z aktualną wersją i podjąć decyzję dotyczącą jej akceptacji"
+
+      access:
+        logged_in:            "Wydaje nam się, że masz już konto w serwisie, funkcjonalność, do której chcesz uzyskać dostęp dostępna jest dla użytkowników nie zalogowanych"
+
+      activation:
+        alreadyactive:        "Twoje konto jest już aktywne, spróbuj się zalogować"
+        invalid:              "Twój kod aktywacyjny jest niepoprawny, lub wygasł. Nie próbuj przepisywać ręcznie linku aktywacyjnego, kliknij go w Twoim programie pocztowym, lub skopiuj i wklej w pasek adresu przegladarki"
+        done:                 "Konto zostało aktywowane, możesz sie teraz zalogować"
+
+    user_blacklists:
+      create:               "Użytkownik został dodany do czarnej listy"
+      destroyed:            "Użytkownik został usunięty z czarnej listy"
+
+    termsaccept:
+      updated:                "Nowa wersja regulaminu została zaakceptowana, dziękujemy."
+
+    moderations:
+      created:                "Zablokowano wybrany komentarz, informacja o moderacji została wysłana do pozostałych moderatorów"
+
+    users:
+      banned:                 "Konto tego użytkownika jest zablokowane z powodu naruszenia regulaminu serwisu"
+      locked:                 "Konto tego użytkownika zostało usunięte, lub nie jest aktywowane"
+      privacy:                "Z uwagi na ustawienia prywatności nie wszystkie dane tego użytkownika są widoczne"
+
+    search:
+       no_records:            "Wyszukiwanie nie zwróciło żadnego wyniku, spróbuj inaczej dobrać słowa kluczowe"
+
+    oauth2_callback:
+      nk_data_loaded:         "Pobrano Twoje dane z serwisu NK"
+      nk_authenticated:       "Pobrano dane logowania z serwisu NK"
+      nk_failure:             "Wystąpił problem podczas logowania w serwisie NK, możesz spróbować ponownie, lub pominąć ten krok"
+      nk_no_such_user:        "Nie odnaleziono konta powiązanego z Twoim loginem w NK"
+
+    session:
+      login:
+        goto_signup:          "Aby rozpocząć korzystanie z serwisu, poprosimy Cię teraz o uzupełnienie formularza rejestracji."
+        success:              "Proces logowania zakończony powodzeniem"
+
+      logout:
+        success:              "Poprawnie wylogowano z serwisu, możesz teraz zamknąć okno przeglądarki"
+
+    profiles:
+      update:                 "Dane profilu zostały pomyślnie zaktualizowane"
+      destroy:                "Twój profil został usunięty"
+
+    signup:
+      steps:
+        intro:                "Nowe konto"
+        personal:             "Informacje osobiste"
+        contact:              "Dane kontaktowe"
+        localisation:         "Lokalizacja"
+        settings:             "Ustawienia"
+        auth:                 "Logowanie"
+        confirmation:         "Regulamin"
+      activation:
+        alreadyactive:        "Twoje konto jest już aktywne, spróbuj sie zalogować"
+        invalid:              "Niepoprawny kod aktywacyjny, sprawdź jeszcze raz informacje przesłane Ci w liście"
+        done:                 "Konto zostało pomyślnie aktywowane i jest gotowe do użycia. Użyj formularza logowania aby rozpocząć korzystanie z serwisu."
+
+    containers:
+      access_prohibited:      "Publiczny dostęp do tego kontenera jest ograniczony z uwagi na jego ustawienia. Możesz go przeglądać jako autor, ale zwróć uwagę, że w nikt inny nie będzie mógł zobaczyć kontenera, ani żadnych elementów które się w nim znajdują."
+      created:                "Kontener został pomyślnie utworzony"
+      updated:                "Informacje dotyczące kontenera zostały zaktualizowane"
+      destroyed:              "Kontener, jak i wszystkie elementy w nim się znajdujące zostały usunięte"
+      empty:                  "Do czasu umieszczenia jakiejkolwiek publikacji, ten kontener pozostaje niewidoczny na liście. Zawsze możesz uzyskać dostęp do niewidocznych kontenerów ze strony administracji Twoim profilem."
+
+    publications:
+      created:                "Publikacja została pomyślnie utworzona"
+      updated:                "Publikacja została pomyślnie zaktualizowana"
+      destroyed:              "Publikacja została pomyślnie usunięta"
+      access_prohibited:      "Publiczny dostęp do tej publikacji jest ograniczony z uwagi na jej ustawienia lub status praw autorskich. Możesz ją przeglądać jako autor, ale zwróć uwagę, że w nikt inny nie będzie mógł jej zobaczyć. Jeśli chcesz, aby publikacja stała sie widoczna, zmień jej ustawienia."
+
+    forums:
+      prohibited:             "Dostęp do tego forum jest zamknięty z powodu ustawień widoczności lub bana. To forum nie jest widoczne publicznie"
+
+    forum_threads:
+      limited_editing:        "Możesz edytować ten wątek wyłącznie w ograniczonym zakresie. Nie możesz zmienić jego treści."
+      created:                "Utworzono nową wiadomość na forum"
+      updated:                "Zaktualizowano wiadomość"
+      thread_closed:          "Ten temat jest zamknięty. Nie możesz zabrać głosu w dyskusji."
+      thread_closed_owner:    "Ten temat jest zamknięty, i nikt, oprócz Ciebie, nie może zabrać głosu w dyskusji."
+      thread_banned:          "Ten temat nie jest dostępny dla użytkowników ponieważ jest zmoderowany lub znajduje się w forum które nie jest widoczne dla użytkowników."
+
+    forum_posts:
+      created:                "Twoja wiadomość została dodana"
+
+    uploaded_files:
+      created:                "Plik został dołączony"
+      destroyed:              "Plik został usunięty"
+
+  mailer:
+    moderation:
+      moderation:
+        created:              "Zablokowano treść niezgodną z regulaminem"
+        reverted:             "Odblokowano wcześniej moderowaną treść"
+      ban:
+        created:              "Zablokowano konto użytkownika"
+        reverted:             "Odblokowano konto użytkownika"
+        expired:              "Wygasła blokada konta użytkownika"
+        user_created:         "Z powodu naruszenia regulaminu serwisu, Twoje konto zostało zablokowane"
+        user_reverted:        "Blokada Twojego konta w serwisie została cofnięta"
+        user_expired:         "Minął okres blokady Twojego konta w serwisie"
+    account:
+      removed:                "Twoje konto zostało usunięte"
+    signup:
+      activation:
+        subject:              "Witamy w serwisie Poema, to jest list z Twoim kodem aktywacyjnym"
+      activation_reminder:
+        subject:              "Przypominamy o aktywacji konta w serwisie Poema"
+      activated:
+        subject:              "Twoje konto w serwisie Poema jest aktywne, zapraszamy do zapoznania się z funkcjami serwisu"
+    password_reminder:
+      create:
+        subject:              "Prośba dotycząca przypomnienia hasła w serwisie Poema"
+    comment:
+      recived:
+        subject:              "Pojawił się nowy komentarz"
+
+  activemodel:
+
+    errors:
+      models:
+        user_self_remove_form:
+          attributes:
+            confirmation:
+              accepted:       "Proszę potwierdzić zrozumienie konsekwencji usunięcia profilu"
+            confirmation_pubs:
+              accepted:       "Proszę potwierdzić zrozumienie nie usunięcia wszystkich publikacji"
+            confirmation_opinions:
+              accepted:       "Proszę potwierdzić zrozumienie nie usunięcia wszystkich opinii"
+            password:
+              blank:          "Nie podano hasła"
+
+        session_omniauth_form:
+          attributes:
+            user:
+              missing:        "Nie udało sie zalogować, nie ma w naszym serwisie konta, powiązanego z kontem w zewnętrznej usłudze, z której korzystasz"
+              locked:         "Twoje konto jest nieaktywne, co oznacza, że nie zostało aktywowane linkiem, który wysłany został podczas procesu zakładania profilu lub zostało usunięte"
+              deleted:        "To konto zostało usunięte"
+
+        session_login_form:
+          attributes:
+            login:
+              missing:        "Nie udało sie zalogować, sprawdź poprawność loginu. Jeśli nie pamiętasz swojego loginu użyj opcji przypominania"
+              locked:         "Twoje konto jest nieaktywne, co oznacza, że nie zostało aktywowane linkiem, który wysłany został podczas procesu zakładania profilu lub zostało usunięte"
+              deleted:        "To konto zostało usunięte"
+
+            password:
+              missing:        "Nie podano hasła, lub hasło jest niepoprawne"
+              blank:          "Nie podano hasła"
+              invalid:        "Nie udało sie zalogować, sprawdź poprawność hasła. Wielkość liter ma znaczenie. Jeśli nie pamiętasz swojego hasła użyj opcji przypominania"
+              deleted:        "Nie podano hasła, lub hasło jest niepoprawne"
+
+  activerecord:
+
+    misc:
+      user_removed:           "Konto usunięte"
+      select_empty_option:    "Proszę wybrać jedną z opcji"
+
+    sort:
+      natural:                "naturalnie"
+      name:                   "nazwy"
+      date:                   "daty utworzenia"
+      owner:                  "właściciela"
+      views:                  "ilości odsłon"
+      intro:                  "wstępu"
+      comments:               "ilości komentarzy"
+
+    allow_comments:
+      default:                "domyślnie, wg. ustawień aplikacji (wyłącznie zalogowanym)"
+      registered:             "zalogowanym użytkownikom"
+      nobody:                 "nikomu"
+      all:                    "wszystkim, również nie zalogowanym"
+
+    errors:
+      messages:
+        record_invalid:       "Niepoprawne dane"
+
+      template:
+        header:               "Znaleziono błędy w formularzu"
+        body:                 "Niektóre z pól formularza zawierają błędy"
+
+      models:
+
+        special_action_publication:
+          attributes:
+            special_action_id:
+              missing:        "Należy wybrać akcję specjalną"
+            publication_id:
+              duplicate:      "Wybrana publikacja jest już dodana do akcji, wybierz proszę inną akcję specjalną"
+
+        user_blacklist:
+          attributes:
+            blacklisted_user_id:
+              is_root:        "Nie możesz zablokować osoby będącej członkiem redakcji serwisu"
+              yourself:       "Nie możesz zablokować swojego konta"
+              missing:        "Brakuje informacji o blokowanym użytkowniku"
+              blacklisted:    "Już blokujesz tego użytkownika, nie możesz go dodać ponownie do listy. Listę blokowanych osób możesz sprawdzić w edycji profilu, w odpowiedniej zakładce."
+
+        moderation:
+          attributes:
+            reason:
+              too_short:      "Proszę podać powód moderacji treści"
+              too_long:       "Treść powodu moderacji jest zbyt długa"
+
+        calendar:
+          attributes:
+            title:
+              too_short:      "Tytuł wydarzenia powinien miec co najmniej trzy znaki"
+            start_date:
+              empty:          "Proszę określić datę rozpoczęcia wydarzenia"
+            finish_date:
+              less_than_start_date: "Czas zakończenia nie może być wcześniejszy od czasu rozpoczęcia"
+            localisation:
+              too_short:      "Nie podano lokalizacji wydarzenia, proszę wpisać lokalizację która pokaże sie poprawnie na mapie"
+            venue:
+              too_short:      "Proszę określić lokal lub nawę organizatora wydarzenia, nazwa powinna mieć co najmniej dwa znaki"
+
+        password_reminder:
+          attributes:
+            email:
+              too_short:      "Adres email jest zbyt krótki"
+              too_ling:       "Adres email jest za długi"
+              invalid:        "Adres email ma niepoprawny format"
+              wait_24_h:      "Opcja przypomnienia hasła może być użyta raz na 24 godziny, wysłaliśmy już na podany adres email, doręczenie listu może potrwać jakiś czas, poczekaj lub spróbuj ponowić operację jutro"
+              token_taken:    "Wysłano już hasło, proszę sprawdzić skrzynkę pocztową lub zalogować się wysłanym hasłem"
+              token_expired:  "Link resetujący hasło jest ważny 24 godziny, po upływie tego czasu należy wygenerować nowy link"
+
+            user_id:
+              missing:        "Nie znaleziono użytkownika powiązanego z podanym adresem email"
+              locked:         "Konto użytkownika jest nieaktywne, nie można wygenerować linka resetującego hasło"
+              banned:         "Konto użytkownika jest zbanowane, nie można wygenerować linka resetującego hasło"
+        auth:
+          attributes:
+            login:
+              too_short:      "Podany login jest za krótki, wymagane są minimum cztery znaki"
+              invalid:        "Podany login ma niepoprawny format, akceptujemy znaki polskiego alfabetu, cyfry znak podkreślenia i myślnik"
+              ro:             "Login jest w trybie do odczytu, nie można go zmieniać"
+              taken:          "Podany login jest już zarejestrowany, podaj proszę inny"
+            password:
+              too_short:      "Podane hasło jest zbyt krótkie, wymagane jest minimum 6 znaków"
+              confirmation:   "Podane hasła nie są identyczne, spróbuj wprowadzić je raz jeszcze"
+
+        user:
+          attributes:
+            name:
+              too_short:      "Nie podano imienia lub podane imię jest zbyt krótkie"
+              taken:          "W naszej bazie istnieje już użytkownik o takiej nazwie, wybierz proszę inną"
+              url_found:      "Nie pozwalamy na URL w nazwie użytkownika"
+            gender:
+              inclusion:      "Nie wybrano płci"
+            intro:
+              url_found:      "Nie pozwalamy na URL w opisie dla nowych użytkowników"
+            description:
+              url_found:      "Nie pozwalamy na URL w opisie dla nowych użytkowników"
+            email:
+              too_short:      "Adres email jest zbyt krótki"
+              too_ling:       "Adres email jest za długi"
+              invalid:        "Adres email ma niepoprawny format"
+              taken:          "Adres email jest już zarejestrowany, jeśli to Twój adres, skorzystaj z opcji przypomnienia hasła, aby zalogować się na konto"
+            im_gadugadu:
+              not_a_number:   "Identyfikator GG powinien być numerem"
+            im_tlen:
+              too_short:      "Podany identyfikator Tlen jest zbyt krotki, wymagane są minimum 3 znaki"
+            uploaded_files:
+              invalid:        "Niepoprawny plik"
+            terms_version_id:
+              not_current:    "Wersja regulaminu, nie jest aktualna. Zanim będziesz mógł/mogła kontynuować, zaakceptuj aktualną wersję regulaminu"
+            localisation:
+              too_short:      "Podana lokalizacja jest za krótka, powinieneś podać co najmniej nazwę miasta"
+
+        uploaded_file:
+          attributes:
+            file_file_name:
+              empty:                "Nie podano nazwy dla pliku"
+            file:
+              empty:                "Nie wybrano pliku"
+              quota_limit_reached:  "Przekroczono ilość dostępnego miejsca na pliki, aby dodać nowe usuń coś starego lub poproś redakcję serwisu o dodatkowe miejsce. Jeśli wykorzystujesz je kreatywnie istnieje szansa, że Twoja prośba zostanie rozpatrzona pozytywnie"
+            content_copyright_id:
+              invalid:              "Proszę określić status praw autorskich"
+
+        container:
+          attributes:
+            container_id:
+              missing:        "Nie znaleziono kontenera %d"
+            user_id:
+              missing:        "Nie znaleziono użytkownika %d"
+            title:
+              too_short:      "Nie podano nazwy kontenera"
+              too_long:       "Nazwa kontenera jest za długa, dopuszczalna ilość znaków to 254"
+            intro:
+              too_long:       "Wstęp kontenera jest zbyt długi, dopuszczalna ilość znaków to 254"
+            granted_container_creator_role_id:
+              not_found:      "Nie znaleziono identyfikatora dla grupy mającej przyzwolenie dodawanie kontenerów"
+            granted_publication_creator_role_id:
+              not_found:      "Nie znaleziono identyfikatora dla grupy mającej przyzwolenie na publikacje"
+
+        comment:
+          attributes:
+            name:
+              too_short:      "Proszę podać imię lub nick"
+            email:
+              too_short:      "Adres email jest zbyt krótki"
+              too_ling:       "Adres email jest za długi"
+              invalid:        "Adres email ma niepoprawny format"
+            content:
+              too_short:      "Treść komentarza powinna mieć minimum cztery znaki"
+              too_long:       "Treść komentarza nie powinna mieć więcej niż 2048 znaków"
+            emotion:
+              inclusion:      "Proszę wybrać typ komentarza"
+            terms_version_id:
+              not_current:    "Aby dodać komentarz, należy zaakceptować regulamin serwisu"
+
+        publication:
+          attributes:
+            container_id:
+              missing:        "Brak identyfikatora kontenera"
+            title:
+              too_short:      "Nie podano tytułu, lub tytuł jest za krótki, wymagamy co najmniej jednego znaku"
+              too_long:       "Tytuł publikacji jest zbyt długi, maksymalna długość tytułu publikacji to 254 znaki"
+            content_copyright_id:
+              invalid:        "Proszę określić status praw autorskich"
+            user_id:
+              over_limit:     "Przekroczono limit publikacji, które możesz dodać. Z uwagi na naszych czytelników, nie pozwalamy dodawać wielu publikacji na raz. Możesz zapisać edytowaną publikację, oznacz ją jako brudnopis. Kiedy minie okres limitu będzie można ją opublikować."
+            intro:
+              too_long:       "Wstęp do publikacji jest za długi, nie powinien mieć więcej niż 256 znaków."
+
+        forum_thread:
+          attributes:
+            title:
+              blank:          "Nie podano tematu wiadomości"
+              too_short:      "Temat wiadomości może mieć nie więcej niż 200 znaków"
+            content:
+              blank:          "Nie podano treści wiadomości"
+              too_short:      "Treść wiadomości jest za długa"
+
+        forum_post:
+          attributes:
+            content:
+              too_short:      "Nie podano treści wiadomości, lub wiadomość jest za krótka"
+
+  will_paginate:
+    next_label: Następna &#8594;
+    page_entries_info:
+      multi_page: Displaying %{model} %{from} - %{to} of %{count} in total
+      multi_page_html: Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>
+        in total
+      single_page:
+        one: Displaying 1 %{model}
+        other: Displaying all %{count} %{model}
+        zero: No %{model} found
+      single_page_html:
+        one: Displaying <b>1</b> %{model}
+        other: Displaying <b>all&nbsp;%{count}</b> %{model}
+        zero: No %{model} found
+    page_gap: ! '&hellip;'
+    previous_label: ! '&#8592; Poprzednia'

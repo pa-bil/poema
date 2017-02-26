@@ -1,0 +1,24 @@
+<% title "Forum #{@forum.title}" %>
+<% description @forum.description %>
+<% navi_path(link_to('Forum', forums_path), @forum.title) %>
+<div id="divForums">
+  <div class="forum">
+    <div class="page_header">
+      <h1 class="title"><%= @forum.title %></h1>
+      <hr />
+    </div>
+    <div class="top">
+      <p class="description">
+        <%= safe_html @forum.description %>
+      </p>
+    </div>
+    <div class="list">
+      <%= render :partial => 'forum_threads/list' %>
+    </div>
+    <div class="admin_links">
+      <ul>
+        <li><%= image_tag 'i/16/add.png' %> <%= link_to 'Nowy temat dyskusji', new_forum_forum_thread_path(@forum) %></li>
+      </ul>
+    </div>
+  </div>
+</div>

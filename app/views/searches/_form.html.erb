@@ -1,0 +1,31 @@
+<div class="search_info">
+  <p>Napisz czego szukasz, może to być fragment tekstu, tytuł publikacji, działu, nazwa użytkownika. Możesz także używać
+    <a id="search_more">specjalnej składni zapytań</a>.</p>
+  <div class="hidden" id="search_syntax">
+    <p>W  wyszukiwarce  można  użyć specjalnych modyfikatorów zapytania, które umożliwiają precyzowanie wyników wyszukiwania.</p>
+    <ul>
+      <li>Dodanie  przed  wyrazem  znaku  +  wymusza w wyniku wystąpienie danego wyrazu.</li>
+      <li>Dodanie  przed  wyrazem znaku - wyklucza z wyniku wyszukiwania rekordy zawierające dany wyraz</li>
+      <li>Znak * zastępuje w wyrazie dowolny ciąg znaków</li>
+      <li>Frazy  które  mają  być  wyszukiwane  jako całość należy objąć znakiem podwójnego cudzysłowu.</li>
+    </ul>
+    <p>Kilka przykładów:</p>
+    <ul>
+      <li><strong>woj*k </strong>: wyszukiwarka zwróci wszystkie rekordy zawierające np nazwisko Woj(acze)k lub imię Woj(te)k</li>
+      <li><strong>+wojaczek -rafał</strong>: wyszukiwarka zwróci wszystkie rekordy zawierające nazwisko Wojaczek lecz nie zawierające imienia Rafał</li>
+      <li><strong>Ostatnia   modlitwa   bohaterów</strong>: wyszukiwarka  zwróci każdy  rekord zawierający którekolwiek z trzech podanych słów</li>
+      <li><strong>"Ostatnia  modlitwa bohaterów"</strong>: wyszukiwarka zwróci rekord zawierający dokładnie podany zwrot</li>
+    </ul>
+  </div>
+</div>
+<div class="form">
+  <%= form_tag result_search_url, {:id => 'content_search'} do %>
+    <div class="field">
+      <%= text_area_tag :q, params[:q] %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Szukaj" %>
+    </div>
+  <% end %>
+</div>

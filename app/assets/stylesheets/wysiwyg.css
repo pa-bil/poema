@@ -1,0 +1,47 @@
+/*
+ * Ten arkusz stylów nie jest interpretowany przez portal, pomimo tego, że jest dołączany
+ * Arkusz formatuje środek edytora publikacji
+ */
+
+body.wysiwyg
+{
+  border: 0;
+
+  font-family: 'LektonRegular', Courier new, Monotype;
+
+
+  word-spacing: 4px;
+  line-height: 18px;
+
+  letter-spacing: 0px;
+  font-size: 16px;
+}
+
+p, h1, h2, h3, h4
+{
+  font-family: 'AmbleRegular', Verdana, Helvetica;
+}
+
+h1
+{
+  font-size: 30px;
+  line-height: 32px;
+}
+
+h2
+{
+  font-size: 24px;
+  line-height: 25px;
+}
+
+h3
+{
+  font-size: 18px;
+  line-height: 20px;
+}
+
+h4
+{
+  font-size: 13px;
+  font-weight: bold;
+}

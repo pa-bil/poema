@@ -1,0 +1,205 @@
+@import "extends";
+@include extends;
+
+/**
+ * Kompletny arkusz styli współdzielonych elementów portalu, oprócz tego, każda strona ma swój własny, specyficzny arkusz
+ * który może nadpisywać obecne tu style i definiować nowe, specyficzne dla strony
+ */
+
+body.portal
+{
+  margin: 0px;
+  background-image:url(/assets/l/main-bg.jpg);
+
+ 	font-family: 'AmbleRegular', Verdana, Helvetica;
+  letter-spacing: -1px;
+  word-spacing: 4px;
+  font-size: 13px;
+  line-height: 18px;
+
+  /**
+   * Podstawowe elementy strony, nie definiuje się tutaj niczego na poziomie szczegółowym, eg. kolory, wielkości
+   * Layout ma parę obszarów, na których eg. czcionki powinny mieć inne kolory
+   */
+
+  p
+  {
+    margin: 0 0 9px;
+  }
+
+  td, form, a, img
+  {
+    @extend .no_padding;
+  }
+
+  img
+  {
+    border: 0px;
+  }
+
+  h1, h2, h3, h4
+  {
+    margin: 0;
+    font-weight: bold;
+    text-rendering: optimizelegibility;
+  }
+
+  h1
+  {
+    font-size: 30px;
+    line-height: 32px;
+  }
+
+  h2
+  {
+    font-size: 24px;
+    line-height: 25px;
+  }
+
+  h3
+  {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  h4
+  {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  pre
+  {
+    font-size: 14px;
+    font-family: 'LektonRegular', "Courier new", monospace;
+  }
+
+  kbd
+  {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 13px;
+    color: #333333;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+
+    padding: 0px 4px;
+    color: #d14;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+  }
+
+  small
+  {
+    font-size: 85%;
+  }
+
+  blockquote
+  {
+    padding: 0 0 0 15px;
+    margin: 0 0 20px;
+    border-left: 5px solid #EEE;
+  }
+
+  blockquote small::before
+  {
+    content: '— \00A0'
+  }
+
+  a
+  {
+    color: #a93d5b;
+    text-decoration: none;
+  }
+
+  hr
+  {
+    margin: 18px 0;
+    border: 0;
+    border-top: 1px solid #EEE;
+    border-bottom: 1px solid white;
+  }
+
+  fieldset
+  {
+    margin: 2px;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+
+    border: 1px solid #e1e1e8;
+  }
+
+  legend
+  {
+    font-weight: bold;
+  }
+
+  label, img
+  {
+    vertical-align: middle;
+  }
+
+  textarea
+  {
+    overflow: auto;
+  }
+
+  input, select, textarea
+  {
+    vertical-align: middle;
+
+    font-size: 17px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    border-color: #f5deb3;
+    @extend .rounded_border;
+    @extend .no_padding;
+  }
+
+  input[type="submit"], input[type="button"], button
+  {
+    padding: 5px;
+    width: 180px;
+
+    -moz-box-shadow:inset 0px 1px 0px 0px #fed897;
+   	-webkit-box-shadow:inset 0px 1px 0px 0px #fed897;
+   	box-shadow:inset 0px 1px 0px 0px #fed897;
+   	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f6b33d), color-stop(1, #d29105) );
+   	background:-moz-linear-gradient( center top, #f6b33d 5%, #d29105 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6b33d', endColorstr='#d29105');
+   	background-color:#f6b33d;
+   	-moz-border-radius:6px;
+   	-webkit-border-radius:6px;
+   	border-radius:6px;
+   	border:1px solid #eda933;
+   	display:inline-block;
+   	color:#ffffff;
+   	font-family:arial;
+   	font-size:15px;
+   	font-weight:bold;
+   	padding:6px 24px;
+   	text-decoration:none;
+   	text-shadow:1px 1px 0px #cd8a15;
+  }
+
+  input[type="submit"]:hover, input[type="button"]:hover, button:hover
+  {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d29105), color-stop(1, #f6b33d) );
+    background:-moz-linear-gradient( center top, #d29105 5%, #f6b33d 100% );
+   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d29105', endColorstr='#f6b33d');
+    background-color:#d29105;
+  }
+
+  input[type="submit"]:active, input[type="button"]:active, button:active
+  {
+    position:relative;
+    top:1px;
+  }
+
+  form input[type="image"]
+  {
+    border: none;
+  }
+}

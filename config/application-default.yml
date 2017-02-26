@@ -1,0 +1,42 @@
+defaults: &defaults
+  secret_token:
+
+  mail_automated_from:
+  mail_personalized_from:
+  mail_moderators_list:
+
+  default_quota_mb: 10
+  google_maps_api_key:
+
+  smtp_domain:
+  smtp_mailgun_domain:
+  smtp_mailgun_key:
+
+  site_hostname: localhost
+
+  nkconnect_key:
+  nkconnect_secret:
+  nkconnect_scope: BASIC_PROFILE_ROLE,EMAIL_PROFILE_ROLE
+
+  facebook_key:
+  facebook_secret:
+
+  filestore_path:
+  filestore_url: /filestore
+
+  mail_moderators_list:
+
+  user_id_root: 1
+  container_id_poem:
+  container_id_prose:
+  container_id_photo:
+  container_id_art:
+
+development:
+  <<: *defaults
+
+demo:
+  <<: *defaults
+
+production:
+  <<: *defaults

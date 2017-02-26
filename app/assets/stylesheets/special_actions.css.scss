@@ -1,0 +1,27 @@
+#divSpecialActions
+{
+  .page_header h4
+  {
+    text-align: right;
+    margin-right: 0;
+  }
+
+  .intro
+  {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .info
+  {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  // Formularz
+  #special_action_description, #special_action_promoter_description
+  {
+    height: 50px;
+    width: 95%;
+  }
+}

@@ -1,0 +1,39 @@
+<% title "Logowanie" %>
+<% navi_path("Logowanie") %>
+<div id="divLogin">
+  <div class="page_header">
+    <h1>Logowanie</h1>
+    <hr />
+  </div>
+  <%= form_for @session_login, :url => new_session_path, :id => 'session_login' do |f| %>
+    <%= render "layouts/form_errors", :errors => @session_login.errors if @session_login && @session_login.errors.any? %>
+    <%= render "layouts/form_errors", :errors => @session_oauth.errors if @session_oauth && @session_oauth.errors.any? %>
+    <div class="container">
+      <div class="login_form">
+        <div class="field">
+          <%= f.label :login, "Nazwa użytkownika, login" %><br />
+          <%= f.text_field :login %>
+        </div>
+        <div class="field">
+          <%= f.label :password, "Hasło" %><br />
+          <%= f.password_field :password %>
+        </div>
+        <p class="form_hint">Psst! Nie pamiętasz swojego hasła? <%= link_to("Kliknij tutaj.", new_password_reminder_path) %></p>
+        <div class="actions">
+          <%= f.submit "Zaloguj" %>
+        </div>
+      </div>
+      <div class="external_services">
+        <p>Jeśli masz konto na jednym z poniższych serwisów, możesz go także użyć do zalogowania w serwisie:</p>
+        <%= render :partial => 'oauth_services' %>
+
+        <p><br />Jeśli zaś nie masz konta, <%= link_to("możesz w paru prostych krokach je utworzyć", new_signup_path) %>. Konto w serwisie pozwoli Ci na umieszczanie
+        publikacji, komentowanie innych, zabieranie głosu w dyskusjach na forum</p>
+      </div>
+      <div style="clear:both"></div>
+      <div class="bottom">
+        <%= link_to("Pierwszy raz u nas? Nie masz swojego loginu? Kliknij aby dołączyć.", new_signup_path) %>
+      </div>
+    </div>
+  <% end %>
+</div>

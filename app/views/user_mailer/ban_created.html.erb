@@ -1,0 +1,21 @@
+<h1><%= mfword('Szanowny użytkowniku', 'Szanowna użytkowniczko', @user) %> serwisu</h1>
+<p>W związku z rażącym naruszeniem regulaminu serwisu Twoje konto zostało
+<% if @moderation.expiry_date.nil? %>
+  zablokowane bezterminowo.
+<% else %>
+  zablokowane do <%= date_format(@moderation.expiry_date)%>. Po upływie tego czasu blokada zostanie automatycznie cofnięta,
+  o czym zostaniesz <%= mfword('poinformowany', 'poinformowana', @user) %> osobnym listem.
+<% end %>
+</p>
+<p>Blokada <strong>nie jest działaniem automatycznym</strong>, lecz została założona w wyniku obserwacji Twoich zachowań w serwisie. Jeśli
+chcesz zgłosić uwagi dotyczące zasadności blokady konta, możesz uczynić  to pisząc na adres redakcji.</p>
+<h4>Poniżej znajdziesz powód blokady konta, podany przez moderatora:</h4>
+<pre>
+  <%= @moderation.reason %>
+</pre>
+<p>Jednocześnie informujemy, że na czas blokady, cofnięto Ci możliwość dodawania nowych treści w serwisie. Nadal jednak
+możesz się zalogować oraz uzyskać dostęp do Twojego konta, jak i publikacji, po to, aby móc zarządzać własnymi danymi
+osobowymi.</p>
+<h4>Pomocne linki:</h4>
+<p><%= url_add_hostname static_page_contact_path %><br />
+<%= url_add_hostname terms_path  %></p>

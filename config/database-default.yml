@@ -1,0 +1,19 @@
+defaults: &defaults
+  adapter: mysql2
+  encoding: utf8
+  reconnect: true
+  pool: 5
+
+  username: test
+  password: test
+  host: localhost
+  database: %database%
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,20 @@
+<% title "Nowa wiadomość na forum" %>
+<% navi_path(link_to('Forum', forums_path), @forum, @forum_thread, "Nowa odpowiedź") %>
+<div id="divForums">
+  <div class="page_header">
+    <h1>Nowa odpowiedź w temacie <%= @forum_thread.title %></h1>
+    <hr />
+  </div>
+  <div class="forum_reply clearfix">
+    <div class="info">
+      <%= card(@forum_post_replied ? @forum_post_replied : @forum_thread) %>
+    </div>
+    <div class="content">
+      <blockquote>
+        <p>Odpowiadasz na <%= @forum_post_replied ? "wiadomość" : "temat" %>:</p>
+        <small><%= nl2br (@forum_post_replied ? @forum_post_replied.content : @forum_thread.content) %></small>
+      </blockquote>
+    </div>
+  </div>
+  <%= render 'form' %>
+</div>

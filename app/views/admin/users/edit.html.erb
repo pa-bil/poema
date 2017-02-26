@@ -1,0 +1,31 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), link_to("Użytkownicy", admin_users_path), link_to(@user.name, admin_user_path(@user)), "Edytuj" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne, użytkownicy: <%= @user.name %></h1>
+    <hr />
+  </div>
+  <div>
+    <!-- Błędy admina zawsze na początku -->
+    <%= render "layouts/form_errors", :errors => @user.errors if @user.errors.any? %>
+    <%= render "layouts/form_errors", :errors => @auth.errors if @auth.errors.any? %>
+
+    <%= form_for @user, :url => admin_user_path(@user) do |f| %>
+      <%= render "/signup/personal_step", :f => f, :profile => true %>
+      <%= render "/signup/contact_step", :f => f %>
+      <%= render "/signup/localisation_step", :f => f %>
+      <%= render "/signup/settings_step", :f => f %>
+
+      <div class="form_buttons">
+        <%= f.submit "Zapisz" %>
+      </div>
+    <% end %>
+
+    <%= form_for @auth, :url => admin_user_path(@user) do |f| %>
+      <%= render "/signup/auth_step", :f => f %>
+      <div class="form_buttons">
+        <%= f.submit "Zapisz" %>
+      </div>
+    <% end %>
+  </div>
+</div>

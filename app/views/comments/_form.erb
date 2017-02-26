@@ -1,0 +1,36 @@
+<%= form_for [@commentable, @comment] do |f| %>
+  <div id="new_comment_errors">
+    <%= render "layouts/form_errors", :errors => @comment.errors if @comment.errors.any? %>
+  </div>
+
+  <% unless session_user? %>
+    <div class="field">
+      <%= f.label :name, "Twoje imię, nazwisko, nick" %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :email, "Adres email" %><br />
+      <p class="s">Adres email nie będzie pokazywany publicznie</p>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.check_box :terms_version_id, {}, TermsVersion.current!.id %>
+      <%= f.label :terms_version_id, raw("Zapoznałem sie z zapisami " + link_to("regulaminu serwisu", terms_path)) %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content, "Twój komentarz" %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    Powyższy komentarz:<br />
+    <p class="s">Nie będziemy prezentowali typu komentarza dla innych, informacja zbierana jest wyłącznie w celach statystycznych.</p>
+    <%= f.radio_button :emotion, 0, {:checked => true } %> <%= f.label :comment_type_0, "Jest neutralny" %><br />
+    <%= f.radio_button :emotion, 1 %> <%= f.label :comment_type_1, "Wyraża opinię pozytywną" %><br />
+    <%= f.radio_button :emotion, -1 %> <%= f.label "comment_type_-1", "Wyraża opinię negatywną" %><br />
+  </div>
+  <div class="actions">
+    <%= f.submit "Dodaj", {:id => 'buttonCommentAdd'} %>
+  </div>
+<% end %>

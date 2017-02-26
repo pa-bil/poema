@@ -1,0 +1,25 @@
+#!/usr/bin/ruby
+
+# Skrypt ma na celu wysłanie powiadomień o nieaktywowanych signupach. Powinien być uruchomiony o 20.00
+# Wysyłam mail o nieaktywowanym sugnupie dwukrotnie:
+# - w dzień po signupie
+# - w 7 dni po signupie
+
+require File.expand_path(File.dirname(__FILE__)) + '/functions.rb'
+
+def send_notifications(q)
+  client_app = get_sql_connection
+  client_app.query(q).each do |row|
+    begin
+      user = User.find(row['user_id'])
+      UserMailer.signup_activation_reminder(user).deliver
+    rescue Exception => e
+      putsnb "Failed send signup activation reminder to #{row['user_id']}: #{e.to_s}"
+    end
+  end
+end
+
+send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)"
+send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 7 DAY)"
+
+exit 0

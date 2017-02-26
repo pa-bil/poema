@@ -1,0 +1,75 @@
+<%= form_for(@calendar) do |f| %>
+  <%= render "layouts/form_errors", :errors => [@calendar.errors, @uploaded_file.errors] if (@calendar.errors.any? || @uploaded_file.errors.any?) %>
+  <div class="field">
+    <%= f.label :title, "Tytuł wydarzenia, nazwa" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <% if @calendar.avatar? %>
+      <%= label_tag "Możesz zmienić grafikę dla tego wydarzenia. Wybierz plik graficzny, nie przekraczający objętości 200kb." %><br />
+    <% else %>
+      <%= label_tag "Możesz dodać grafikę dla tego wydarzenia. Wybierz plik graficzny, nie przekraczający objętości 200kb." %><br />
+    <% end %>
+    <div id="avatar_upload_container">
+      <div class="message"></div>
+      <div class="file image-frame-avatar hidden">
+        <% if @calendar.avatar? %>
+          <%= image_tag @calendar.avatar.url :avatar %>
+        <% end %>
+      </div>
+      <p>
+        <%= button_tag("Wybierz plik", {:id => 'avatar_upload_calendar_browse_button'}) %>
+        <kbd><%= show_user_quota(session_user) %></kbd>
+      </p>
+    </div>
+    <p class="form_hint">Więcej plików będziesz <%= mfword("mógł", "mogła", session_user) %> dodać później.</p>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Opis" %><br /><p class="s">Podaj jak najwięcej szczegółów</p>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date, "Data rozpoczęcia" %><br /><p class="s">Data rozpoczęcia jest obowiązkowa, opcjonalnie możesz
+    podać godzinę rozpoczęcia wydarzenia. Kliknij w ikonę kalendarza, aby rozpocząć wprowadzanie daty.</p>
+    <div class="datepicker">
+      <%= f.date_select :start_date, :include_blank => true %>
+      <%= f.time_select :start_time, :include_blank => true %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :finish, "Data zakończenia, opcjonalna" %><br /><p class="s">Podaj datę zakończenia tylko dla wydarzeń
+    trwających dłużej niż jeden dzień.</p>
+    <div class="datepicker">
+      <%= f.date_select :finish_date, :include_blank => true %>
+      <%= f.time_select :finish_time, :include_blank => true %>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :link, "Adres stony WWW wydarzenia" %><br />
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    <%= f.label :localisation, "Lokalizacja" %><br /><p class="s">Podaj lokalizację na tyle dokładną, na ile to możliwe. W
+    przypadku wydarzeń odbywających się w określonym miejscu, podaj pełny adres, w przypadku wydarzeń, których lokalizacja
+    nie jest określona, podaj przybliżoną lub dokładną lokalizację organizatora. <span class="red important">Ważne</span>
+    podana lokalizacja musi poprawnie wyświetlić się na mapie. Poprawna lokalizacja powinna mieć format <i>Warszawa, mazowieckie, Polska, Aleje Jerozolimskie 65</i></p><br />
+    <%= f.text_field :localisation %>
+  </div>
+  <div id="localisation_map_canvas">
+    <% js_file_external "http://maps.googleapis.com/maps/api/js?key=#{PoemaConfig.google_maps_api_key}&sensor=false" %>
+  </div>
+  <div class="field">
+    <%= f.label :venue, "Lokal, miejsce" %><br />
+    <%= f.text_field :venue %>
+  </div>
+  <div class="field">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Widoczne na liście" %><br /><p class="s">Jeśli jest to szkic informacji o wydarzeniu, który chcesz dopracować później
+    odznacz to pole, będziesz <%= mfword("mógł", "mogła", session_user) %> uzupełnić je i opublikować później.</p>
+  </div>
+  <div class="actions">
+    <input type='button' value='Anuluj' />
+    <%= f.submit (@calendar.new_record? ? 'Dodaj' : 'Aktualizuj') %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>

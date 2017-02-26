@@ -1,0 +1,21 @@
+<%= form_for [@forum, @forum_thread] do |f| %>
+  <%= render "layouts/form_errors", :errors => @forum_thread.errors if @forum_thread.errors.any? %>
+  <div class="field">
+    <%= f.label :title, "Temat" %><br />
+    <%= f.text_field :title, {:disabled => !@forum_thread.new_record?} %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "Treść wiadomości" %><br />
+    <%= f.text_area :content, {:disabled => !@forum_thread.new_record?} %>
+  </div>
+  <div class="field">
+    <%= f.check_box :closed, {:disabled => !@forum_thread.new_record? && !allow_reply_to?(@forum_thread, session_user)} %>
+    <%= f.label :closed, "Temat zamknięty" %><br />
+    <p class="form_hint">Jeśli odznaczysz tę opcję, nikt, oprócz Ciebie nie będzie mógł dodać odpowiedzi. Możesz zaznaczyć tę opcję
+      jeśli Twoja wiadomość jest ogłoszeniem, lub aby zamknąć nieaktualny temat.</p>
+  </div>
+  <div class="actions">
+    <input type='button' value='Anuluj' />
+    <%= f.submit @forum_thread.new_record? ? "Dodaj" : "Aktualizuj" %>
+  </div>
+<% end %>

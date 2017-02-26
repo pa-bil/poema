@@ -1,0 +1,143 @@
+<% js_option('AuthenticityToken', form_authenticity_token) %>
+<% js_option('JsBackendPath', js_backend_path) %>
+<% js_option('AssetPath', '/assets') %>
+<% js_option('Debug', Rails.env != 'production') %>
+<% js_option('UserAuthenticated', logged_in?) %>
+<% js_option('User', logged_in? ? "#{session_user.id}/#{session_user.name}" : false) %>
+<% js_option('ControllerAction', current_controller_action) %>
+<% js_option('Ssl', ssl_connection?) %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) + '. ' if yield(:title).length > 0 %>Serwis poetycki.</title>
+  <meta property="og:title" content="<%= yield(:title) %>"/>
+  <meta name="description" content="<%= yield(:description) %>"/>
+  <meta property="og:description" content="<%= yield(:description) %>"/>
+  <%= auto_discovery_link_tag :rss, rss_publication_path, {:title => 'Nowe publikacje'} %>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">var poema_js_options = <%= raw @js_options.to_json %>;</script>
+  <% if content_for?(:header_extra) %><%= yield(:header_extra) %>
+  <% end %>
+</head>
+<body class="portal" itemscope itemtype="http://schema.org/WebPage">
+<div id="main-top-bar-float-container">
+  <div class="main-top-bar" id="my-float">
+    <div class="main-top-bar-container">
+      <div class="main-top-menu">
+        <%= render "layouts/menu" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-wrapper">
+  <div class="main-header">
+    <div class="shade-left">
+      <div class="shade-right"></div>
+    </div>
+    <div class="wrapper"></div>
+    <div class="flash-box">
+      <%= render :partial => 'layouts/flash_box' %>
+    </div>
+    <div class="button-box">
+      <div class="fb">
+        <!-- wstaw button FB tutaj -->
+      </div>
+    </div>
+  </div>
+  <noscript>
+    <div class="nojs_alert">
+      Twoja przeglądarka nie obsługuje JavaScript, który jest wymagany aby wygodnie korzystać ze wszystkich funkcji
+      naszego serwisu.
+      Proponujemy, abyś zaktualizował/zaktualizowała Twoją przeglądarkę na nowocześniejszą, na
+      przykład <%= link_to "Google Chrome", "http://www.google.com/intl/pl/chrome/browser" %>
+      lub <%= link_to "Operę", 'http://www.opera.com/download' %>
+      Oczywiście jeśli nie chcesz zaktualizować swojej przeglądarki, nie zmuszamy Cię do tego, nadal możesz przeglądać
+      bez większych problemów nasze zasoby.
+    </div>
+  </noscript>
+  <div class="main-breadcrumbs">
+    <div class="breadcrumbs-container">
+      <ul>
+        <li><%= link_to "Strona początkowa", root_path %></li>
+        <%= yield :layout_navi_path %>
+      </ul>
+    </div>
+  </div>
+  <div class="main-content-wrapper">
+    <div class="main-menu-left">
+      <h1>Spis rzeczy</h1>
+      <ul>
+        <% Container.list_top_level.each do |c| %>
+          <li><%= link_to c.title, c %> <%= is_new_link(c) %></li>
+        <% end %>
+      </ul>
+      <%= render :partial => 'layouts/left_banners' %>
+      <h1>Akcje promocyjne</h1>
+      <ul>
+        <% SpecialAction.list.each do |a| %>
+          <li><%= link_to a.title, a %></li>
+        <% end %>
+      </ul>
+      <h1>Inne</h1>
+      <ul>
+        <li><%= link_to "Wydarzenia", calendars_path %></li>
+        <li><%= link_to "Kontakt", static_page_contact_path %></li>
+        <li><%= link_to "Regulamin serwisu", terms_path %></li>
+        <li><%= link_to "Informacje o licencjach", static_page_licence_path %></li>
+      </ul>
+      <h1>Forum</h1>
+      <ul>
+        <% Forum.list.each do |f| %>
+          <li><%= link_to h(f.title), f %> <%= is_new_link(f) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="main-content-container<%= ' main-content-bg' unless main_content_own_bg? %>">
+      <div class="<%= ' main-content-padding' unless main_content_own_bg? %>">
+        <%= yield %>
+        <br clear="all"/>
+
+        <div class="admin_links">
+          <ul>
+            <%= show_to :root do %>
+              <li><%= image_tag "i/16/manage.png" %><%= link_to "Panel administracyjny", admin_path %></li>
+            <% end %>
+            <li><%= image_tag "i/16/content_type_poem.png" %><%= link_to "Dodaj publikację: wiersz, wydarzenie, grafikę", publication_wizard_path %></li>
+            <% if logged_in? %>
+              <li><%= image_tag "i/16/manage.png" %><%= link_to "Zarządzaj Twoim profilem", user_profile_path %></li>
+              <li><%= image_tag "i/16/auth.png" %><%= link_to "Wyloguj się", delete_session_path %></li>
+            <% else %>
+              <li><%= image_tag "i/16/auth.png" %><%= link_to "Zaloguj się", new_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+<div class="footer-outer">
+  <div class="footer-top"></div>
+  <div class="footer-content-bg">
+    <div class="footer-content">
+      <div class="footer-logo"></div>
+      <div class="footer-ads">
+        <%= render :partial => 'layouts/partners' %>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+</div>
+<div id="divPopupContainer"></div>
+
+<%= stylesheet_link_tag 'vendor' %>
+<%= stylesheet_link_tag 'application' %>
+
+<% if content_for?(:js_files_external_body) %><%= yield :js_files_external_body %>
+<% end %>
+<%= javascript_include_tag "vendor" %>
+<%= javascript_include_tag "application" %>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<% title "Usunięcie użytkownika z czarnej listy" %>
+<% navi_path("Użytkownicy", @user_blacklisted, "Usunięcie z czarnej listy") %>
+<div id="divUserBlacklists">
+  <div class="page_header">
+    <h1>Usunięcie z czarnej listy</h1>
+    <hr />
+  </div>
+
+  <%= render 'layouts/confirmation_form',
+        :url     => user_user_blacklists_path(@user_blacklisted),
+        :object  => @user_blacklist,
+        :method  => :delete,
+        :message => "Czy na pewno chcesz usunąć użytkownika '#{@user_blacklisted.name}' z czarnej listy?"
+  %>
+</div>

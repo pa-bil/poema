@@ -1,0 +1,30 @@
+#!/usr/bin/ruby
+
+# Skrypt obsługuje ekspirację moderacji, wyszukuje wyłącznie moderacje kont użytkowników, z datą wygaśnięcia mniejszą
+# bądź równą aktualnej dacie, i cofa blokadę, wysyłając jednocześnie informacje mailem. Powinien być uruchomiony raz
+# na 24h
+
+require File.expand_path(File.dirname(__FILE__)) + '/functions.rb'
+
+Moderation.list_expired_bans(Date.current).each {|moderation|
+  ActiveRecord::Base.transaction do
+    begin
+      user = moderation.moderateable
+      moderation.active = false
+      moderation.save!
+      if user.banned?
+        user.banned = false
+        user.save!
+        user.assign_default_roles
+
+        InternalMailer.ban_expired(moderation, user).deliver
+        UserMailer.ban_expired(moderation, user).deliver
+      end
+    rescue ActiveRecord::RecordInvalid => e
+      # Tylko debug, to wyśle maila, nie przerywam przetwarzania kolejnych rekordów
+      putsnb user.errors.as_json.to_s
+    end
+  end
+}
+
+exit 0

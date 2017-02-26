@@ -1,0 +1,10 @@
+<p>Sortuj wg.</p>
+<ul>
+  <% Publication.sort_options.each do |title, id| %>
+    <% if (!params[:publications_sort].nil? && params[:publications_sort].to_i == id) || (params[:publications_sort].nil? && default_sort == id) %>
+      <li><%= title %></li>
+    <% else %>
+      <li><%= link_to title, "?publications_sort=#{id}" %></li>
+    <% end %>
+  <% end %>
+</ul>

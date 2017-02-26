@@ -1,0 +1,12 @@
+<% title "Ostatnie publikacje" %>
+<% navi_path(link_to("Publikacje", containers_path), @container, "Lista ostatnich publikacji") %>
+<div id="divContainers">
+  <div class="page_header">
+    <h1>Ostatnio dodane publikacje</h1>
+    <hr />
+  </div>
+  <%= render 'publications/list' %>
+  <% if @publications.empty? %>
+  <p>W kontenerze <%= @container.title %> znaleziono publikacji, które można by pokazać.</p>
+  <% end %>
+</div>

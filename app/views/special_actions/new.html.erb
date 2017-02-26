@@ -1,0 +1,26 @@
+<% title "Akcje promocyjne" %>
+<% navi_path @publication, "Dodaj publikację do akcji specjalnej" %>
+<div id="divSpecialActions">
+  <div class="page_header">
+    <h1><%= @publication.title %></h1>
+    <hr />
+  </div>
+  <div class="content">
+    <%= form_for @special_action_publication, :url => publication_special_actions_path(@publication) do |form| %>
+      <%= render "layouts/form_errors", :errors => @special_action_publication.errors if @special_action_publication.errors.any? %>
+      <div class="field">
+        <%= label_tag :special_action_id, "Wybierz akcję specjalną, do której dodajesz publikację" %><br />
+        <p class="form_hint">Lista zawiera wyłącznie aktywne akcje promocyjne.</p>
+        <% @special_actions.each do |a| %>
+          <br />
+            <%= radio_button_tag :special_action_id, a.id, (params[:special_action_id] && params[:special_action_id].to_i == a.id) %>
+            <%= label_tag "special_action_id_#{a.id}", a.title %><br />
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= submit_tag "Dalej" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

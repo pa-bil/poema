@@ -1,0 +1,34 @@
+<div class="forum_thread">
+    <div class="avatar">
+      <%= user_image_tag t.owner, avatar_main_size %>
+    </div>
+
+    <div class="content">
+      <div class="info">
+      <% if t.last_forum_post.nil? %>
+         <%= link_to_user t.owner.name, t.owner %> na forum <%= link_to t.forum.title, t.forum %>
+         <%= mfword("otworzył", "otworzyła", t.owner) %> wątek <%= link_to t.title, [t.forum, t] %>:
+         <span class="cite">"<%= truncate t.content, :length => 75 %>"</span>
+       <% else %>
+         <%= link_to_user t.last_forum_post.owner.name, t.last_forum_post.owner %> 
+         oraz jeszcze <%= grouping.grouped_count %> <%= cntword(grouping.grouped_count, 'osoba' , 'osoby', 'osób') %>
+         na forum <%= link_to t.forum.title, t.forum %>
+         w odpowiedzi na wątek <%= link_to t.title, (url_for([t.forum, t]) + "#" + t.last_forum_post.anchor) %> <%= mfword("napisał", "napisała", t.last_forum_post.owner) %>:
+         <span class="cite">"<%= truncate t.last_forum_post.content, :length => 65 %>"</span>
+       <% end %>
+      </div>
+      <div class="footer">
+        <% if t.last_forum_post.nil? %>
+          <span class="timeago" title="<%= t.created_at.iso8601 %>"><%= date_format t.created_at %></span>
+        <% else %>
+          <span class="timeago" title="<%= t.last_forum_post.created_at.iso8601 %>"><%= date_format t.last_forum_post.created_at %></span>
+        <% end %>
+      </div>
+      <% unless t.last_forum_post.nil? %>
+      <div class="other-thumbs">
+        <%= user_avatar_small_tag(t.last_forum_post.owner, avatar_size) %><% grouping.grouped_elements_trimmed(10).each do |p_owner| %><%= user_avatar_small_tag(p_owner, avatar_size) %><% end %>
+      </div>
+      <% end %>
+    </div>
+
+</div>

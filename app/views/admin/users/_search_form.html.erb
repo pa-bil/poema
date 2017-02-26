@@ -1,0 +1,10 @@
+<%= form_for @user_search, :url => search_admin_users_path, :method => :get do |f| %>
+  <%= render "layouts/form_errors", :errors => @user_search.errors if @user_search.errors.any? %>
+  <div class="field">
+    <%= f.label :q, "Nazwa użytkownika, login, adres email, id" %><br />
+    <%= f.text_field :q %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Szukaj" %>
+  </div>
+<% end %>

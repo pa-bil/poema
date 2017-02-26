@@ -1,0 +1,25 @@
+<% title "Wyniki wyszukiwania" %>
+<% navi_path("Wyniki wyszukiwania") %>
+<div id="divSearch">
+  <div class="page_header">
+    <h1>Wyniki wyszukiwania</h1>
+    <hr />
+  </div>
+  <%= render :partial => 'form' %>
+  <br clear="all" />
+  <div class="users_list">
+    <% if @users.count > 0 %>
+      <div class="header"><h2>Lista użytkowników</h2></div>
+      <% @users.each do |user| %>
+        <div class="row">
+          <%= card user %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <br clear="all" />
+  <%= render 'containers/list' %>
+  <br clear="all" />
+  <%= render 'publications/list' %>
+  <br clear="all" />
+</div>

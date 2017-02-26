@@ -1,0 +1,12 @@
+<div class="forum_reply clearfix">
+  <div class="info">
+    <%= card (@forum_post_replied ? @forum_post_replied : @forum_thread), UploadedFile::THUMB_DIM %>
+  </div>
+  <div class="content">
+    <blockquote>
+      <p>Odpowiadasz na <%= @forum_post_replied ? "wiadomość" : "temat" %>:</p>
+      <small><%= truncate((@forum_post_replied ? @forum_post_replied.content : @forum_thread.content), :length => 200) %></small>
+    </blockquote>
+  </div>
+</div>
+<%= render 'form' %>

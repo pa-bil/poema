@@ -1,0 +1,20 @@
+<%= form_for(@user_blacklist, :url => user_user_blacklists_path(@user_blacklisted)) do |f| %>
+  <%= render "layouts/form_errors", :errors => @user_blacklist.errors if @user_blacklist.errors.any? %>
+  <div class="clearfix">
+    <div class="fleft">
+      <%= card @user_blacklisted %>
+    </div>
+    <div class="fleft user-blacklist-info">
+      <p>Czy na pewno chcesz dodać do czarnej listy <%= mfword('użytkownika', 'użytkowniczkę', @user_blacklisted) %>. Dodanie do czarnej listy uniemożliwi
+      <%= mfword('mu', 'jej', @user_blacklisted) %> komentowanie Twoich publikacji, udziału w dyskusji w tematach forum, które
+      utworzysz, odpowiadania na Twoje posty na forum, etc.</p>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :reason, "Powód blokady (prywatny, widoczny tylko dla Ciebie)" %><br />
+    <%= f.text_area :reason %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Zablokuj" %>
+  </div>
+<% end %>

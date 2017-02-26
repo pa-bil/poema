@@ -1,0 +1,35 @@
+<fieldset>
+  <legend>Informacje osobiste</legend>
+  <div class="field">
+    <%= f.label :name, "Twoje imię i nazwisko lub nick. Tak będą podpisywane Twoje publikacje" %><span class='red'>*</span><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <% if profile %><%= label_tag :avatar, "Możesz zmienić Twój avatar." %><% else %><%= label_tag :avatar, "Możesz dodać awatar do Twojego profilu. " %><% end %><br />
+    <div id="avatar_upload_container">
+      <div class="message"></div>
+      <div class="file image-frame-avatar hidden">
+        <% if profile %><%= user_image_tag(session_user) %><% end %>
+      </div>
+      <p>
+        <%= button_tag("Wybierz plik", {:id => 'avatar_upload_container_browse_button'}) %>
+        <% if session_user %>
+          <kbd><%= show_user_quota(session_user) %></kbd>
+        <% end %>
+      </p>
+    </div>
+    <p class="form_hint">Wybierz plik graficzny, nie przekraczający objętości 200kb.</p>
+  </div>
+  <div class="field">
+   <%= f.label :gender, "Płeć" %><span class='red'>*</span><br />
+   <%= f.select :gender, {'Mężczyzna' => 'M', 'Kobieta' => 'F'}, {:include_blank => true} %>
+  </div>
+  <div class="field">
+    <%= f.label :intro, "Dlaczego zainteresowałeś/zainteresowałaś się serwisem. Jeśli masz zamiar u nas publikować, napisz, co to będzie" %><br />
+    <%= f.text_area :intro, :size => "60x6" %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Troszkę informacji o Tobie, ile masz lat, co robisz, jakie osiągnięcia masz na swoim koncie" %><br />
+    <%= f.text_area :description, :size => "60x6" %>
+  </div>
+</fieldset>

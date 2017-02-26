@@ -1,0 +1,44 @@
+<div class="forum_threads_list">
+  <div class="header">
+    <div class="title">
+      <h2>Tematy dyskusji</h2>
+    </div>
+    <div class="button">
+      <div class="forum_thread_new_button hidden">
+        <%= link_to image_tag('i/64/forum_thread.png') + 'nowa dyskusja', new_forum_forum_thread_path(@forum) %>
+      </div>
+    </div>
+  </div>
+  <br clear="all" />
+  <%= will_paginate @forum_threads %>
+  <% if @forum_threads.count > 0 %>
+  <ul>
+    <% @forum_threads.each do |t| %>
+    <li>
+      <div class="item">
+        <div class="dotted_line"></div>
+        <p class="title"><%= link_to(t.title, forum_forum_thread_path(@forum, t)) %> <%= is_new(t) %></p>
+        <div class="dotted_line"></div>
+        <div class="info">
+          <%= card t %>
+        </div>
+        <div class="content">
+          <p class="content_head">
+            <%= date_format t.created_at %>,
+            <% if t.counter_post > 0  %>
+              ostatnia odpowiedź z <%= date_format t.last_activity_at %>, wszystkich <%= t.counter_post %>.
+            <% else %>
+              brak odpowiedzi.
+            <% end %>
+          </p>
+          <p class="intro">
+            <%= nl2br truncate(t.content, :length => 1500) %>
+          </p>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= will_paginate @forum_threads %>
+</div>

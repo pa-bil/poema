@@ -1,0 +1,38 @@
+<% if @forum_posts.count > 0 %>
+  <ul>
+  <% @forum_posts.each do |forum_post| %>
+    <li>
+      <div class="item" id="forum_post_<%= forum_post.id %>" data-anchor="<%= forum_post.anchor %>">
+        <div class="content">
+          <p style="margin-left: <%= (forum_post.nesting_level > 8 ? 8 : forum_post.nesting_level)*30 %>px;" class="content_head">
+            <%= date_format forum_post.created_at %>
+          </p>
+          <div style="margin-left: <%= (forum_post.nesting_level > 8 ? 8 : forum_post.nesting_level)*30 %>px;">
+            <% if forum_post.banned? %>
+              <p class="red">Treść komentarza została usunięta przez redakcję serwisu.</p>
+            <% else %>
+              <p class="content_body"><%= nl2br forum_post.content %></p>
+            <% end %>
+            <% if allow_reply_to?(forum_post, session_user)  %>
+              <%= link_to "Odpowiedz", forum_post_new_path(@forum, @forum_thread, forum_post), {:class => 'reply'} %>
+            <% end %>
+            <%= show_to :moderator do %>
+              <!-- To pokazuje się wyłącznie dla moderatorów -->
+              <% if forum_post.banned? %>
+                <p class="cancel"><%= nl2br forum_post.content %></p>
+                <%= link_to 'Cofnij moderację', moderations_path(forum_post) + delete_path_element, {:class => 'moderation_link poema_popup', :title => 'Potwierdzenie'} %>
+              <% else %>
+                <%= link_to "Moderuj treść", new_moderation_path(forum_post), {:class => 'moderation_link'} %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="info">
+          <%= card forum_post.owner %>
+        </div>
+      </div>
+      <div class="dotted_line"></div>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

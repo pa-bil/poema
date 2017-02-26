@@ -1,0 +1,19 @@
+<div class="confirmation_form">
+  <%= form_for(object, :url => (defined?(url) ? url : url_for(object)), :method => method) do |f| %>
+    <div class="message">
+      <p><%= message %></p>
+      <% if defined? hint %>
+        <br />
+        <p class='s'><span class="important">Uwaga</span>. <%= hint %></p>
+      <% end %>
+    </div>
+    <div class="icon">
+
+    </div>
+    <br clear="all" />
+    <div class="actions">
+      <input type='button' value='Anuluj' class="action_cancel" />
+      <input type='submit' value='Zatwierdź' class="action_submit" />
+    </div>
+  <% end %>
+</div>

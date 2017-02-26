@@ -1,0 +1,54 @@
+<div class="comments_list">
+  <div class="header clearfix">
+    <div class="title">
+      <h2>Komentarze</h2>
+    </div>
+    <div class="button">
+      <% if comment_allowed && @comments.count > 0 %>
+        <%= link_to image_tag("i/64/add_comment.png") + 'komentuj', new_comment_path(context), {:class => 'comment_add_button'} %>
+      <% end %>
+    </div>
+  </div>
+
+  <% unless @comments.empty? %>
+    <%= will_paginate @comments, :param_name => :comments_page %>
+    <% @comments.each do |comment| %>
+      <div class="comment clearfix" data-anchor="<%= comment.anchor %>">        
+        <div class="dotted_line"></div>
+        <div class="info">
+          <%= card comment %>
+        </div>
+        <div class="content">
+          <div class="content_header">
+            <p><%= date_format comment.created_at %></p>
+          </div>
+          <% if comment.banned? %>
+            <p class="red">Treść komentarza została usunięta przez redakcję serwisu.</p>
+          <% else %>
+            <p><span><%= nl2br comment.content %></span></p>
+          <% end %>
+          <%= show_to :moderator do %>
+            <!-- To pokazuje się wyłącznie dla moderatorów -->
+            <% if comment.banned? %>
+              <%= link_to 'Cofnij moderację', moderations_path(comment, context) + delete_path_element, {:class => 'moderation_link poema_popup', :title => 'Potwierdzenie'} %>
+              <p class="cancel"><%= nl2br comment.content %></p>
+            <% else %>
+              <%= link_to "Moderuj treść", new_moderation_path(comment, context), {:class => 'moderation_link'} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <%= will_paginate @comments, :param_name => :comments_page %>
+  <% else %>
+    <div class="dotted_line"></div>
+    <div class="no_comments">
+      <p>Nie znaleziono żadnych komentarzy.
+        <% if comment_allowed %>
+          Bądź pierwszy i dodaj jakiś:
+          <%= link_to image_tag("i/64/add_comment.png"), new_comment_path(context), {:class => 'comment_add_button'} %></p>
+        <% end %>
+    </div>
+    <div class="dotted_line"></div>
+  <% end %>
+</div>

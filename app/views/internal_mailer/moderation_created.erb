@@ -1,0 +1,15 @@
+<p>Treść <%= mfword("użytkownika", "użytkowniczki", @user) %> <% if @user.nil? %>anonimowego<% else %><%= @user.name %><% end %> została
+zablokowana przez moderatora <%= @moderator.name %> (<%= @moderator.auth.login %>).</p>
+
+<p>Zablokowana treść znajduje się na stronie <%= url_add_hostname url_for(@moderateable_context) %></p>
+
+<% unless @user.nil? %>
+<p>Ilość unikatowych treści zablokowanych dla tego użytkownika: <%= @moderations_count %><br />
+Ilość banów: <%= @user.ban_count %></p>
+<% end %>
+
+<p>Powód moderacji:</p>
+
+<pre>
+<%= @moderation.reason %>
+</pre>

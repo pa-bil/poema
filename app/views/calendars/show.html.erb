@@ -1,0 +1,53 @@
+<% title @calendar.title %>
+<% description @calendar.description %>
+<% navi_path(@calendar) %>
+<div id="divCalendars">
+  <div class="calendar_show">
+    <div class="page_header">
+      <h1><%= @calendar.title %></h1>
+      <hr />
+    </div>
+    <p class="info">
+      <span class="bold">Data:</span> <%= date_format(@calendar.start_date, :long) %><br />
+      <span class="bold">Miejsce:</span> <%= @calendar.localisation_geocoder || @calendar.localisation %>, <%= @calendar.venue %><br />
+      <% if  @calendar.link %>
+        <span class="bold">Strona WWW:</span> <%= @calendar.link %>
+      <% end %>
+      <span class="bold"><%= mfword("Dodał", "Dodała", @calendar.owner) %>:</span> <%= link_to_user @calendar.owner.name, @calendar.owner %>
+    </p>
+    <% unless @calendar.avatar.nil? %>
+      <div class="avatar">
+        <%= image_tag @calendar.avatar.url :big %>
+      </div>
+    <% end %>
+    <div class="body">
+      <%= safe_html @calendar.description %>
+    </div>
+    <h3>Miejsce</h3>
+    <div id="localisation_map_canvas">
+      <% js_file_external "http://maps.googleapis.com/maps/api/js?key=#{PoemaConfig.google_maps_api_key}&sensor=false" %>
+      <% js_option("CalendarShowLon", @calendar.longitude) %>
+      <% js_option("CalendarShowLat", @calendar.latitude) %>
+    </div>
+    <%= render 'uploaded_files/list_thumb' %>
+    <div class="view-counter">
+      <kbd>Ilość odsłon: <%= @calendar.view_counter_value %></kbd>
+    </div>
+    <div class="social-buttons">
+      <div class="fb">
+        <%= facebook_like %>
+      </div>
+    </div>
+    <div class="list" id="divCommentsList">
+      <%= render :partial => 'comments/list', :locals => { :context => @calendar, :comment_allowed => session_user? } %>
+    </div>
+    <div class="admin_links">
+      <% if allow_actions? %>
+      <ul>
+        <li><%= image_tag 'i/16/edit.png' %> <%= link_to 'Edytuj to wydarzenie', edit_calendar_path(@calendar) %></li>
+        <li><%= image_tag 'i/16/image.png' %> <%= link_to 'Dodaj lub usuń załączone pliki', calendar_uploaded_files_path(@calendar) %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

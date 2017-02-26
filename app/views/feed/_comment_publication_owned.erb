@@ -1,0 +1,29 @@
+<div class="comment">
+
+  <div class="avatar">
+    <%= user_image_tag comment.commentable.owner, avatar_main_size %>
+  </div>
+
+  <div class="content">
+    <div class="info">
+      <%= link_to_user comment.owner.name, comment.owner %>
+      <% if grouping.grouped_count > 0 %>
+        oraz jeszcze <%= grouping.grouped_count %> <%= cntword(grouping.grouped_count, 'osoba' , 'osoby', 'osób') %>
+        <%= cntword(grouping.grouped_count, 'skomentowała' , 'skomentowały', 'skomentowało') %>
+      <% else %>
+        <%= mfword("skomentował", "skomentowała", comment.owner) %> publikację
+      <% end %>
+      <%= link_to comment.commentable.title, (url_for(comment.commentable) + "#" + comment.anchor) %>:
+      <span class="cite">"<%= truncate comment.content, :length => 75 %>"</span>
+    </div>
+
+    <div class="footer">
+      <span class="timeago" title="<%= comment.created_at.iso8601 %>"><%= date_format comment.created_at %></span>.
+    </div>
+
+    <div class="other-thumbs">
+      <%= user_avatar_small_tag(comment.owner, avatar_size) %><% grouping.grouped_elements_trimmed(10).each do |c_owner| %><%= user_avatar_small_tag(c_owner, avatar_size) %><% end %>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<% title "#{@forum.title}, #{@forum_thread.title}" %>
+<% description @forum_thread.content %>
+<% navi_path(link_to('Forum', forums_path), @forum, @forum_thread.title) %>
+<div id="divForums">
+  <div class="forum_thread">
+    <div class="page_header">
+      <h1><%= @forum_thread.title %></h1>
+      <hr />
+    </div>
+    <div class="top" id="forum_thread_<%= @forum_thread.id %>">
+      <div class="row">
+        <div class="info">
+          <%= card @forum_thread.owner %>
+        </div>
+        <div class="content">
+          <p class="content_head">
+            <%= date_format @forum_thread.created_at %>
+          </p>
+          <p class="content_body">
+            <%= nl2br @forum_thread.content %>
+          </p>
+          <%= show_to :moderator do %>
+            <!-- To pokazuje się wyłącznie dla moderatorów -->
+            <br />
+            <% if @forum_thread.banned? %>
+              <%= link_to 'Cofnij moderację', moderations_path(@forum_thread) + delete_path_element, {:class => 'moderation_link poema_popup', :title => 'Potwierdzenie'} %>
+            <% else %>
+              <%= link_to "Moderuj treść", new_moderation_path(@forum_thread), {:class => 'moderation_link'} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="links">
+        <% if allow_reply_to? @forum_thread, session_user %>
+          <%= link_to 'Odpowiedz', forum_post_new_path(@forum, @forum_thread), {:class => "reply", :id =>"forum_thread_#{@forum_thread.id}"} %>
+        <% end %>
+      </div>
+    </div>
+    <br clear="all" />
+    <div class="dotted_line"></div>
+    <div class="list">
+      <%= render "forum_posts/list"  %>
+    </div>
+  </div>
+  <div class="admin_links">
+    <ul>
+      <% if allow_reply_to? @forum_thread, session_user %>
+      <li><%= image_tag 'i/16/add.png' %> <%= link_to 'Odpowiedz na ten wątek', forum_post_new_path(@forum, @forum_thread) %></li>
+      <% end %>
+      <% if allow_actions? %>
+      <li><%= image_tag 'i/16/edit.png' %> <%= link_to 'Edytuj wątek', edit_forum_forum_thread_path(@forum, @forum_thread) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <a class="hidden" id="forum_post_reply_tooltip">
+    <%= image_tag("i/64/forum_reply.png") %>
+  </a>
+</div>

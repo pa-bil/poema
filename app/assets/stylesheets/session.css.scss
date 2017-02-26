@@ -1,0 +1,73 @@
+#divLogin
+{
+  .nk
+  {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    img
+    {
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+
+  .form_hint
+  {
+    width: 300px;
+  }
+
+  .container
+  {
+    margin-top: 10px;
+
+    border: 1px solid #EAAC6B;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+
+      .login_form
+      {
+        float: left;
+        width: 300px;
+        padding: 20px;
+
+        .actions
+        {
+          float: left;
+          width: 280px;
+        }
+
+        #session_login_form_login, #session_login_form_password
+        {
+          width: 280px;
+        }
+
+        .form_hint
+        {
+          width: 280px;
+        }
+      }
+
+      .external_services
+      {
+        padding: 20px;
+        float: right;
+        width: 300px;
+      }
+
+    .bottom
+    {
+      height: 28px;
+      padding-left: 20px;
+      padding-top: 12px;
+      background-color: #EAAC6B;
+
+      a
+      {
+        font-weight: bold;
+        color: #fff;
+        margin-right: 20px;
+      }
+    }
+  }
+}

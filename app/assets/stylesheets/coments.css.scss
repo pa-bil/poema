@@ -1,0 +1,96 @@
+@import "extends";
+@include extends;
+
+.comments_list
+{
+  .header
+  {
+    .title
+    {
+      margin-left: 310px;
+      margin-top: 20px;
+      float: left;
+    }
+    .button
+    {
+      float: right;
+    }
+  }
+
+  .comment
+  {
+    clear: both;
+
+    .info
+    {
+      float: left;
+      width: 160px;
+      padding: 3px;
+    }
+
+    .content
+    {
+      padding: 3px;
+      float: left;
+      width: 570px;
+
+      p
+      {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .content_header
+      {
+        padding-bottom: 2px;
+        font-style: italic;
+      }
+    }
+  }
+
+  .no_comments
+  {
+    padding: 20px;
+    font-weight: bold;
+    text-align: center;
+
+    img
+    {
+      vertical-align: middle;
+    }
+  }
+}
+
+.comments_form_popup
+{
+  p
+  {
+    margin: 0;
+  }
+
+  label[for="comment_content"]
+  {
+    display: none;
+  }
+
+  input[type="text"]
+  {
+    width: 415px;
+  }
+
+  textarea
+  {
+    height: 200px;
+    width: 415px;
+  }
+
+  .actions
+  {
+    padding-top: 10px;
+    float: right;
+  }
+  .field_with_errors
+  {
+    @extend .red_border
+  }
+}

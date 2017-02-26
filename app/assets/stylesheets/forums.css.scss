@@ -1,0 +1,243 @@
+#divForums
+{
+  .forum_index
+  {
+    .top
+    {
+      margin-bottom: 10px;
+    }
+    .list
+    {
+      .title
+      {
+        font-size: 13px;
+        font-weight: bold;
+      }
+      .info
+      {
+        margin-top: 4px;
+      }
+      .description
+      {
+        font-size: 10px;
+        margin-top: 4px;
+      }
+      ul
+      {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .forum
+  {
+    .forum_threads_list
+    {
+      .header
+      {
+        position: relative;
+        top: 45px;
+
+        .title
+        {
+          width: 100%;
+        }
+
+        .button
+        {
+          float: right;
+          position: relative;
+          top: -43px;
+        }
+      }
+      ul
+      {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .item
+      {
+        clear: both;
+        p
+        {
+          margin: 0px;
+        }
+        .title
+        {
+          margin: 2px 0px 2px 0px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .info
+        {
+          float: left;
+          width: 160px;
+        }
+        .content_head
+        {
+          margin-bottom: 4px;
+          font-style: italic;
+        }
+        .content
+        {
+          margin: 3px;
+          float: left;
+          width: 580px;
+        }
+      }
+    }
+  }
+
+  /* forum_threads/show */
+  .forum_thread
+  {
+    .top
+    {
+      .row
+      {
+        clear: both;
+
+        .info
+        {
+          width: 160px;
+          float: left;
+        }
+        .content
+        {
+          margin-left: 3px;
+          width: 585px;
+          float: left;
+
+          .content_head
+          {
+            margin-bottom: 4px;
+            font-style: italic;
+          }
+        }
+      }
+    }
+
+    .list
+    {
+      ul
+      {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .item
+      {
+        padding-top: 2px;
+        padding-bottom: 2px;
+
+        margin-top: 3px;
+        margin-bottom: 3px;
+        overflow: hidden;
+        clear: both;
+      }
+      .content
+      {
+        margin-right: 3px;
+        width: 585px;
+        float: left;
+        display: inline;
+      }
+      p.content_head
+      {
+        margin-bottom: 4px;
+        font-style: italic;
+      }
+      .info
+      {
+        float: left;
+        width: 160px;
+      }
+      .reply
+      {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  // Jest odpowiednik dla odpowiedzi w popupie
+  .forum_reply
+  {
+    .info
+    {
+      float: left;
+    }
+    .content
+    {
+      margin-left: 5px;
+      float: left;
+      width: 580px;
+    }
+  }
+
+  #forum_post_reply_tooltip
+  {
+    img
+    {
+      cursor: pointer;
+    }
+  }
+}
+
+@import "extends";
+@include extends;
+
+body.portal
+{
+  /* Popup z formularzem nowego postu */
+  .forum_posts_form_popup
+  {
+    p
+    {
+      margin: 0;
+    }
+    label[for="forum_post_content"]
+    {
+      display: none;
+    }
+    textarea
+    {
+      height: 250px;
+      width: 415px;
+    }
+
+    .field_with_errors
+    {
+      @extend .red_border
+    }
+
+    .forum_reply
+    {
+      .info
+      {
+        float: left;
+      }
+      .content
+      {
+        margin-left: 5px;
+        float: left;
+        width: 330px;
+      }
+    }
+  }
+
+  // Szerokkość inputów formularzy via id, globalnie, poniważ wskakują w divPopup
+  #forum_thread_content
+  {
+    width: 99%;
+  }
+  #forum_thread_title
+  {
+    width: 99%;
+  }
+  #forum_post_content
+  {
+    width: 99%;
+  }
+}

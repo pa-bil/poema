@@ -1,0 +1,28 @@
+<div class="calendar">
+
+  <div class="avatar">
+    <% if calendar.avatar? %>
+      <%= image_tag calendar.avatar.url(:thumb), :width => avatar_main_size, :height => avatar_main_size %>
+    <% else %>
+      <%= image_tag "i/64/calendar.png", :width => avatar_main_size, :height => avatar_main_size %>
+    <% end %>
+  </div>
+
+
+  <div class="content">
+    <div class="info">
+      <%= link_to calendar.title, calendar %>. <%= truncate(strip_tags(calendar.description), :length => 75) %>
+    </div>
+    <div class="footer">
+      <%= date_format(calendar.start_date, :only_date) %>
+      <% if calendar.finish_date? %>
+      - <%= date_format(calendar.finish_date, :only_date) %>.
+      <% else %>
+      .
+      <% end %>
+      <%= calendar.localisation_geocoder || calendar.localisation %>.
+    </div>
+  </div>
+
+</div>
+

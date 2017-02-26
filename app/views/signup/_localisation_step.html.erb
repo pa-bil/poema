@@ -1,0 +1,14 @@
+<fieldset>
+  <legend>Lokalizacja</legend>
+  <div class="field">
+    <%= f.label :localisation, "Twoja lokalizacja, miasto, województwo, kraj" %><br />
+    <%= f.text_field :localisation, :autocomplete => 'off' %>
+    <p class="form_hint">
+        Zacznij wpisywać pierwsze litery, jeśli w podpowiedzi pokaże się Twoja lokalizacja możesz ją kliknąć, jeśli nie,
+        wpisz inną, tak, aby pokazała sie na mapie poniżej.</p>
+  </div>
+
+  <div id="localisation_map_canvas">
+    <% js_file_external (request.ssl? ? "https" : "http") + "://maps.googleapis.com/maps/api/js?key=#{PoemaConfig.google_maps_api_key}&sensor=false" %>
+  </div>
+</fieldset>

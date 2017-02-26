@@ -1,0 +1,13 @@
+<% if flash.count > 0 %>
+  <div id="divFlashBox" class="poema_animated_box">
+    <% flash.each do |name, msg| %>
+      <% if msg.instance_of? Array %>
+        <% msg.each do |m| %>
+          <%= content_tag :div, m, :class => "flash_#{name}" %>
+        <% end %>
+      <% else %>
+        <%= content_tag :div, msg, :class => "flash_#{name}" %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

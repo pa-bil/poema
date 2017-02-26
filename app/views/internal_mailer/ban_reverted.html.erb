@@ -1,0 +1,6 @@
+<pre>
+Konto <%= mfword("użytkownika", "użytkowniczki", @user) %> <%= @user.name %> zostało odblokowane przez
+moderatora <%= @moderator.name %> (<%= @moderator.auth.login %>). Powód moderacji:
+
+Konto użytkownika znajduje się na stronie http://<%= PoemaConfig.site_hostname + url_for(@user) %>
+</pre>

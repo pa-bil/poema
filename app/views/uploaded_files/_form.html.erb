@@ -1,0 +1,28 @@
+<%= form_for(@uploaded_file, :url => [@uploadable, @uploaded_file], :html => { :multipart => true }) do |f| %>
+  <%= render "layouts/form_errors", :errors => @uploaded_file.errors if @uploaded_file.errors.any? %>
+  <div class="field">
+    <%= f.label :content_copyright_id, "Jaki jest status praw autorskich pliku?" %><br />
+    <%= f.select :content_copyright_id, content_copyright_select_options %>
+  </div>
+  <div class="field">
+    <kbd><%= show_user_quota(session_user) %></kbd>
+  </div>
+  <div class="field">
+    <%= f.label :file, 'Zdjęcie lub grafika' %>
+    <%= f.file_field :file %>
+    <p class="form_hint">Plik graficzny w formacie jpg, png, gif, o objętości nie przekraczającej <%= number_to_human_size UploadedFile::MAX_SIZE %></p>
+  </div>
+  <div class="field">
+    <%= f.check_box :is_avatar, {:checked => !@uploadable.avatar?} %>
+    <%= f.label :is_avatar, "Ustaw przesłane plik jako avatar" %>
+    <p class="form_hint">Zaznaczenie tej opcji spowoduje, że dodany plik pojawi się jako awatar na spisie.</p>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Dodatkowy opis dla przesyłanego pliku" %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Prześlij" %>
+  </div>
+  <br clear="all" />
+<% end %>

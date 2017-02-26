@@ -1,0 +1,13 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), link_to("Użytkownicy", admin_users_path), link_to(@user.name, admin_user_path(@user)), "Dziennik" %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne, dziennik użytkownika <%= @user.name %></h1>
+    <hr />
+  </div>
+  <div>
+    <div class="list">
+      <%= render :partial => 'list' %>
+    </div>
+  </div>
+</div>

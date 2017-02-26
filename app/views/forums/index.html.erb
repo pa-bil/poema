@@ -1,0 +1,24 @@
+<% title "Forum" %>
+<% description "Dyskutuj o literaturze, poezji i sztuce na naszych forach" %>
+<% navi_path("Forum") %>
+<div id="divForums">
+  <div class="forum_index">
+    <div class="page_header">
+      <h1 class="title">Forum</h1>
+      <hr />
+    </div>
+    <div class="top">
+      <p class="description">Zapraszamy wszystkich zainteresowanych do udziału w dyskusjach poświęconych poezji, sztuce jak również
+        samemu serwisowi. Z poniższej listy wybierz interesujące Cię forum dyskusyjne, zapoznaj się z tematyką
+        jakie obejmuje, przy użyciu dostępnych opcji zabierz udział w dyskusji.
+        <br />
+        <br />
+        Zasady korzystania z forum są takie same jak zasady serwisu. Zapoznasz się z nimi <%= link_to "na tej stronie", terms_path %>. Jeśli
+        masz propozycje nowych grup dla forum dyskusyjnego - <%= link_to "czekamy na Twój email", static_page_contact_path %>.
+      </p>
+    </div>
+    <div class="list">
+      <%= render :partial => 'list' %>
+    </div>
+  </div>
+</div>

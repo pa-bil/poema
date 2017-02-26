@@ -1,0 +1,27 @@
+<div id="divTermsAccept">
+  <div class="page_header">
+    <h1>Akceptacja regulaminu Serwisu</h1>
+    <hr />
+  </div>
+
+  <p>Zanim zaczniesz korzystać z wszystkich funkcjonalności serwisu powinieneś zaakceptować nową wersję Regulaminu.</p>
+  
+  <%= form_for @user, :url => new_term_terms_accept_path(@terms_version) do |f| %>
+    <%= render "layouts/form_errors", :errors => @user.errors if @user.errors.any? %>
+  
+    <div class="dotted_line"></div>
+    <div class="content" id="termsFrame"></div>
+    <div class="dotted_line"></div>
+    <br />
+
+    <div class="field">
+      <%= f.check_box :terms_version_id, {:checked => false}, @terms_version.id, nil %>
+      <%= f.label :terms_version_id, "Zapoznałem sie z zapisami regulaminu serwisu i zgadzam się z jego postanowieniami" %>
+    </div>
+
+    <div class="actions">
+      <input type='button' value='Anuluj' />
+      <%= f.submit "Zatwierdź" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+<h1>Witamy w serwisie, <%= @user.name %></h1>
+
+<p>Właśnie <%= mfword('założyłeś', 'założyłaś', @user) %> u nas konto. Po jego aktywacji będziesz <%= mfword('mógł', 'mogła', @user) %>
+  publikować własne wiersze, zdjęcia, czy umieszczać dowolne inne artykuły. Konto daje również możliwość interakcji z innymi użytkownikami
+  poprzez komentowanie, dyskusje na forum oraz zawierania znajomości.</p>
+<br />
+<p>Oto  dane  konta  które <%= mfword('utworzyłeś', 'utworzyłaś', @user) %>:</p>
+<pre>
+<% if @omniauth_provider %>
+  Logowanie za pomocą usługi <%= @omniauth_provider %> jako <%= @user.name %>.
+<% else %>
+  Login: <%= @auth.login %>
+  Hasło: ******** (ukryte)
+<% end %>
+</pre>
+
+<p><strong>Link aktywacyjny:</strong> <%= new_signup_activation_path(@activation.code, :only_path => false) %></p>
+
+
+<br />
+<p>Aby  można  było korzystać z utworzonego konta  otwórz  umieszczony
+powyżej adres lub <%= link_to("kliknij w ten link", new_signup_activation_path(@activation.code, :only_path => false)) %>.
+Jeśli tego nie zrobisz założone konto zostanie usunięte za 30 dni.</p>
+<br />

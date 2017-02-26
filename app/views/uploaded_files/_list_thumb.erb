@@ -1,0 +1,9 @@
+<div class="images_gallery_thumb">
+  <% unless @uploaded_files.to_s.empty? %>
+    <% @uploaded_files.each do |uploaded_file| %>
+      <%= link_to uploaded_file.url(:big), {:rel => 'poema_gallery_image'} do %>
+        <%= image_tag "#{uploaded_file.url :thumb}" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

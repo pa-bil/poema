@@ -1,0 +1,13 @@
+<% title "Kreator publikacji" %>
+<% navi_path("Kreator publikacji", "Wybór kontenera") %>
+<div id="divPublicationWizard">
+  <div class="page_header">
+    <h1>Wybierz kontener:</h1>
+    <hr />
+  </div>
+  <%= form_tag publication_wizard_choose_container_url do %>
+    <%= label_tag :container_id, "Wybierz kontener, w którym chcesz publikować" %><br />
+    <%= select_tag :container_id, options_from_collection_for_select(@ucs, "id", "title") %>
+    <%= submit_tag "Dalej" %>
+  <% end %>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style>
+      body { font-size: 11px; font-family: Verdana, helvetica, serif; }
+      pre {font-size: 12px;  font-family: 'Courier new', monotype; }
+      .footer { font-size: 11px; color: #cccccc; }
+    </style>
+  </head>
+  <body>
+  <%= yield %>
+  
+  <% if @user %>
+  <p>Zawsze służymy pomocą, jeśli będziesz <%= mfword('miał', 'miała', @user) %> jakieś pytania lub problemy, zacznij
+  od przejrzenia naszego działu z pomocą. W następnej kolejności, możesz napisać na nasz adres. Postaramy się odpowiedzieć
+  jak najszybciej będzie to możliwe.</p>
+  <% end %>
+  <pre class="footer">
+--
+Serwis
+
+List został wysłany automatycznie, nie odpowiadaj na niego.
+
+Jeśli nie chcesz otrzymywać automatycznych listów z serwisu zmień to
+w ustawieniach Twojego profilu.</pre>
+  </body>
+</html>

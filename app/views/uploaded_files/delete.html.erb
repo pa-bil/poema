@@ -1,0 +1,13 @@
+<% title "Usunięcie pliku" %>
+<% navi_path(@uploadable, "Usunięcie pliku") %>
+<div id="divUploadedFiles">
+  <div class="page_header">
+    <h1>Usunięcie pliku</h1>
+    <hr />
+  </div>
+  <%= render 'layouts/confirmation_form',
+        :object  => @uploaded_file,
+        :method  => :delete,
+        :message => "Czy na pewno chcesz usunąć plik '#{@uploaded_file.file_file_name}'? Usunięcie pliku jest nieodwracalne."
+  %>
+</div>

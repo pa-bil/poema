@@ -1,0 +1,57 @@
+<%= form_for @parent_container.new_record? ? [@container] : [@parent_container, @container] do |f| %>
+  <%= render "layouts/form_errors", :errors => @container.errors if @container.errors.any? %>
+  <div class="field">
+    <%= f.label :title, "Tytuł, nazwa kontenera" %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :intro, "Wstęp, pokaże się na liście kontenerów, pod tytułem" %><br />
+    <%= f.text_area :intro %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Opis, pokazuje się na stronie kontenera" %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Kontener powinien być widoczny?" %>
+    <p class="form_hint">Jeśli odznaczysz tę opcję, nadal będziesz widział ten kontener na liście Twoich kontenerów w <%= link_to "zakładce profilu", user_profile_path %>.
+    Niezależnie od ustawienia tej opcji, folder pozostanie niewidoczny na liście,
+    dopóty nie zajdzie się w nim jakaś publikacja.</p>
+
+  </div>
+  <div class="field">
+    <%= f.label :sort, "Sortuj elementy w kontenerze wg." %><br />
+    <%= f.select :sort, Container.sort_options %>
+  </div>
+  <div class="field">
+    <%= f.label :allow_comments, "Pozwalaj na komentowanie kontenera" %><br />
+    <%= f.select :allow_comments, Comment.allow_comments_options %>
+  </div>
+  <%= show_to :root, :operator do %>
+  <div class="field">
+    <%= f.check_box :force_visibility %>
+    <%= f.label :force_visibility, "Wymuszaj widoczność kontenera" %><br />
+  </div>
+  <div class="field">
+    <%= f.label :granted_publication_creator_role_id, "Pozwalaj na publikowanie w tym kontenerze grupie" %><br />
+    <% if @grant_publications_role %>
+      <p class="s">Aktualnie zaznaczona grupa to "<%= @grant_publications_role.description  %>"</p>
+    <% end %>
+    <%= f.text_field :granted_publication_creator_role_id %>
+    <p class="form_hint">Zazwyczaj nie chcesz zmieniać tego ustawienia, jeśli zaś chcesz pozwolić aby inne osoby mogły umieszczać swoje publikacjie w tym folderze, zacznij wpisywać nazwę grupy tych osób.</p>
+  </div>
+  <div class="field">
+    <%= f.label :granted_container_creator_role_id, "Pozwalaj na umieszczanie kontenerów grupie" %><br />
+    <% if @grant_containers_role %>
+      <p class="s">Aktualnie zaznaczona grupa to "<%= @grant_containers_role.description  %>"</p>
+    <% end %>
+    <%= f.text_field :granted_container_creator_role_id %>
+  </div>
+  <% end %>
+  <div class="actions">
+    <input type='button' value='Anuluj' />
+    <%= f.submit "Zatwierdź" %>
+  </div>
+  <br clear="all" />
+<% end %>

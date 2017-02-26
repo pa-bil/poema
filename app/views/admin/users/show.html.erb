@@ -1,0 +1,99 @@
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), link_to("Użytkownicy", admin_users_path), @user.name %>
+<div id="divAdmin">
+  <div class="page_header">
+    <h1>Narzędzia administracyjne, użytkownicy: <%= @user.name %></h1>
+    <hr />
+  </div>
+  <div>
+    <fieldset>
+      <legend><%= @user.name %>: status</legend>
+      <p>
+      Konto aktywowane po rejestracji: <%= bool_to_human !@user.locked %><br />
+      Konto zbanowane: <%= bool_to_human @user.banned %><br />
+      Konto usunięte: <%= bool_to_human @user.deleted? %>
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend>Operacje</legend>
+      <ul class="icons">
+        <% unless @user.deleted? %>
+        <li><%= link_to image_tag("i/128/user.png"), @user %>Profil</li>
+        <% end %>
+        <li><%= link_to image_tag("i/128/log.png"), admin_user_audits_path(@user) %>Dziennik</li>
+        <li><%= link_to image_tag("i/128/edit.png"), edit_admin_user_path(@user) %>Edycja</li>
+        <li><%= link_to image_tag("i/128/trash.png"), delete_admin_user_path(@user) %>Usuń</li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <legend>Posiadane uprawnienia</legend>
+      <% if @user.roles.count > 0 %>
+      <ol>
+      <% @user.roles.each do |role| %>
+        <% if role.generic_role? %>
+        <li><%= role.name %>: <%= role.description %></li>
+        <% end %>
+      <% end %>
+      </ol>
+      <% else %>
+      Brak
+      <% end %>
+    </fieldset>
+    <fieldset>
+      <legend>Moderacje</legend>
+       <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Data</th>
+          <th>Obiekt</th>
+          <th>Powód</th>
+          <th>Moderator</th>
+          <th>Wygasa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @moderations.each do |moderation| %>
+          <tr>
+            <td><%= date_format moderation.created_at, :only_date %></td>
+            <td>
+              <% if moderation.moderateable.instance_of?(User) %>
+                Ban
+              <% else %>
+                <%= link_to moderation.moderateable.class.name, moderateable_path(moderation) %>
+              <% end %>
+            </td>
+            <td><%= moderation.reason %></td>
+            <td><%= moderation.moderator.name %></td>
+            <td <% if moderation.active? %>style="background-color: #eda933"<% end %>><%= moderation.expiry_date %></td>
+          </tr>
+        <% end %>
+         </tbody>
+        </table>
+    </fieldset>
+    <fieldset>
+      <legend>Historia zmian danych osobowych</legend>
+      <% if @user_update_log.count > 0 %>
+        <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Data</th>
+          <th>Typ</th>
+          <th>Poprzednia wartość</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user_update_log.each do |entry| %>
+          <tr>
+            <td><%= date_format entry.created_at %></td>
+            <td><%= user_update_log_to_human entry %></td>
+            <td><%= entry.value %></td>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+      <% else %>
+        Brak
+      <% end %>
+    </fieldset>
+  </div>
+</div>

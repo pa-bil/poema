@@ -1,0 +1,7 @@
+<p class="content">
+<%= render ("version_" +  @current_version.id.to_s) %>
+</p>
+<p class="info">
+Autor: ??,<br />
+Wersja: <%= @current_version.id %>, wprowadzona <%= date_format @current_version.introduced, :date %>, <% if @current_version.expired.nil? %>aktualna.<% else %>nieaktualna, wygasła <%= date_format @current_version.expired, :date %>.<% end %>
+</p>

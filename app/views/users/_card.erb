@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="<%= type.to_s %>">
+    <div class="image" style="background-image:url(<%= user_image_url user, size, type %>);">
+      <div class="bar card_bar_border_light">
+        <div class="name">
+          <p><%= link_to_user truncate(user.name, :length => 22), user %></p>
+        </div>
+        <div class="rank">
+          <p><%= img_user_rank(user) unless user.anonymous? %></p>
+        </div>
+      </div>
+    </div>
+    <div class="extended_info hidden">
+      <% if context.class.name == Comment.name %>
+        <%= link_to image_tag('i/16/stop.png'), new_user_user_blacklists_path(user) if user_blacklist_allowed?(session_user, user) %>
+      <% end %>
+    </div>
+  </div>
+</div>

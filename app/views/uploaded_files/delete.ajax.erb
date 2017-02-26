@@ -1,0 +1,5 @@
+<%= render 'layouts/confirmation_form',
+      :object  => @uploaded_file,
+      :method  => :delete,
+      :message => "Czy na pewno chcesz usunąć plik '#{@uploaded_file.file_file_name}'? Usunięcie pliku jest nieodwracalne."
+%>

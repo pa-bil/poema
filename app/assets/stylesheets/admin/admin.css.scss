@@ -1,0 +1,109 @@
+@import "../extends";
+@include extends;
+
+#divAdmin
+{
+  .new_admin_user_search_form
+  {
+    .field, .actions
+    {
+      float: left;
+    }
+
+    .actions
+    {
+      margin-left: 2px;
+      margin-top: 25px;
+    }
+  }
+
+  #admin_user_remove_form_reason
+  {
+    width: 98%;
+    height: 100px;
+  }
+
+  ul.icons
+  {
+    list-style: none;
+
+    li
+    {
+      display: block;
+      float: left;
+      margin: 5px;
+    }
+  }
+
+  table {
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+
+  .table th {
+    font-weight: bold;
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+  }
+
+  .table caption + thead tr:first-child th,
+  .table caption + thead tr:first-child td,
+  .table colgroup + thead tr:first-child th,
+  .table colgroup + thead tr:first-child td,
+  .table thead:first-child tr:first-child th,
+  .table thead:first-child tr:first-child td {
+    border-top: 0;
+  }
+
+  .table tbody + tbody {
+    border-top: 2px solid #dddddd;
+  }
+
+  .table-striped tbody tr:nth-child(odd) td,
+  .table-striped tbody tr:nth-child(odd) th {
+    background-color: #f9f9f9;
+  }
+}
+
+#divAdminCharts
+{
+  .charts-choose-area
+  {
+    border: 1px solid #EAAC6B;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .charts-list
+   {
+    input
+    {
+      margin-top: 3px;
+      float: left;
+    }
+  }
+  #json-chart-title
+  {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

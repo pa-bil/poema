@@ -1,0 +1,22 @@
+#divUsers
+{
+  .card
+  {
+    float: left;
+    margin-right: 6px;
+  }
+
+  ul
+  {
+    margin-left: 30px;
+  }
+
+  .commented_list
+  {
+    .row
+    {
+      float: left;
+      margin: 3px;
+    }
+  }
+}

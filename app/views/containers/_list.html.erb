@@ -1,0 +1,24 @@
+<% unless @containers.empty? %>
+<div class="containers_list">
+  <div class="header">
+    <h2>Lista kontenerów</h2>
+  </div>
+  <div class="content">
+    <ul>
+    <% @containers.each do |c| %>
+      <li>
+        <p class="title"><%= link_to(c.title, c) %> <%= is_new_link(c) %></p>
+        <p class="info">
+         [opiekun: <%= link_to_user c.owner.name, c.owner %>,
+          kontenerów: <%= c.counter_container %>,
+          publikacji: <%= c.counter_publication %>,
+          opinii: <%= c.counter_comment %>,
+          odsłon: <%= c.view_counter_value %>]
+        </p>
+        <p class="intro"><%= c.intro %></p>
+      </li>
+    <% end %>
+    </ul>
+   </div>
+</div>
+<% end %>

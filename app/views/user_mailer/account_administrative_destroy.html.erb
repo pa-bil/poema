@@ -1,0 +1,12 @@
+<h1>Drogi użytkowniku</h1>
+<p>W odpowiedzi na Twoją prośbę, przesłaną redakcji, usunęliśmy Twoje konto w serwisie. Jeśli uważasz, że to błąd,
+  skontaktuj sie jak najszybciej z redakcją, odpowiadając na ten list.</p>
+
+<h4>Dane osobowe</h4>
+<% if @personal_data_removed %>
+  <p>Dane osobowe powiązane z Twoim kontem zostały usunięte, co jest tożsame z zaprzestaniem ich przetwarzania w rozumieniu ustawy
+    z dnia 29 sierpnia 1997 roku o ochronie danych osobowych (t. jedn. Dz.U. z 2002 r., nr 101, poz. 926 ze zm.)</p>
+<% else %>
+  <p>W momencie usunięcia konta przestaliśmy prezentować publicznie Twoje dane osobowe. Nie będziemy także wysyłali do Ciebie
+  jakichkolwiek wiadomości. Aby permanentnie usunąć Twoje dane osobowe wyślij prośbę na adres ??</p>
+<% end %>

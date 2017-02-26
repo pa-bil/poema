@@ -1,0 +1,667 @@
+@import "extends";
+@include extends;
+
+/**
+ * Wyciągnięte ze śmieci + różne małe helperki bez specyfiki layoutu
+ */
+
+.fleft
+{
+  float: left;
+}
+
+.fright
+{
+  float: right;
+}
+
+.clearfix:after 
+{
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+}
+
+.wrapper
+{
+  display: none;
+  visibility: hidden;
+  clear: both;
+}
+
+.hidden
+{
+  display: none !important;
+}
+
+.visible
+{
+  display: block;
+}
+
+.red
+{
+  color: #ff0000;
+  display: inline;
+}
+
+.green
+{
+  color: #ff0000;
+  display: inline;
+}
+
+.bold
+{
+  font-weight: bold;
+}
+
+.important
+{
+  @extend .red;
+  @extend .bold;
+}
+
+.cancel
+{
+  text-decoration: line-through;
+}
+
+.small, .s
+{
+  font-size: 11px;
+}
+
+.loading_cursor
+{
+  cursor: progress;
+}
+
+.transparent
+{
+  background:transparent
+}
+
+body.portal
+{
+  // Nagłówki stron
+  .page_header
+  {
+    h1
+    {
+      margin-top: 2px;
+      margin-bottom: 2px;
+      text-align: right;
+    }
+    hr
+    {
+      margin-top: 2px;
+    }
+  }
+
+  // Wrapper na dowolne pole formularza
+  .field
+  {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  // ale w popupach (jQuery UI dialog) tega marginesu ma nie być
+  .ui-dialog
+  {
+    .field
+    {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+  // podpowiadajka pod polami formularza, ładna ramka z małym, wyrózniającym się tekstem
+  .form_hint
+  {
+    padding: 2px;
+    margin-top: 2px;
+    font-size: 12px;
+
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+
+    color: #d14;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    a
+    {
+      color: #d14;
+      font-size: 12px;
+    }
+  }
+
+  // Ramka wokół pliku graficznego
+  .image-frame
+  {
+    margin: 2px;
+    padding: 2px;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+
+    background-color: #ffffff;
+    border: 1px solid #e1e1e8;
+  }
+
+  .image-frame-avatar
+  {
+    @extend .image-frame;
+    width: 160px;
+    height: 160px;
+  }
+
+  .image-frame-thumb
+  {
+    @extend .image-frame;
+    width: 85px;
+    height: 85px;
+  }
+
+   // Kontenery na komunikaty błędów, informacje, etc
+  #divFlashBox, #divErrorsBox
+  {
+    display: none;
+  }
+
+  .nojs_alert
+  {
+    padding: 10px;
+    border-color: #cf0000;
+    background-color: #cf0000;
+    margin: 0px;
+
+    color: #fff;
+    a
+    {
+      color: #c4c4c6;
+    }
+  }
+
+   // Błędy i notice wyświetlane na stronie (te z flash :notice)
+  .flash_notice, .flash_error, .flash_alert
+  {
+    padding: 5px;
+    margin: 0 auto 5px auto;
+
+    text-align: center;
+    @extend .rounded_border;
+    opacity: 0.80;
+    filter: alpha(opacity=80);
+  }
+
+  .flash_notice
+  {
+    border-color: #008000;
+    background-color: #008000;
+    color: #fff;
+  }
+
+  .flash_error, .flash_alert
+  {
+    border-color: #cf0000;
+    background-color: #cf0000;
+    color: #fff;
+  }
+
+  /*
+   * Komunikaty błędów na formularzach
+   * Ramka z listą błędów formularza (zgłoszone przez kontrolery)
+   */
+
+  .error_explanation
+  {
+    padding: 0;
+    margin: 10px auto 10px auto;
+
+    @extend .rounded_border;
+
+    border-color: #c00;
+    color: #c00;
+
+    h2
+    {
+      padding: 5px 5px 5px 15px;
+      margin: 0;
+      background-color: #c00;
+      color: #fff;
+    }
+    p
+    {
+      margin-bottom: 0;
+      padding: 8px;
+    }
+    .content
+    {
+      padding-bottom: 5px;
+    }
+    ul
+    {
+      margin: 2px 24px;
+    }
+    ul li
+    {
+      list-style: disc;
+    }
+  }
+
+  // Span pola z błędem (formularz)
+  .field_with_errors
+  {
+    display: inline;
+
+    input
+    {
+      @extend .red_border
+    }
+    textarea
+    {
+      @extend .red_border
+    }
+    select
+    {
+      @extend .red_border
+    }
+  }
+
+  // Autocomplete
+  .ac_results
+  {
+    margin: 0;
+    background-color: #F5DEB3;
+    overflow: hidden;
+    z-index: 99999;
+    border-color: #F5DEB3;
+    @extend .rounded_border
+  }
+  .ac_results ul
+  {
+    width: 100%;
+    list-style-position: outside;
+    list-style: none;
+    padding: 3px;
+    margin: 0;
+  }
+  .ac_results li
+  {
+    margin: 2px;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+    line-height: 16px;
+    overflow: hidden;
+  }
+  .ac_loading
+  {
+    background: white url(/assets/i/indicator.gif) right center no-repeat;
+  }
+  .ac_odd
+  {
+
+  }
+  .ac_over
+  {
+    background-color: #0A246A;
+    color: white;
+  }
+
+  // Linki administracyjne, zawsze ukryte, to wykorzystuje JS do budowania akcji w górnej
+  // belce menu (więcej akcji)
+  .admin_links
+  {
+    display: none;
+  }
+
+  // Pozioma, kropkowana linia
+  .dotted_line
+  {
+    height: 2px;
+    background: transparent url(/assets/l/dot.gif) repeat-x;
+  }
+
+  // Wizytówki (card) renderowane z common/_card (forum, komenty)
+  // Dwa typy, różnące się rozmiarami, :avatar na 160px i :tgumb na 85 (odpowiednio do wymiarów plików)
+  // Wizytówka to pasek .bar nałożony na .image - po najechaniu kursorem wysówa się u dołu .extended_info
+  // podmieniając jednocześnie obramowanie .card_bar_border_light na .card_bar_border_dark
+
+  $card_border_dark: 1px solid #c4c4c6;
+  $card_border_light: 1px solid #f7f7f9;
+
+  .card_bar_border_dark
+  {
+    border-left: $card_border_dark;
+    border-right: $card_border_dark;
+  }
+
+  .card_bar_border_light
+  {
+    border-left: $card_border_light;
+    border-right: $card_border_light;
+  }
+
+  .card
+  {
+    .avatar
+    {
+      .image
+      {
+        width: 160px;
+        height: 160px;
+
+        .bar
+        {
+          position: relative;
+          height: 33px;
+          top: 127px;
+
+          overflow: hidden;
+
+          background-color: #f7f7f9;
+          opacity: 0.80;
+          filter: alpha(opacity=80);
+
+          .rank
+          {
+            margin-top: -5px;
+          }
+        }
+      }
+
+      .extended_info
+      {
+        width: 158px;
+        height: 18px;
+        position: absolute;
+        z-index: 1;
+
+        text-align: center;
+
+        margin-right: 1px;;
+
+        background-color: #f7f7f9;
+
+        border-bottom: $card_border_dark;
+         -webkit-border-bottom-left-radius: 3px;
+             -moz-border-radius-bottomleft: 3px;
+             -moz-border-radius-bottomleft: 3px;
+
+        -webkit-border-bottom-right-radius: 3px;
+            -moz-border-radius-bottomright: 3px;
+            -moz-border-radius-bottomright: 3px;
+
+        border-left: $card_border_dark;
+        border-right: $card_border_dark;
+      }
+
+      a, p
+      {
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0px;
+      }
+    }
+
+    .thumb
+    {
+      .image
+      {
+        width: 85px;
+        height: 85px;
+
+        .bar
+        {
+          position: relative;
+          height: 22px;
+          top: 63px;
+          overflow: hidden;
+
+          background-color: #f7f7f9;
+          opacity: 0.80;
+          filter: alpha(opacity=80);
+
+          .rank
+          {
+           display: none;
+          }
+        }
+      }
+
+      .extended_info
+      {
+        width: 85px;
+      }
+
+      a, p
+      {
+        font-size: 11px;
+        line-height: 11px;
+        font-weight: bold;
+
+        margin: 0px;
+      }
+    }
+  }
+
+  // Style zestawy przycisków na formularzach
+  form .actions
+  {
+    padding-top: 10px;
+    float: right;
+    text-align: right;
+    width: 100%;
+
+    input
+    {
+      margin-left: 2px;
+    }
+  }
+
+  // Tooltip, sponsored by: http://flowplayer.org/tools/tooltip/index.html
+  .tooltip
+  {
+    padding: 25px;
+    display: none;
+    height: 70px;
+    width: 160px;
+    z-index: 1012;
+  }
+
+  .tooltip_content_common
+  {
+
+    display : table-cell;
+    align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 14px;
+    height: 79px;
+  }
+
+  // Ten wyświetla się nad elementem
+  .tooltip_up
+  {
+    background: transparent url(/assets/i/tooltip-up.png);
+    @extend .tooltip;
+    .tooltip_content
+    {
+      @extend .tooltip_content_common
+    }
+  }
+
+  // Ten wyświetla się u dołu elementu
+  .tooltip_down
+  {
+    background: transparent url(/assets/i/tooltip-down.png);
+    @extend .tooltip;
+    .tooltip_content
+    {
+      vertical-align : middle;
+      @extend .tooltip_content_common
+    }
+  }
+
+  // Wypełniacz dla kontentu podczas ładowania ajaxem, etc
+  .loading_box
+  {
+    background: url(/assets/i/ajax-loader.gif) center center no-repeat;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  // Styl formularza potwierdzenia z layouts/_confirmation_form
+  .confirmation_form
+  {
+    .message
+    {
+      float: left;
+      margin-right: 5px;
+    }
+    .icon
+    {
+      float: left;
+    }
+  }
+
+  // Paginacja
+  .pagination
+  {
+    text-align: center;
+    padding: 0.3em;
+    cursor: default;
+  }
+  .pagination a, .pagination span, .pagination em
+  {
+    padding: 0.2em 0.5em;
+  }
+  .pagination .disabled
+  {
+    color: #aaaaaa;
+  }
+  .pagination .current
+  {
+    font-style: normal;
+    font-weight: bold;
+  }
+  .pagination a
+  {
+    border: 1px solid #dddddd;
+    text-decoration: none;
+  }
+  .pagination a:hover, .pagination a:focus
+  {
+    border-color: #003366;
+    background: #0063dc;
+    color: white;
+  }
+  .pagination .page_info
+  {
+    color: #aaaaaa;
+    padding-top: 0.8em;
+  }
+  .pagination .previous_page, .pagination .next_page
+  {
+    border-width: 2px;
+  }
+  .pagination .previous_page
+  {
+
+  }
+  .pagination .next_page
+  {
+
+  }
+
+  .view-counter
+  {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .fb_like_iframe
+  {
+    height: 30px;
+  }
+
+  // rozszeżenie do jQuery UI dialog, nakładający na niego przeźroczystość
+  .ui-dialog-transparent
+  {
+    @extend .transparent;
+    border: 0px;
+  }
+
+  // Labelki z opcjami sortowania, pod listami kontenerów, publikacji
+  .sorting-options
+  {
+    float: right;
+    margin-top: 2px;
+    p
+    {
+      float: left;
+      margin-left: 3px;
+    }
+
+    ul
+    {
+      float: left;
+      list-style:none;
+      @extend .no_padding;
+    }
+    li
+    {
+      float: left;
+      display: block;
+
+      margin-right: 3px;
+      @extend .grey-transparent-label;
+    }
+  }
+
+  // upload plików inline na formularzach: kontener zawierający wszystkie elementy uploadera
+  #avatar_upload_container
+  {
+    .message
+    {
+      color: #ff0000;
+    }
+  }
+
+  // UL w formacie listy etykietek
+  ul.labels-list
+  {
+    list-style: none;
+
+    @extend .no_padding;
+
+    li.nolabel
+    {
+      background: none;
+      border: none;
+    }
+    li
+    {
+      margin: 2px;
+      float: left;
+      margin-right: 3px;
+      @extend .grey-transparent-label;
+    }
+    li:hover
+    {
+      color: #a93d5b;
+    }
+  }
+
+}

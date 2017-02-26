@@ -1,0 +1,34 @@
+<% js_option 'ChartsBackendPath', data_admin_charts_path %>
+<% content_for(:header_extra) do %>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>
+<% end %>
+<% title "Narzędzia administracyjne" %>
+<% navi_path link_to("Narzędzia administracyjne", admin_path), "Statystyki" %>
+<div id="divAdminCharts">
+  <div class="page_header">
+    <h1>Statystyki i wykresy</h1>
+    <hr />
+  </div>
+  <div class="page_content">
+    <div class="charts-choose-area">
+      <h4>Wybierz interesujący Cię wykres:</h4>
+      <ul class="labels-list charts-list clearfix">
+        <% @counters.each do |counter| %>
+          <li>
+            <%= check_box_tag counter.handle, 1, false, :id => "chart_check_box_#{counter.handle}", :class => 'chart_check_box', :checked => (counter.handle == 'view') %>
+            <%= label_tag "chart_check_box_#{counter.handle}", (counter.description? ? counter.description : counter.handle) %>
+          </li>
+        <% end %>
+      </ul>
+
+      <p>
+        Pokazuj dane z <input type="text" size="3" id="charts-days"> poprzednich dni.
+      </p>
+    </div>
+    <div id='json-chart-title'></div>
+    <div class="clearfix">
+      <div id='json-chart'></div>
+    </div>
+  </div>
+</div>

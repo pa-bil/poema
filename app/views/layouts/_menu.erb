@@ -1,0 +1,29 @@
+<div class="logo">
+  <!-- -->
+</div>
+
+<ul class="tools">
+  <% unless logged_in? %>
+  <li><%= link_to "Dołącz do nas", new_signup_path %></li>
+  <% end %>
+  <li><%= link_to "Publikuj", publication_wizard_path %></li>
+  <li><%= link_to "Więcej opcji", nil, {:id => 'context-menu-button'} %></li>
+  <li id="main-top-bar-tools-counter">0</li>
+  <li id="main-top-bar-tools-search">
+  <%= form_tag result_search_url, :id => 'main-top-bar-tools-search-form' do %>
+    <%= text_field_tag :q, params[:q] %>
+    <div id='main-top-bar-tools-button-container'>
+    <%= image_tag "i/find.png", {:title => "Wyszukiwarka ułatwia odnalezienie użytkowników i treści. Wpisz słowo kluczowe obok i kliknij w ikonę.", :id => 'main-top-bar-tools-search-button'} %>
+    </div>
+  <% end %>
+  </li>
+</ul>
+
+<ul class="login_info">
+  <% if logged_in? %>
+    <li><%= link_to truncate(session_user.name, :length => 28), session_user %></li>
+    <li class="avatar"><%= link_to user_image_tag(session_user, 47), session_user %></li>
+  <% else %>
+    <li><%= link_to "Zaloguj", new_session_path, {:title => "Zaloguj się, aby uzyskać dostęp do Twojego konta."} %></li>
+  <% end %>
+</ul>

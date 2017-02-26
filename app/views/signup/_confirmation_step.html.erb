@@ -1,0 +1,8 @@
+<div class="content" id="termsFrame"></div>
+
+<hr />
+
+<div class="field">
+  <%= f.check_box :terms_version_id, {}, TermsVersion.current!.id, nil %>
+  <%= f.label :terms_version_id, "Potwierdzam, że zapoznałem sie z zapisami regulaminu serwisu, zgadzam się z jego postanowieniami oraz potwierdzam, że podane dane #{@user.name} oraz email #{@user.email} są prawidłowe." %>
+</div>

@@ -1,0 +1,24 @@
+<div class="comment">
+  <div class="avatar">
+    <%= user_image_tag publication.owner, avatar_main_size %>
+  </div>
+  <div class="content">
+    <div class="info">
+      <%= link_to_user publication.owner.name, publication.owner %> <%= mfword("dodał", "dodała", publication.owner) %>
+      publikację <%= link_to publication.title, publication %>.
+      <% if grouping.grouped_count > 0 %>
+        <br />
+        Niedawno, <%= mfword("opublikował", "opublikowała", publication.owner) %> także <%= grouping.grouped_count %>
+        <%= cntword(grouping.grouped_count, 'inną', 'inne', 'innych') %>:
+        <% num = 0 %>
+        <% grouping.grouped_elements.each do |g_publication| %>
+          <% num = num + 1%>
+          <%= link_to g_publication.title, g_publication %><% if num < grouping.grouped_count%>, <% end %><% end %>.
+      <% end %>
+    </div>
+    <div class="footer">
+      <span class="timeago" title="<%= publication.created_at.iso8601 %>"><%= date_format publication.created_at %></span>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,82 @@
+#divCalendars
+{
+  .calendar_index
+  {
+    .top
+    {
+      margin-bottom: 10px;
+    }
+    .list
+    {
+      .item
+      {
+        overflow: hidden;
+        clear: both;
+      }
+      p.title
+      {
+        font-size: 13px;
+        font-weight: bold;
+      }
+      .info
+      {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        float: left;
+        width: 160px;
+      }
+      .content
+      {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 3px;
+        float: left;
+        width: 475px;
+      }
+      p.content_head
+      {
+        margin-bottom: 4px;
+        font-style: italic;
+      }
+      p.content_body
+      {
+        font-size: 10px;
+      }
+      ul
+      {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .calendar_show
+  {
+    .avatar
+    {
+      text-align: center;
+    }
+  }
+
+  #localisation_map_canvas
+  {
+    width:404px;
+    height:300px;
+    display: block;
+    background: #ffffff;
+  }
+
+  .datepicker
+  {
+    img
+    {
+      vertical-align: middle;
+    }
+  }
+
+  #calendar_description
+  {
+    width: 90%;
+    height: 300px;
+  }
+}

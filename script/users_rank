@@ -1,0 +1,82 @@
+#!/usr/bin/ruby
+
+# Ten skrypt oblicza rangi użytkowników na podstawie różnych kryteriów. Skrypt przechodzi po całej bazie użytkowników
+# zakładając kilka tabel tymczasowych. Jest dość ciężki, wystarczy, jeśli zostanie wykonany raz na 24h
+
+require File.expand_path(File.dirname(__FILE__)) + '/functions.rb'
+
+@client_app = get_sql_connection
+@client_app.query("CREATE TEMPORARY TABLE user_ranks_calc_cr1 (user_id INT, object VARCHAR(32), num INT default 0, PRIMARY KEY (user_id, object)) ENGINE = MEMORY")
+
+# Ilość komentarzy otrzymanych
+@client_app.query("
+INSERT INTO user_ranks_calc_cr1
+  SELECT
+    user_id,
+    'Publication',
+    SUM(counter_comment_neutral + counter_comment_positive + counter_comment_negative)
+  FROM publications
+  WHERE deleted_at IS NULL
+  GROUP BY user_id
+UNION
+  SELECT
+    user_id,
+    'Container',
+    SUM(counter_comment_neutral + counter_comment_positive + counter_comment_negative)
+  FROM containers
+  WHERE deleted_at IS NULL
+  GROUP BY user_id
+UNION
+  SELECT
+    id,
+    'User',
+    SUM(counter_comment_neutral + counter_comment_positive + counter_comment_negative)
+  FROM users
+  WHERE deleted_at IS NULL")
+
+# Sumy wszystkich komentów
+@client_app.query("CREATE TEMPORARY TABLE user_ranks_calc_cr2 (user_id INT, num INT default 0, PRIMARY KEY (user_id)) ENGINE = MEMORY")
+@client_app.query("
+INSERT INTO user_ranks_calc_cr2
+  SELECT
+    user_id,
+    SUM(num)
+  FROM user_ranks_calc_cr1
+  GROUP BY user_id")
+
+# To musi iść via ActiveRecord, bo inaczej nie wygasi się cache
+@client_app.query("SELECT
+    u.id AS id,
+    ROUND
+    (
+     (s.counter_forum_post + s.counter_publication + (
+       ((s.counter_commented_neutral + s.counter_commented_positive + s.counter_commented_negative) + IFNULL(cr.num,0)) / 2)
+     ) *
+      CEILING(ROUND(((UNIX_TIMESTAMP(IFNULL(s.current_visit, u.created_at)) - UNIX_TIMESTAMP(u.created_at))/60/60/24/365), 5))
+    ) AS rank
+  FROM users u
+    INNER JOIN user_stats s ON (s.user_id = u.id)
+    LEFT JOIN user_ranks_calc_cr2 cr ON (cr.user_id = u.id)
+  WHERE u.deleted_at IS NULL").each do |record|
+  begin
+    STDOUT.puts "Processing user #{record['id']} setting #{record['rank']}"
+    r = UserRank.find(record['id'])
+    r.rank = record['rank'].to_i
+    r.save!
+  rescue ActiveRecord::RecordNotFound
+    # hmm, ten rank powinien istnieć
+    STDERR.puts "Unable to find rank record, creating..."
+    r = UserRank.new
+    r.id = record['id']
+    r.rank = record['rank']
+    save!
+  rescue
+    # ignoruj
+  end
+end
+
+# -- drop tymczasowych
+@client_app.query("DROP TABLE user_ranks_calc_cr1")
+@client_app.query("DROP TABLE user_ranks_calc_cr2")
+
+exit 0

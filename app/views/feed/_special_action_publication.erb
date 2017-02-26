@@ -1,0 +1,30 @@
+<div class="sap">
+  <div class="avatar">
+    <%= image_tag 'i/128/star.png', :width => avatar_main_size, :height => avatar_main_size %>
+    <%= image_tag special_action.icon_url, :class => 'sap-overlap' %>
+  </div>
+  <div class="content">
+    <div class="info">
+      Publikacja <%= mfword 'użytkownika', 'użytkowniczki', publication.owner %> <%= link_to_user publication.owner.name, publication.owner %> "<%= link_to publication.title, publication %>"
+      została wyróżniona w ramach akcji "<%= link_to special_action.title, special_action %>".
+      <% if grouping.grouped_count > 0 %>
+        Niedawno wyróżniono także <%= grouping.grouped_count %> <%= cntword(grouping.grouped_count, 'inną publikację', 'inne publikacje', 'innych publikacji') %>, w tym:
+        <% num = 0 %>
+        <% grouping.grouped_elements_trimmed(5).each do |g_special_action_publication| %>
+          <% num = num + 1%>
+          <%= link_to g_special_action_publication.publication.title, g_special_action_publication.publication %><% if num < grouping.grouped_count%>, <% end %>
+        <% end %>.
+      <% end %>
+    </div>
+    <div class="footer">
+      <span class="timeago" title="<%= special_action_publication.created_at.iso8601 %>"><%= date_format special_action_publication.created_at %></span>
+    </div>
+
+    <%= user_avatar_small_tag(publication.owner, avatar_size) %>
+    <% grouping.grouped_elements_trimmed(10).each do |g_special_action_publication| %>
+      <%= user_avatar_small_tag(g_special_action_publication.publication.owner, avatar_size) %>
+    <% end %>
+
+
+  </div>
+</div>

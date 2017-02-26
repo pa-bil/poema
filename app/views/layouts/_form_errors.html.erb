@@ -1,0 +1,19 @@
+<%# Poniżej legacy magic: errors może być obiektem ActiveRecord::Errors lub tablicą takich obiektów. W pierwszym przypadku robię z nich jednoelementową tablicę %>
+<% errors = Array.new([errors]) unless errors.instance_of?(Array) %>
+<div id="divErrorsBox" class="poema_animated_box">
+  <div class="error_explanation">
+    <div class="header">
+      <h2>Znaleziono błędy w formularzu</h2>
+      <p>Niektóre z pól formularza zawierają błędy. Pola z brakującymi lub niepoprawnymi danymi podświetlone zostały na czerwono.</p>
+    </div>
+    <div class="content">
+      <ul>
+        <% errors.each do |err| %>
+          <% err.values.flatten.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

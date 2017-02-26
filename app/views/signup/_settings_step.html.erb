@@ -1,0 +1,19 @@
+<fieldset>
+  <legend>Ustawienia Twojego konta</legend>
+  <div class="field">
+    <%= f.check_box :visible %>
+    <%= f.label :visible, "Pokazuj dane kontaktowe innym, zarejestrowanym użytkownikom." %>
+    <p class="form_hint">
+    Niezależnie od ustawienia tego pola, <strong>nie pokazujemy</strong> Twoich danych kontaktowych użytkownikom niezarejestrowanym.
+    Zwróć uwagę, iż, niezależnie od tego ustawienia, <strong>nadal będziemy pokazywali</strong> wszystkim Twój nick lub imię/nazwisko, jeśli tak
+    podałeś w jednym z poprzednich kroków formularza.</p>
+  </div>
+  <div class="field">
+    <%= f.check_box :sendmails %>
+    <%= f.label :sendmails, "Pozwól na przesyłanie na Twój adres email powiadomień i innych informacji generowanych przez serwis" %>
+  </div>
+  <div class="field">
+    <%= f.label :allow_comments, "Pozwól na komentowanie mojego profilu" %><br />
+    <%= f.select :allow_comments, Comment.allow_comments_options %>
+  </div>
+</fieldset>

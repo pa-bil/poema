@@ -1,0 +1,16 @@
+@import "extends";
+@include extends;
+
+#divUserBlacklists
+{
+  #user_blacklist_reason
+  {
+    @extend .textarea_small
+  }
+
+  .user-blacklist-info
+  {
+    width: 400px;
+    margin-left: 15px;
+  }
+}

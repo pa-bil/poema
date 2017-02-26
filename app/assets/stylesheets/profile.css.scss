@@ -1,0 +1,42 @@
+@import "extends";
+@include extends;
+
+#divProfile
+{
+  .form_buttons
+  {
+    padding-top: 10px;
+    float: right;
+  }
+
+  #user_localisation
+  {
+    width: 400px;
+  }
+
+  #localisation_map_canvas
+  {
+    width:404px;
+    height:300px;
+    display: block;
+    background: #ffffff;
+    z-index: 98;
+  }
+
+  form.new_uploaded_file
+  {
+    textarea
+    {
+      height: 60px;
+    }
+  }
+
+  #tabs-3, #tabs-2
+  {
+    ul
+    {
+      list-style:none;
+      @extend .no_padding;
+    }
+  }
+}

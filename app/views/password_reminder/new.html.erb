@@ -1,0 +1,24 @@
+<% title "Przypomnienie hasła" %>
+<% navi_path("Przypomnienie hasła") %>
+<div id="divPasswordReminder">
+  <div class="page_header">
+    <h1>Przypomnij hasło</h1>
+    <hr />
+  </div>
+
+  <p>Podaj adres email, którego użyłeś/użyłaś podczas rejestracji w serwisie. Hasło zostanie wysłane wyłącznie na
+  zarejestrowany w naszej bazie danych adres e-mail, nie ma odstępstwa od tej zasady. Jeśli nie pamiętasz Twojego adresu email
+  lub nie masz już do niego dostępu, <%= link_to "skontaktuj sie z redakcją", static_page_contact_path %> serwisu.</p>
+
+  <br />
+  <%= form_for(@password_reminder, :url => new_password_reminder_path) do |f| %>
+    <%= render "layouts/form_errors", :errors => @password_reminder.errors if @password_reminder.errors.any? %>
+    <div class="field">
+      <%= f.label :login, "Adres email" %><br />
+      <%=  f.text_field :email %>
+    </div>
+    <div class="actions">
+      <%= submit_tag "Przypomnij" %>
+    </div>
+  <% end %>
+</div>

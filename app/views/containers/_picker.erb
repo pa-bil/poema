@@ -1,0 +1,37 @@
+<ul class="labels-list clearfix" id="containers-picker-path">
+  <li class="nolabel">Jesteś w:</li>
+  <li><%= link_to '.', picker_top_containers_path %></li>
+  <% if @container.id %>
+    <% @container.parents.each do |c| %>
+      <li><%= link_to c.title, picker_containers_path(c) %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul class="labels-list clearfix">
+  <li class="nolabel">Wyszukaj w bieżącym kontenerze: <%= text_field_tag :container_title_find, nil, :id => 'containers-picker-container-find' %></li>
+</ul>
+
+<h4>Kontenery:</h4>
+<ul class="labels-list clearfix" id="containers-picker-list">
+  <% if @level_up_container %>
+    <li><%= link_to '...', picker_containers_path(@level_up_container) %></li>
+  <% elsif @container.id %>
+    <li><%= link_to '...', picker_top_containers_path %></li>
+  <% end %>
+  <% @containers.each do |c| %>
+    <li class="hidden"><%= link_to c.title, picker_containers_path(c) %></li>
+  <% end %>
+  <li id="containers-picker-more" class="hidden"></li>
+</ul>
+<br />
+
+<%= hidden_field_tag :container_id, (@container.id ? @container.id : nil), :id => 'containers-picker-container-id' %>
+<%= hidden_field_tag :container_title, (@container.id ? @container.title : nil), :id => 'containers-picker-container-title' %>
+<%= hidden_field_tag :container_link, (@container.id ? picker_containers_path(@container) : picker_top_containers_path), :id => 'containers-picker-container-link' %>
+
+<% if @container.id && allow_actions_publish? %>
+  <%= button_tag "Wybierz", :id => 'containers-picker-submit' %>
+<% else %>
+  <p class="form_hint">Nie masz uprawnień pozwalających na umieszczanie publikacji w wybranym kontenerze</p>
+<% end %>

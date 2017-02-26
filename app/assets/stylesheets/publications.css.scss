@@ -1,0 +1,135 @@
+@import "extends";
+@include extends;
+
+body.portal
+{
+  // Lista publikacji
+
+  .publications_list
+  {
+    margin-top: 10px;
+
+    border: 1px solid;
+    border-color: #EAAC6B;
+    @extend .rounded_border;
+
+    p.author
+    {
+      align: center;
+    }
+
+    .header
+    {
+      background: #EAAC6B;
+      height: 20px;
+
+      h2
+      {
+        font-size: 16px;
+        line-height: 16px;
+        vertical-align: middle;
+        text-align: center;
+      }
+    }
+
+    .content
+    {
+      table
+      {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      p
+      {
+        margin: 0px;
+        padding: 0px;
+      }
+      th
+      {
+        background: #F9F3E5;
+      }
+      th.title
+      {
+        width: 50%;
+      }
+      td
+      {
+        padding: 2px;
+      }
+      td.thumb
+      {
+        width: 90px;
+        text-align: right
+      }
+      p.title
+      {
+        font-weight: bold;
+      }
+      p.date
+      {
+        font-size: 10px;
+        font-style: italic;
+        color: #cacfc7;
+      }
+      p.intro
+      {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+#divPublications
+{
+  .publication
+  {
+    .author, .title
+    {
+      text-align: center;
+    }
+
+    .title, .author, .content
+    {
+      letter-spacing: 0px;
+      font-family: 'LektonRegular', Courier new, Monotype;
+    }
+
+    .content_image
+    {
+      text-align: center;
+    }
+
+    .content
+    {
+      font-size: 16px;
+    }
+
+    .social-buttons
+    {
+
+    }
+  }
+
+  /**
+   * Te style obsługują edycję publikacji
+   */
+  #publication_title
+  {
+    width: 80%;
+  }
+  #publication_containers_picker_title
+  {
+    width: 56%;
+  }
+  #publication_content
+  {
+    width: 100%;
+  }
+  #publication_intro
+  {
+    width: 80%;
+    height: 60px;
+  }
+}
+
