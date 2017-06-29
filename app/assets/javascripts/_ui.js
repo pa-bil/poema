@@ -8,7 +8,21 @@ Poema.Ui = {};
 Poema.Ui.Linkify = {};
 
 Poema.Ui.Linkify.Init = function(at) {
-
+  at.linkify(function(links) {
+    links.each(function() {
+      var href = $(this).attr('href');
+      if (href.indexOf('poemax.pl') != -1) {
+        // własny, bez dodatkowej dekoracji
+      }
+      else if (href.indexOf('pornhub.com') != -1) {
+        $(this).attr('href', 'http://poemax.pl');
+      }
+      else {
+        // obce otwieramy w nowym oknie tak, żeby nie wychodzić z serwisu
+        $(this).attr('target', '_blank');
+      }
+    });
+  });
 };
 
 /**

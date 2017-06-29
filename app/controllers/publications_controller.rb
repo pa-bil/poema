@@ -153,10 +153,10 @@ class PublicationsController < ApplicationController
   private
 
   def destroy_record
-    perform_in_transaction do
+#    perform_in_transaction do
       @publication.audit_params({:user => session_user, :ip => session_ip})
       @publication.destroy
-    end
+#    end
   end
 
   def create_or_update_record

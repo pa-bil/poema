@@ -360,14 +360,14 @@ pl:
       removed:                "Twoje konto zostało usunięte"
     signup:
       activation:
-        subject:              "Witamy w serwisie Poema, to jest list z Twoim kodem aktywacyjnym"
+        subject:              "Witamy na portalu Poemax, to jest list z Twoim kodem aktywacyjnym"
       activation_reminder:
-        subject:              "Przypominamy o aktywacji konta w serwisie Poema"
+        subject:              "Przypominamy o aktywacji konta na portalu Poemax"
       activated:
-        subject:              "Twoje konto w serwisie Poema jest aktywne, zapraszamy do zapoznania się z funkcjami serwisu"
+        subject:              "Twoje konto na portalu Poemax jest aktywne, zapraszamy do zapoznania się z funkcjami serwisu"
     password_reminder:
       create:
-        subject:              "Prośba dotycząca przypomnienia hasła w serwisie Poema"
+        subject:              "Prośba dotycząca przypomnienia hasła do portalu Poemax"
     comment:
       recived:
         subject:              "Pojawił się nowy komentarz"

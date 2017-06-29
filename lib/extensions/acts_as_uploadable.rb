@@ -10,7 +10,12 @@ module Poema
       has_one :avatar_file, :class_name => 'UploadedFile', :primary_key => :avatar_uploaded_file_id, :foreign_key => :id, :dependent => :destroy
 
       before_destroy do |object|
-        object.update_column :avatar_uploaded_file_id, nil
+        begin
+          object.update_column :avatar_uploaded_file_id, nil
+        rescue
+          Rails.loger.info $!
+        end
+        true
       end
 
       include InstanceMethods

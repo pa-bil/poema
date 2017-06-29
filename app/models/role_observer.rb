@@ -28,5 +28,6 @@ class RoleObserver < ActiveRecord::Observer
           record.accepts_no_role!(r.name, User.find(r.id))
         end
     end
+    true
   end
 end

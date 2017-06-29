@@ -65,6 +65,9 @@
     </div>
   </div>
   <div class="main-content-wrapper">
+   <div style="background-color:#f9f8f0; border-radius: 10px; -webkit-border-radius: 10px; margin-top: 0px; margin-bottom: 5px; padding: 5px;">
+    <p><h4 style="text-align:left">Portal Poemax jest prowadzony we współpracy ze stowarzyszeniem <a href="http://salonliteracki.pl"><img src="http://poemax.pl/logo_salon_new.png" alt="Salon Literacki"></a></h4></p>
+   </div>
     <div class="main-menu-left">
       <h1>Spis rzeczy</h1>
       <ul>
@@ -73,6 +76,9 @@
         <% end %>
       </ul>
       <%= render :partial => 'layouts/left_banners' %>
+      <div class="left-ban">
+      <a href="/publikacja/965-regulamin-konkursu"><img alt="Poetycki_wytrych" src="/assets/a/Baner_poetycki_wytrych.png"></a>
+      </div>
       <h1>Akcje promocyjne</h1>
       <ul>
         <% SpecialAction.list.each do |a| %>
@@ -83,7 +89,7 @@
       <ul>
         <li><%= link_to "Wydarzenia", calendars_path %></li>
         <li><%= link_to "Kontakt", static_page_contact_path %></li>
-        <li><%= link_to "Regulamin serwisu", terms_path %></li>
+        <li><%= link_to "Regulamin Portalu", terms_path %></li>
         <li><%= link_to "Informacje o licencjach", static_page_licence_path %></li>
       </ul>
       <h1>Forum</h1>

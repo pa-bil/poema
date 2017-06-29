@@ -13,7 +13,7 @@ gem "htmlentities", "~> 4.3.0"
 
 gem "acl9", "~> 0.12.0", :path => "vendor/gems/acl9"
 
-gem "paperclip", "2.4"
+gem "paperclip", "2.4.0"
 gem "cocaine", "0.3.2"
 gem "rmagick", "2.15.4"
 

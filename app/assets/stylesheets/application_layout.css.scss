@@ -96,7 +96,7 @@ body.portal
       div.logo
       {
         float: left;
-        padding-top: 15px;
+        padding-top: 5px;
         padding-left: 5px;
       }
 
@@ -186,7 +186,7 @@ body.portal
 
   .main-content-wrapper
   {
-  	background-color:#f2e5cc;
+  	background-color:#739982;
   	height:auto;
     
     padding: 6px;
@@ -194,14 +194,16 @@ body.portal
   	-webkit-border-radius: 0px 0px 10px 10px;
   	border-radius: 10px 10px 10px 10px;
 
-  	border: 2px solid #cdc3ac;
+  	border-left: 2px solid #a5c2ae;
+	border-right: 2px solid #a5c2ae;
+	border-bottom: 2px solid #a5c2ae;
 
   }
 
   .main-menu-left
   {
-  	width: 190px;
-  	background-color:#f9f3e5;
+  	width: 193px;
+  	background-color:#f9f8f0;
   	display:block;
   	float:left;
   	padding: 0px 0px 5px 10px;
@@ -218,7 +220,7 @@ body.portal
     {
       list-style:circle inside none;
       @extend .no_padding;
-      color:#a93d5b;
+      color:#317873;
       font-weight:bold;
       text-transform:capitalize;
       font-size:14px
@@ -226,19 +228,19 @@ body.portal
 
     ul li a
     {
-      color: #a93d5b;
+      color: #317873;
       cursor:pointer;
     }
 
     ul li a:hover
     {
-      color:#58818f;
+      color:#a3752e;
     }
   }
 
   .main-content-container
   {
-  	width:758px;
+  	width:755px;
   	float:left;
   	margin-left: 6px;
   }
@@ -247,7 +249,7 @@ body.portal
   {
     -webkit-border-radius: 10px;
   	border-radius: 10px;
-    background-color:#fdfcf7;
+    background-color:#fbfefc;
   }
 
   .main-content-padding
@@ -351,6 +353,7 @@ body.portal
 
         .footer-logo
         {
+          background-image: url(/assets/l/footer-logo.png);
           width:274px;
           height:96px;
           background-repeat:no-repeat;

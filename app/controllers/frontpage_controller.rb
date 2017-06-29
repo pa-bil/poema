@@ -16,8 +16,8 @@ class FrontpageController < ApplicationController
   def aggregate_static_feed
     [].
       concat(ForumThread.list_recent).
-      concat(Publication.list_feed).
-      concat(Comment.list_feed).
+      concat(Publication.list_feed(50)).
+      concat(Comment.list_feed(30)).
       concat(User.list_recent).
       concat(Calendar.list_recent.concat(Calendar.list_current).uniq).
       concat(SpecialActionPublication.list_feed).

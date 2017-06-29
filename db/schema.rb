@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20141112084616) do
 
-  create_table "audits", :force => true do |t|
+  create_table "audits", :id => false, :force => true do |t|
     t.integer  "auditable_id"
     t.string   "auditable_type"
     t.integer  "event_type",     :limit => 1,                  :null => false
@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(:version => 20141112084616) do
   add_index "forums", ["id", "deleted_at"], :name => "index_forums_on_id_and_deleted_at"
   add_index "forums", ["last_forum_thread_id"], :name => "forums_last_forum_thread_id_fk"
 
-  create_table "migration_sec_container_map", :force => true do |t|
+  create_table "migration_sec_container_map", :id => false, :force => true do |t|
     t.integer "sec_id"
     t.integer "container_id"
   end

@@ -258,6 +258,7 @@ class Publication < ActiveRecord::Base
         c = c.container
       end
     end
+    true
   end
 
   def self.sort_fields

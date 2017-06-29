@@ -100,11 +100,11 @@ module Poema
       def destroy
         if paranoid_value.nil?
           with_transaction_returning_status do
-            run_callbacks :destroy do
+            run_callbacks :destroy do            
               self.class.delete_all(self.class.primary_key.to_sym => self.id)
-              self.paranoid_value = self.class.delete_now_value
-              self
-            end
+	      self.paranoid_value = self.class.delete_now_value
+    	      self
+    	    end    
           end
         end
       end
