@@ -17,8 +17,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <%= csrf_meta_tags %>
   <script type="text/javascript">var poema_js_options = <%= raw @js_options.to_json %>;</script>
-  <% if content_for?(:header_extra) %><%= yield(:header_extra) %>
+  <% if content_for?(:header_extra) %>
+    <%= yield(:header_extra) %>
   <% end %>
+  <%= stylesheet_link_tag 'vendor' %>
+  <%= stylesheet_link_tag 'application' %>
 </head>
 <body class="portal" itemscope itemtype="http://schema.org/WebPage">
 <div id="main-top-bar-float-container">
@@ -131,9 +134,6 @@
   <div style="clear:both"></div>
 </div>
 <div id="divPopupContainer"></div>
-
-<%= stylesheet_link_tag 'vendor' %>
-<%= stylesheet_link_tag 'application' %>
 
 <% if content_for?(:js_files_external_body) %><%= yield :js_files_external_body %>
 <% end %>
