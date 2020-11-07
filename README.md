@@ -15,14 +15,14 @@ zmian związanych z rebrandingiem oprogramowania jest Github. Sugeruję zmiany p
 
 ## Wymagania systemowe
 
-* hosting/serwer Ruby On Rails - aplikacja działa z ``Passenger`` a także z ``Unicorn``
+* hosting/serwer Ruby, wersja 2.3 - aplikacja działa z ``Passenger`` a także z ``Unicorn``
 * baza danych MySQL
 * miejsce na dysku na uploadowane pliki
 * dostęp do Shella (kompilacja assetów)
  
 ## Wymagania związane z zewętrznymi usługami
   
-* konto na [https://mailgun.com] - maile są dystrybuowane przez ich API
+* dostęp do serwera SMTP (wysyłka wiadomości email)
 * klucze API dla Google Maps
 * konto developera Facebook (integracja logowania FB)
 * konto developera NK (zaloguj z NK)
@@ -52,6 +52,6 @@ u.has_role! :root
 
 ## Autor
 
-Arkadiusz Kuryłowicz 2011-2014
+Arkadiusz Kuryłowicz 2011-2020
 
 Wydano 2017
