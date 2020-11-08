@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.22'
-gem 'rake', '~> 10.1.1'
-gem 'mysql2', '0.3.15'
+gem 'rails', '3.2.22.5'
+gem 'rake', '10.4.2'
+gem 'mysql2', '0.3.21'
 
 gem 'dynamic_form', '~> 1.1.4'
-gem 'json', '~> 1.6.1'
+gem 'json'
 gem 'foreigner', '~> 1.1.1'
 gem "nilify_blanks", "~> 1.0.0"
 gem "stringex", "~> 1.4.0"
@@ -24,7 +24,6 @@ gem 'omniauth-facebook'
 gem "geocoder"
 gem "will_paginate", "~> 3.0.3"
 gem "rails3-active_form", "~> 2.0.0"
-gem 'mailgun_rails'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.6'
@@ -33,3 +32,5 @@ group :assets do
   gem 'execjs', '>= 2.0.2'
   gem 'therubyracer', '>=  0.12.1', :platforms => :ruby
 end
+
+gem 'test-unit', '~> 3.0'

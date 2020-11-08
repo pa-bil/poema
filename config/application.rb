@@ -53,13 +53,14 @@ module Poema
     config.assets.enabled = true
     config.assets.version = 1
     config.assets.precompile += %w(wysiwyg.css vendor.css vendor.js)
-    
+
     # config.assets.initialize_on_precompile = false
     # config.assets.css_compressor = :scss
     # config.assets.js_compressor = :uglifier
 
     # Mails
-    config.action_mailer.delivery_method = :mailgun
-    config.action_mailer.mailgun_settings = {domain: custom_config(:smtp_mailgun_domain), api_key: custom_config(:smtp_mailgun_key)}
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = (custom_config(:smtp) || {})
   end
 end

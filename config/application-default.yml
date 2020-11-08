@@ -8,9 +8,14 @@ defaults: &defaults
   default_quota_mb: 10
   google_maps_api_key:
 
-  smtp_domain:
-  smtp_mailgun_domain:
-  smtp_mailgun_key:
+  smtp:
+    :domain:
+    :address:
+    :port:
+    :user_name:
+    :password:
+    :authentication:
+    :enable_starttls_auto:
 
   site_hostname: localhost
 
@@ -23,8 +28,6 @@ defaults: &defaults
 
   filestore_path:
   filestore_url: /filestore
-
-  mail_moderators_list:
 
   user_id_root: 1
   container_id_poem:
