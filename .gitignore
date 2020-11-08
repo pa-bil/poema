@@ -4,4 +4,6 @@ config/application.yml
 log/*
 public/assets
 public/filestore/*
+public/*.pdf
 tmp/*
+doctor.rb
