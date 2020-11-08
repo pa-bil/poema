@@ -176,7 +176,7 @@ DEPENDENCIES
   nilify_blanks (~> 1.0.0)
   omniauth-facebook
   omniauth-nk
-  paperclip (= 2.4)
+  paperclip (= 2.4.0)
   rails (= 3.2.22.5)
   rails3-active_form (~> 2.0.0)
   rake (= 10.4.2)
