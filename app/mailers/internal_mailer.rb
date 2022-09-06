@@ -5,6 +5,14 @@ class InternalMailer < ActionMailer::Base
   default :from => PoemaConfig.mail_automated_from
   default_url_options[:host] = PoemaConfig.site_hostname
 
+  def signup_require_activation(user, auth, activation, omniauth_provider = nil)
+    @user = user
+    @auth = auth
+    @activation = activation
+    @omniauth_provider = omniauth_provider
+    mail(:to => PoemaConfig.mail_moderators_list, :subject => I18n.t('mailer.signup_require_activation'))
+  end
+
   def moderation_created(moderation, moderateable_context = nil)
     @moderator = moderation.moderator
     @moderation = moderation
