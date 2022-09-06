@@ -52,6 +52,6 @@ u.has_role! :root
 
 ## Autor
 
-Arkadiusz Kuryłowicz 2011-2020
+Arkadiusz Kuryłowicz 2011-2022
 
 Wydano 2017
