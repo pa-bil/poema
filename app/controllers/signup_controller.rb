@@ -194,9 +194,11 @@ class SignupController < ApplicationController
           perform_activation activation_token, true
         else
           UserMailer.signup_activation(user, auth, activation, get_omniauth_provider).deliver
+          InternalMailer.signup_require_activation(user, auth, activation, get_omniauth_provider).deliver
         end
       else
         UserMailer.signup_activation(user, auth, activation).deliver
+        InternalMailer.signup_require_activation(user, auth, activation).deliver
       end
     end
   end

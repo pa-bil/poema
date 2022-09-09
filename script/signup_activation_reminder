@@ -19,7 +19,8 @@ def send_notifications(q)
   end
 end
 
-send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)"
-send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 7 DAY)"
+# z uwagi na ręczną aktywację kont przez moderację, nie wysyłamy
+# send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)"
+# send_notifications "SELECT id AS user_id FROM users WHERE locked = 1 AND DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 7 DAY)"
 
 exit 0

@@ -14,11 +14,7 @@
 <% end %>
 </pre>
 
-<p><strong>Link aktywacyjny:</strong> <%= new_signup_activation_path(@activation.code, :only_path => false) %></p>
-
-
+<p><strong>Aby można było się zalogować, Twoje konto musi zostać potwierdzone przez moderatora.</strong></p>
 <br />
-<p>Aby  można  było korzystać z utworzonego konta  otwórz  umieszczony
-powyżej adres lub <%= link_to("kliknij w ten link", new_signup_activation_path(@activation.code, :only_path => false)) %>.
-Jeśli tego nie zrobisz założone konto zostanie usunięte za 30 dni.</p>
-<br />
+
+<p>Poczekaj cierpliwie na aktywację konta. Informację o aktywacji otrzymasz w kolejnej wiadomości email.</p>

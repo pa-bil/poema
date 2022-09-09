@@ -345,6 +345,7 @@ pl:
       destroyed:              "Plik został usunięty"
 
   mailer:
+    signup_require_activation: "Nowe konto wymaga aktywacji"
     moderation:
       moderation:
         created:              "Zablokowano treść niezgodną z regulaminem"

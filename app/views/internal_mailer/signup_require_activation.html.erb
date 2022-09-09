@@ -1,0 +1,3 @@
+<p>Konto <%= mfword("użytkownika", "użytkowniczki", @user) %> <% if @user.nil? %>anonimowego<% else %><%= @user.name %><% end %> wymaga aktywacji.</p>
+
+<p><strong>Link aktywacyjny:</strong> <%= new_signup_activation_path(@activation.code, :only_path => false) %></p>
