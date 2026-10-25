@@ -1,10 +1,17 @@
 class BlockBadBots
   # Zmieniamy wyrażenie regularne na tekstowe sprawdzanie, bezpieczne dla starszych wersji Ruby
-  BAD_BOTS = ["semrushbot", "petalbot", "dataforseobot", "blexbot", "seranking"]
+  # Rozszerzona lista botów (dodany seokicks, yandex i googleusercontent)
+  BAD_BOTS = ["semrushbot", "petalbot", "dataforseobot", "blexbot", "seranking", "seokicks", "yandex", "googleusercontent"]
   
   BAD_IPS = [
+    # Stare IP (wciąż potrzebne)
     '216.244.66.226', '136.243.228.177', '136.243.220.210',
-    '80.241.219.114', '31.220.89.45', '80.241.221.60', '80.241.221.88'
+    '80.241.219.114', '31.220.89.45', '80.241.221.60', '80.241.221.88',
+    
+    # NOWE IP Z WCZORAJSZYCH LOGÓW (Główni sprawcy):
+    '144.76.151.45',  # Nowy rekordzista z Niemiec (317.4 MB)
+    '142.132.135.121', # Drugi agresywny serwer Hetzner (85.6 MB)
+    '185.177.72.69'    # Natrętny serwer z Francji (12.2 MB, 0% grafiki)
   ].freeze
 
   def initialize(app)
