@@ -11,7 +11,14 @@ class BlockBadBots
     # NOWE IP Z WCZORAJSZYCH LOGÓW (Główni sprawcy):
     '144.76.151.45',  # Nowy rekordzista z Niemiec (317.4 MB)
     '142.132.135.121', # Drugi agresywny serwer Hetzner (85.6 MB)
-    '185.177.72.69'    # Natrętny serwer z Francji (12.2 MB, 0% grafiki)
+    '185.177.72.69',    # Natrętny serwer z Francji (12.2 MB, 0% grafiki)
+	
+	# =========================================================================
+    # NOWE AGRESYWNE BOTY Z USA (Odcięcie 2 GB transferu):
+    # =========================================================================
+    '216.73.216.173', # Główny scraper (1.1 GB transferu)
+    '74.7.242.48',    # Drugi scraper (482 MB transferu)
+    '74.7.227.17'     # Trzeci scraper (446 MB transferu)
   ].freeze
 
   def initialize(app)
